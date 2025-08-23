@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HWM Lab - Volleyball</title>
+    <title>HWM Lab - Volleyball Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
@@ -35,86 +35,112 @@
 
     <main class="py-20">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-4">🏐 Volleyball Tournament</h2>
-            <p class="text-center text-gray-500 mb-12">Summary of the August 2025 Tournament</p>
-            <div class="text-center mb-12">
-                <a href="auction.html" class="bg-indigo-600 text-white px-8 py-3 rounded-lg hover:bg-indigo-700 transition text-lg font-semibold">Launch New Auction Tool</a>
-            </div>
-            <div class="bg-white p-8 rounded-lg shadow-lg mb-12">
-                <h3 class="text-2xl font-bold text-center mb-8">Match Summary: Team Magnet vs Team SKY</h3>
-                <div class="bg-gray-50 p-6 rounded-lg shadow-sm text-center max-w-2xl mx-auto mb-10">
-                    <div class="flex justify-around items-center"><div class="text-2xl font-bold text-orange-500">Team Magnet</div><div class="text-5xl font-bold">4 - 1</div><div class="text-2xl font-bold text-cyan-500">Team SKY</div></div>
-                    <p class="mt-2 font-semibold text-green-600">🏆 Winner: <span class="text-orange-500">Team Magnet</span></p><p class="text-sm text-gray-500 mt-2">📅 August 23rd, 2025</p>
-                </div>
-                <div class="max-w-md mx-auto mb-12">
-                    <h4 class="text-xl font-semibold text-center mb-4">Game-by-Game Score</h4>
-                    <ul class="space-y-2 text-center"><li class="bg-gray-50 p-3 rounded-md">Game 1: <span class="font-bold text-orange-500">Team Magnet</span> won 25-13</li><li class="bg-gray-50 p-3 rounded-md">Game 2: <span class="font-bold text-cyan-500">Team SKY</span> won 25-23</li><li class="bg-gray-50 p-3 rounded-md">Game 3: <span class="font-bold text-orange-500">Team Magnet</span> won 25-18</li><li class="bg-gray-50 p-3 rounded-md">Game 4: <span class="font-bold text-orange-500">Team Magnet</span> won 25-16</li><li class="bg-gray-50 p-3 rounded-md">Game 5: <span class="font-bold text-orange-500">Team Magnet</span> won 25-9</li></ul>
-                </div>
-                <div class="text-center mb-12">
-                    <h4 class="text-xl font-semibold mb-4">🏆 Man of the Series 🏆</h4>
-                    <div class="inline-block bg-yellow-100 p-4 rounded-lg"><img src="https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sus.jpg" alt="Sushil Kumar Jaiswal" class="w-20 h-20 rounded-full mx-auto mb-2 border-4 border-yellow-400"><p class="font-bold text-lg">Sushil Kumar Jaiswal</p><p class="text-orange-600 font-semibold">(Team Magnet)</p></div>
-                </div>
-                <div>
-                    <h4 class="text-xl font-semibold text-center mb-6">Match Day Lineups</h4>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8"><div id="v-team2Result" class="bg-gray-50 p-6 rounded-lg shadow-sm"></div><div id="v-team1Result" class="bg-gray-50 p-6 rounded-lg shadow-sm"></div></div>
-                </div>
-                <div class="mt-12 pt-8 border-t border-gray-200 text-center">
-                    <h4 class="text-xl font-semibold mb-4">Match Officials</h4>
-                    <div class="inline-block bg-gray-50 p-4 rounded-lg shadow-sm">
-                        <img src="https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/snehal.jpg" alt="Snehal B. Rathod" class="w-16 h-16 rounded-full mx-auto mb-2 border-2 border-gray-300">
-                        <p class="font-semibold">Snehal B. Rathod</p>
-                        <p class="text-sm text-gray-500">(Auctioneer & Referee)</p>
+            <h2 class="text-4xl font-bold text-center mb-4">🏐 Volleyball Hub</h2>
+            <p class="text-center text-gray-500 mb-12">The central place for all volleyball activities at HWM Lab.</p>
+
+            <!-- Volleyball Hub Navigation -->
+            <nav class="bg-white rounded-lg shadow-md p-2 flex flex-wrap justify-center gap-2 mb-12">
+                <button class="v-tab active px-4 py-2 rounded-md font-semibold" data-target="v-home">Hub Home</button>
+                <button class="v-tab px-4 py-2 rounded-md font-semibold" data-target="v-rules">Rules</button>
+                <button class="v-tab px-4 py-2 rounded-md font-semibold" data-target="v-teams">Teams</button>
+                <button class="v-tab px-4 py-2 rounded-md font-semibold" data-target="v-history">Match History</button>
+                <button class="v-tab px-4 py-2 rounded-md font-semibold" data-target="v-auction">Auction</button>
+                <button class="v-tab px-4 py-2 rounded-md font-semibold" data-target="v-schedule">Schedule</button>
+                <button class="v-tab px-4 py-2 rounded-md font-semibold" data-target="v-stats">Statistics</button>
+                <button class="v-tab px-4 py-2 rounded-md font-semibold" data-target="v-gallery">Gallery</button>
+            </nav>
+
+            <!-- Volleyball Hub Content Sections -->
+            <div id="volleyball-hub-content">
+                <!-- Hub Home -->
+                <section id="v-home" class="volleyball-content active">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        <div class="lg:col-span-2">
+                            <div class="bg-white p-6 rounded-lg shadow-md">
+                                <h3 class="text-2xl font-bold mb-4">Latest Result</h3>
+                                <div class="bg-gray-50 p-6 rounded-lg shadow-sm text-center">
+                                    <div class="flex justify-around items-center"><div class="text-xl font-bold text-orange-500">Team Magnet</div><div class="text-4xl font-bold">4 - 1</div><div class="text-xl font-bold text-cyan-500">Team SKY</div></div>
+                                    <p class="mt-2 font-semibold text-green-600">🏆 Winner: <span class="text-orange-500">Team Magnet</span></p>
+                                    <button class="v-tab-link mt-4 text-indigo-600 hover:underline" data-target="v-history">View Full Match Details &rarr;</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="space-y-6">
+                             <div class="bg-white p-6 rounded-lg shadow-md">
+                                <h3 class="text-2xl font-bold mb-4">Upcoming Match</h3>
+                                <p class="text-gray-500">No new matches scheduled. Stay tuned!</p>
+                            </div>
+                            <div class="bg-white p-6 rounded-lg shadow-md">
+                                <h3 class="text-2xl font-bold mb-4">Announcements</h3>
+                                <p class="text-gray-500">Planning for the next tournament is underway!</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            
-            <!-- Rules and Regulations Section -->
-            <div class="bg-white p-8 rounded-lg shadow-lg">
-                <h3 class="text-2xl font-bold text-center mb-8">Rules & Regulations</h3>
-                <div class="max-w-4xl mx-auto text-gray-700 space-y-6">
-                    <div>
-                        <h4 class="text-xl font-semibold mb-2">1. General Gameplay & Teams</h4>
-                        <ul class="list-disc list-inside space-y-2 pl-4">
-                            <li><strong>Objective:</strong> The goal is to score points by sending the ball over the net so it lands within the opponent's court.</li>
-                            <li><strong>Teams:</strong> Games are played between two teams. The number of players on the court will be decided per match.</li>
-                            <li><strong>Scoring:</strong> We will use rally scoring. A point is awarded on every rally, regardless of which team served. Sets are typically played to 25 points, and a team must win by at least a two-point margin.</li>
-                        </ul>
+                </section>
+
+                <!-- Rules -->
+                <section id="v-rules" class="volleyball-content">
+                    <div class="bg-white p-8 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold text-center mb-8">Rules & Regulations</h3>
+                        <div class="max-w-4xl mx-auto text-gray-700 space-y-6">
+                            <div><h4 class="text-xl font-semibold mb-2">1. General Gameplay & Teams</h4><ul class="list-disc list-inside space-y-2 pl-4"><li><strong>Objective:</strong> The goal is to score points by sending the ball over the net so it lands within the opponent's court.</li><li><strong>Teams:</strong> Games are played between two teams. The number of players on the court will be decided per match.</li><li><strong>Scoring:</strong> We will use rally scoring. A point is awarded on every rally, regardless of which team served. Sets are typically played to 25 points, and a team must win by at least a two-point margin.</li></ul></div>
+                            <div><h4 class="text-xl font-semibold mb-2">2. Hitting & Attacks (Custom Rules)</h4><ul class="list-disc list-inside space-y-2 pl-4"><li><strong>Consecutive Hits:</strong> A single player is allowed to hit the ball twice in a row.</li><li><strong>Team Hits:</strong> There is no limit to the total number of hits a team can make before sending the ball over the net.</li><li><strong>Legal Contact:</strong> Contact with the ball must be a clean, brief hit. Holding, catching, lifting, or throwing the ball is not permitted and will result in a fault.</li></ul></div>
+                            <div><h4 class="text-xl font-semibold mb-2">3. Serving (Custom Rules)</h4><ul class="list-disc list-inside space-y-2 pl-4"><li><strong>Service Style:</strong> All serves must be performed underhand. Overhand or jump serves are not allowed.</li><li><strong>Service Location:</strong> The server is permitted to serve from inside the court. The serve must be executed from behind the 3-meter (10-foot) attack line.</li><li><strong>Valid Serve:</strong> The served ball must cross the net and travel over the opponent's 3-meter attack line to be considered a valid serve.</li><li><strong>Service Rotation:</strong> Service must be done by each player in the team in a rotational sequence.</li><li><strong>Continuous Serving:</strong> A player can continue to serve as long as their team keeps winning points. When the serving team loses a rally, the serve switches to the opposing team, and they must rotate to their next server.</li></ul></div>
+                            <div><h4 class="text-xl font-semibold mb-2">4. Fouls & Violations</h4><ul class="list-disc list-inside space-y-2 pl-4"><li><strong>Net Contact:</strong> Players are not allowed to touch the net during play. If a player touches the net, their team loses the point.</li><li><strong>Center Line:</strong> A player may step on the center line, but their entire foot cannot cross completely over the line into the opponent's court.</li><li><strong>Out of Bounds:</strong> A ball is considered 'out' if it lands completely outside the boundary lines, touches the ceiling, or hits the antennas on the net. A ball that lands on a boundary line is 'in'.</li></ul></div>
+                            <div><h4 class="text-xl font-semibold mb-2">5. Sportsmanship</h4><ul class="list-disc list-inside space-y-2 pl-4"><li>All players are expected to show good sportsmanship.</li><li>The referee's calls are final. Please respect their decisions.</li><li>Let's prioritize safety, fair play, and fun for everyone involved!</li></ul></div>
+                        </div>
                     </div>
-                    <div>
-                        <h4 class="text-xl font-semibold mb-2">2. Hitting & Attacks (Custom Rules)</h4>
-                        <ul class="list-disc list-inside space-y-2 pl-4">
-                           <li><strong>Consecutive Hits:</strong> A single player is allowed to hit the ball twice in a row.</li>
-                           <li><strong>Team Hits:</strong> There is no limit to the total number of hits a team can make before sending the ball over the net.</li>
-                           <li><strong>Legal Contact:</strong> Contact with the ball must be a clean, brief hit. Holding, catching, lifting, or throwing the ball is not permitted and will result in a fault.</li>
-                        </ul>
+                </section>
+
+                <!-- Teams -->
+                <section id="v-teams" class="volleyball-content">
+                    <div class="bg-white p-8 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold text-center mb-8">Tournament Teams</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div id="v-team2Result-teams" class="bg-gray-50 p-6 rounded-lg shadow-sm"></div>
+                            <div id="v-team1Result-teams" class="bg-gray-50 p-6 rounded-lg shadow-sm"></div>
+                        </div>
                     </div>
-                     <div>
-                        <h4 class="text-xl font-semibold mb-2">3. Serving (Custom Rules)</h4>
-                        <ul class="list-disc list-inside space-y-2 pl-4">
-                           <li><strong>Service Style:</strong> All serves must be performed underhand. Overhand or jump serves are not allowed.</li>
-                           <li><strong>Service Location:</strong> The server is permitted to serve from inside the court. The serve must be executed from behind the 3-meter (10-foot) attack line.</li>
-                           <li><strong>Valid Serve:</strong> The served ball must cross the net and travel over the opponent's 3-meter attack line to be considered a valid serve.</li>
-                           <li><strong>Service Rotation:</strong> Service must be done by each player in the team in a rotational sequence.</li>
-                           <li><strong>Continuous Serving:</strong> A player can continue to serve as long as their team keeps winning points. When the serving team loses a rally, the serve switches to the opposing team, and they must rotate to their next server.</li>
-                        </ul>
+                </section>
+
+                <!-- Match History -->
+                <section id="v-history" class="volleyball-content">
+                    <div class="bg-white p-8 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold text-center mb-8">Match History</h3>
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm text-center max-w-2xl mx-auto mb-10">
+                            <div class="flex justify-around items-center"><div class="text-2xl font-bold text-orange-500">Team Magnet</div><div class="text-5xl font-bold">4 - 1</div><div class="text-2xl font-bold text-cyan-500">Team SKY</div></div>
+                            <p class="mt-2 font-semibold text-green-600">🏆 Winner: <span class="text-orange-500">Team Magnet</span></p><p class="text-sm text-gray-500 mt-2">📅 August 23rd, 2025</p>
+                        </div>
+                        <div class="max-w-md mx-auto mb-12">
+                            <h4 class="text-xl font-semibold text-center mb-4">Game-by-Game Score</h4>
+                            <ul class="space-y-2 text-center"><li class="bg-gray-50 p-3 rounded-md">Game 1: <span class="font-bold text-orange-500">Team Magnet</span> won 25-13</li><li class="bg-gray-50 p-3 rounded-md">Game 2: <span class="font-bold text-cyan-500">Team SKY</span> won 25-23</li><li class="bg-gray-50 p-3 rounded-md">Game 3: <span class="font-bold text-orange-500">Team Magnet</span> won 25-18</li><li class="bg-gray-50 p-3 rounded-md">Game 4: <span class="font-bold text-orange-500">Team Magnet</span> won 25-16</li><li class="bg-gray-50 p-3 rounded-md">Game 5: <span class="font-bold text-orange-500">Team Magnet</span> won 25-9</li></ul>
+                        </div>
+                        <div class="text-center mb-12">
+                            <h4 class="text-xl font-semibold mb-4">🏆 Man of the Series 🏆</h4>
+                            <div class="inline-block bg-yellow-100 p-4 rounded-lg"><img src="https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sus.jpg" alt="Sushil Kumar Jaiswal" class="w-20 h-20 rounded-full mx-auto mb-2 border-4 border-yellow-400"><p class="font-bold text-lg">Sushil Kumar Jaiswal</p><p class="text-orange-600 font-semibold">(Team Magnet)</p></div>
+                        </div>
                     </div>
-                     <div>
-                        <h4 class="text-xl font-semibold mb-2">4. Fouls & Violations</h4>
-                        <ul class="list-disc list-inside space-y-2 pl-4">
-                           <li><strong>Net Contact:</strong> Players are not allowed to touch the net during play. If a player touches the net, their team loses the point.</li>
-                           <li><strong>Center Line:</strong> A player may step on the center line, but their entire foot cannot cross completely over the line into the opponent's court.</li>
-                           <li><strong>Out of Bounds:</strong> A ball is considered 'out' if it lands completely outside the boundary lines, touches the ceiling, or hits the antennas on the net. A ball that lands on a boundary line is 'in'.</li>
-                        </ul>
+                </section>
+
+                <!-- Auction -->
+                <section id="v-auction" class="volleyball-content">
+                    <div class="bg-white p-8 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-bold text-center mb-8">Auction</h3>
+                        <div class="text-center mb-12">
+                            <a href="auction.html" class="bg-indigo-600 text-white px-8 py-3 rounded-lg hover:bg-indigo-700 transition text-lg font-semibold">Launch New Auction Tool</a>
+                        </div>
+                        <h4 class="text-xl font-semibold text-center mb-6">Latest Auction Results</h4>
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                            <div id="v-team1Auction" class="bg-gray-50 p-6 rounded-lg shadow-sm"></div>
+                            <div id="v-team2Auction" class="bg-gray-50 p-6 rounded-lg shadow-sm"></div>
+                        </div>
                     </div>
-                     <div>
-                        <h4 class="text-xl font-semibold mb-2">5. Sportsmanship</h4>
-                        <ul class="list-disc list-inside space-y-2 pl-4">
-                           <li>All players are expected to show good sportsmanship.</li>
-                           <li>The referee's calls are final. Please respect their decisions.</li>
-                           <li>Let's prioritize safety, fair play, and fun for everyone involved!</li>
-                        </ul>
-                    </div>
-                </div>
+                </section>
+                
+                <!-- Schedule, Stats, Gallery -->
+                <section id="v-schedule" class="volleyball-content"><div class="bg-white p-8 rounded-lg shadow-lg text-center"><h3 class="text-2xl font-bold mb-4">Schedule</h3><p class="text-gray-500">No upcoming matches scheduled.</p></div></section>
+                <section id="v-stats" class="volleyball-content"><div class="bg-white p-8 rounded-lg shadow-lg text-center"><h3 class="text-2xl font-bold mb-4">Statistics</h3><p class="text-gray-500">Player leaderboards coming soon!</p></div></section>
+                <section id="v-gallery" class="volleyball-content"><div class="bg-white p-8 rounded-lg shadow-lg text-center"><h3 class="text-2xl font-bold mb-4">Gallery</h3><p class="text-gray-500">Photo and video gallery coming soon!</p></div></section>
             </div>
         </div>
     </main>
@@ -126,9 +152,8 @@
         </div>
     </footer>
     
-    <!-- Back to Top Button -->
     <a href="#header" id="to-top-button" class="bg-indigo-600 text-white p-3 rounded-full shadow-lg hover:bg-indigo-700" aria-label="Go to top">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
     </a>
 
     <script src="scripts.js"></script>
