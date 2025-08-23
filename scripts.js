@@ -9,6 +9,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     document.getElementById('current-year').textContent = new Date().getFullYear();
 
+    // --- BACK TO TOP BUTTON ---
+    const toTopButton = document.getElementById('to-top-button');
+    if(toTopButton) {
+        window.onscroll = function() {
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                toTopButton.style.display = "block";
+            } else {
+                toTopButton.style.display = "none";
+            }
+        };
+    }
+
     // --- DATA ---
     const allMembers = [
         { name: "Indra Mani Tripathi", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/imt2.jpg", status: "PhD Student", email: "indra.tripathi@iitgn.ac.in", phone: "+91 96542 65217", category: "PhD Students" },
@@ -49,11 +61,14 @@ document.addEventListener('DOMContentLoaded', () => {
             { name: "Indrajitsinh Bihola", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/indra.jpg", position: "Reserve" }
         ]
     };
-
-    // --- STATIC CONTENT POPULATION ---
+    
     const peopleGrid = document.getElementById('people-grid');
     const v_team1ResultEl = document.getElementById('v-team1Result');
     const v_team2ResultEl = document.getElementById('v-team2Result');
+    const v_team1AuctionEl = document.getElementById('v-team1Auction');
+    const v_team2AuctionEl = document.getElementById('v-team2Auction');
+    const v_team1TeamsEl = document.getElementById('v-team1Result-teams');
+    const v_team2TeamsEl = document.getElementById('v-team2Result-teams');
 
     if (peopleGrid) {
         const groupedMembers = allMembers.reduce((acc, member) => {
@@ -78,13 +93,41 @@ document.addEventListener('DOMContentLoaded', () => {
         v_team1ResultEl.innerHTML = `<h3 class="text-xl font-bold text-cyan-500 mb-4">Team: ${teamSkyLineup.name}</h3><h4 class="font-semibold mb-2">Starting Lineup</h4><ul class="space-y-2 text-sm mb-4"><li class="flex items-center gap-2 py-1"><img src="${teamSkyLineup.captain.image}" alt="${teamSkyLineup.captain.name}" class="w-8 h-8 rounded-full object-cover"><span>${teamSkyLineup.captain.name} <span class="text-cyan-500 font-semibold">(Captain)</span><br><span class="text-xs text-gray-500">${teamSkyLineup.captain.position}</span></span></li>${teamSkyLineup.starters.map(p => `<li class="flex items-center gap-2 py-1"><img src="${p.image}" alt="${p.name}" class="w-8 h-8 rounded-full object-cover"><span>${p.name}<br><span class="text-xs text-gray-500">${p.position}</span></span></li>`).join('')}</ul><h4 class="font-semibold mb-2">Reserves</h4><ul class="space-y-2 text-sm">${teamSkyLineup.reserves.map(p => `<li class="flex items-center gap-2 py-1"><img src="${p.image}" alt="${p.name}" class="w-8 h-8 rounded-full object-cover"><span>${p.name}<br><span class="text-xs text-gray-500">${p.position}</span></span></li>`).join('')}</ul>`;
         v_team2ResultEl.innerHTML = `<h3 class="text-xl font-bold text-orange-500 mb-4">Team: ${teamMagnetLineup.name}</h3><h4 class="font-semibold mb-2">Starting Lineup</h4><ul class="space-y-2 text-sm mb-4"><li class="flex items-center gap-2 py-1"><img src="${teamMagnetLineup.captain.image}" alt="${teamMagnetLineup.captain.name}" class="w-8 h-8 rounded-full object-cover"><span>${teamMagnetLineup.captain.name} <span class="text-orange-500 font-semibold">(Captain)</span><br><span class="text-xs text-gray-500">${teamMagnetLineup.captain.position}</span></span></li>${teamMagnetLineup.starters.map(p => `<li class="flex items-center gap-2 py-1"><img src="${p.image}" alt="${p.name}" class="w-8 h-8 rounded-full object-cover"><span>${p.name}<br><span class="text-xs text-gray-500">${p.position}</span></span></li>`).join('')}</ul><h4 class="font-semibold mb-2">Reserves</h4><ul class="space-y-2 text-sm">${teamMagnetLineup.reserves.map(p => `<li class="flex items-center gap-2 py-1"><img src="${p.image}" alt="${p.name}" class="w-8 h-8 rounded-full object-cover"><span>${p.name}<br><span class="text-xs text-gray-500">${p.position}</span></span></li>`).join('')}</ul>`;
     }
-
-    // --- AUCTION TOOL FACTORY ---
-    function createAuctionApp(containerId, gameName, gameEmoji) {
-        // ... (Full auction app logic will be dynamically injected and initialized here)
+    
+    if (v_team1AuctionEl && v_team2AuctionEl) {
+        v_team1AuctionEl.innerHTML = v_team1ResultEl.innerHTML; // Simplified for now
+        v_team2AuctionEl.innerHTML = v_team2ResultEl.innerHTML;
+    }
+    
+    if (v_team1TeamsEl && v_team2TeamsEl) {
+        v_team1TeamsEl.innerHTML = v_team1ResultEl.innerHTML;
+        v_team2TeamsEl.innerHTML = v_team2ResultEl.innerHTML;
     }
 
-    if (document.getElementById('auction-app-volleyball')) createAuctionApp('auction-app-volleyball', 'Volleyball', '🏐');
-    if (document.getElementById('auction-app-cricket')) createAuctionApp('auction-app-cricket', 'Cricket', '🏏');
-    if (document.getElementById('auction-app-badminton')) createAuctionApp('auction-app-badminton', 'Badminton', '🏸');
+    // --- VOLLEYBALL HUB TABS ---
+    const vTabs = document.querySelectorAll('.v-tab');
+    const vContents = document.querySelectorAll('.volleyball-content');
+    const vTabLinks = document.querySelectorAll('.v-tab-link');
+
+    function setupVTabs() {
+        vTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                vTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                vContents.forEach(c => c.classList.remove('active'));
+                document.getElementById(tab.dataset.target).classList.add('active');
+            });
+        });
+         vTabLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                const targetId = e.currentTarget.dataset.target;
+                vTabs.forEach(t => t.classList.remove('active'));
+                vContents.forEach(c => c.classList.remove('active'));
+                document.querySelector(`.v-tab[data-target="${targetId}"]`).classList.add('active');
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+    }
+    if(vTabs.length > 0) setupVTabs();
+
 });
