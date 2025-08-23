@@ -137,10 +137,10 @@
                     </div>
                     <div class="max-w-md mx-auto mb-12">
                         <h4 class="text-xl font-semibold text-center mb-4">Game-by-Game Score</h4>
-                        <ul class="space-y-2 text-center"><li class="bg-gray-50 p-3 rounded-md">Game 1: <span class="font-bold">Team Magnet</span> won 25-13</li><li class="bg-gray-50 p-3 rounded-md">Game 2: <span class="font-bold text-cyan-500">Team SKY</span> won 25-23</li><li class="bg-gray-50 p-3 rounded-md">Game 3: <span class="font-bold">Team Magnet</span> won 25-18</li><li class="bg-gray-50 p-3 rounded-md">Game 4: <span class="font-bold">Team Magnet</span> won 25-16</li><li class="bg-gray-50 p-3 rounded-md">Game 5: <span class="font-bold">Team Magnet</span> won 25-9</li></ul>
+                        <ul class="space-y-2 text-center"><li class="bg-gray-50 p-3 rounded-md">Game 1: <span class="font-bold text-orange-500">Team Magnet</span> won 25-13</li><li class="bg-gray-50 p-3 rounded-md">Game 2: <span class="font-bold text-cyan-500">Team SKY</span> won 25-23</li><li class="bg-gray-50 p-3 rounded-md">Game 3: <span class="font-bold text-orange-500">Team Magnet</span> won 25-18</li><li class="bg-gray-50 p-3 rounded-md">Game 4: <span class="font-bold text-orange-500">Team Magnet</span> won 25-16</li><li class="bg-gray-50 p-3 rounded-md">Game 5: <span class="font-bold text-orange-500">Team Magnet</span> won 25-9</li></ul>
                     </div>
                     <div class="text-center mb-12">
-                        <h4 class="text-xl font-semibold mb-4">🏆 Man of the Match 🏆</h4>
+                        <h4 class="text-xl font-semibold mb-4">🏆 Man of the Series 🏆</h4>
                         <div class="inline-block bg-yellow-100 p-4 rounded-lg"><img src="https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sus.jpg" alt="Sushil Kumar Jaiswal" class="w-20 h-20 rounded-full mx-auto mb-2 border-4 border-yellow-400"><p class="font-bold text-lg">Sushil Kumar Jaiswal</p><p class="text-orange-600 font-semibold">(Team Magnet)</p></div>
                     </div>
                     <div>
@@ -255,25 +255,22 @@
             ];
 
             const team1ResultData = {
-                name: "SKY", budget: 2250,
-                captain: { name: "Akash Yadav", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/akash.jpg" },
+                name: "SKY",
+                captain: { name: "Akash Yadav", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/akash.jpg", position: "Side Hitter (Attacker)" },
                 players: [
-                    { name: "Kapil", price: 550, image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/kapil.jpg" },
-                    { name: "Bhanu", price: 450, image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/bhanu.jpg" },
-                    { name: "Sumit", price: 500, image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sum.jpg" },
-                    { name: "Pradeep", price: 500, image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/pradeep.jpg" },
-                    { name: "Indrajeet", price: 750, image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/indra.jpg" }
+                    { name: "Pradeep", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/pradeep.jpg", position: "Side Hitter (Attacker)" },
+                    { name: "Sumit", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sum.jpg", position: "Middle Blocker (Net)" },
+                    { name: "Kapil", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/kapil.jpg", position: "Center" }
                 ]
             };
 
             const team2ResultData = {
-                name: "Magnet", budget: 150,
-                captain: { name: "Sushil Kumar Jaiswal", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sus.jpg" },
+                name: "Magnet",
+                captain: { name: "Sushil Kumar Jaiswal", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sus.jpg", position: "Right-Side Hitter" },
                 players: [
-                    { name: "Sunil Kumar", price: 2200, image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sunil.jpg" },
-                    { name: "Indra M. Tripathi", price: 2300, image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/imt2.jpg" },
-                    { name: "Jitendra", price: 100, image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/jitu.jpg" },
-                    { name: "Rajesh", price: 250, image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/rj.jpg" }
+                    { name: "Sunil Kumar", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sunil.jpg", position: "Left-Side Hitter" },
+                    { name: "Indra M. Tripathi", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/imt2.jpg", position: "Center" },
+                    { name: "Rajesh", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/rj.jpg", position: "Middle Blocker" }
                 ]
             };
             
@@ -283,8 +280,8 @@
 
             function populateStaticContent() {
                 peopleGrid.innerHTML = allMembers.map(person => `<div class="text-center"><img src="${person.image}" alt="${person.name}" class="w-24 h-24 rounded-full mb-2 object-cover border-2 border-gray-200 mx-auto"><span class="font-semibold">${person.name}</span><span class="block text-sm text-gray-500">${person.role}</span></div>`).join('');
-                v_team1ResultEl.innerHTML = `<h3 class="text-xl font-bold text-cyan-500 mb-4">Team: ${team1ResultData.name}</h3><ul class="space-y-2 text-sm"><li class="flex items-center gap-2 py-1"><img src="${team1ResultData.captain.image}" alt="${team1ResultData.captain.name}" class="w-8 h-8 rounded-full object-cover"><span>${team1ResultData.captain.name} <span class="text-cyan-500 font-semibold">(Captain)</span></span></li>${team1ResultData.players.map(p => `<li class="flex items-center gap-2 py-1"><img src="${p.image}" alt="${p.name}" class="w-8 h-8 rounded-full object-cover"><span>${p.name}</span></li>`).join('')}</ul>`;
-                v_team2ResultEl.innerHTML = `<h3 class="text-xl font-bold text-orange-500 mb-4">Team: ${team2ResultData.name}</h3><ul class="space-y-2 text-sm"><li class="flex items-center gap-2 py-1"><img src="${team2ResultData.captain.image}" alt="${team2ResultData.captain.name}" class="w-8 h-8 rounded-full object-cover"><span>${team2ResultData.captain.name} <span class="text-orange-500 font-semibold">(Captain)</span></span></li>${team2ResultData.players.map(p => `<li class="flex items-center gap-2 py-1"><img src="${p.image}" alt="${p.name}" class="w-8 h-8 rounded-full object-cover"><span>${p.name}</span></li>`).join('')}</ul>`;
+                v_team1ResultEl.innerHTML = `<h3 class="text-xl font-bold text-cyan-500 mb-4">Team: ${team1ResultData.name}</h3><ul class="space-y-2 text-sm"><li class="flex items-center gap-2 py-1"><img src="${team1ResultData.captain.image}" alt="${team1ResultData.captain.name}" class="w-8 h-8 rounded-full object-cover"><span>${team1ResultData.captain.name} <span class="text-cyan-500 font-semibold">(Captain)</span><br><span class="text-xs text-gray-500">${team1ResultData.captain.position}</span></span></li>${team1ResultData.players.map(p => `<li class="flex items-center gap-2 py-1"><img src="${p.image}" alt="${p.name}" class="w-8 h-8 rounded-full object-cover"><span>${p.name}<br><span class="text-xs text-gray-500">${p.position}</span></span></li>`).join('')}</ul>`;
+                v_team2ResultEl.innerHTML = `<h3 class="text-xl font-bold text-orange-500 mb-4">Team: ${team2ResultData.name}</h3><ul class="space-y-2 text-sm"><li class="flex items-center gap-2 py-1"><img src="${team2ResultData.captain.image}" alt="${team2ResultData.captain.name}" class="w-8 h-8 rounded-full object-cover"><span>${team2ResultData.captain.name} <span class="text-orange-500 font-semibold">(Captain)</span><br><span class="text-xs text-gray-500">${team2ResultData.captain.position}</span></span></li>${team2ResultData.players.map(p => `<li class="flex items-center gap-2 py-1"><img src="${p.image}" alt="${p.name}" class="w-8 h-8 rounded-full object-cover"><span>${p.name}<br><span class="text-xs text-gray-500">${p.position}</span></span></li>`).join('')}</ul>`;
             }
             populateStaticContent();
 
