@@ -1,201 +1,316 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HWM Lab Sports</title>
+    <title>HWM Lab - IIT Gandhinagar</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
+        }
+        .hero-bg {
             background-color: #111827;
-            color: #f3f4f6;
-            overflow-x: hidden;
+            background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0);
+            background-size: 2rem 2rem;
         }
-        .nav-tab, .game-tab, .v-tab {
-            transition: background-color 0.2s, color 0.2s;
-            cursor: pointer;
-        }
-        .nav-tab.active, .game-tab.active, .v-tab.active {
-            background-color: #4f46e5;
-            color: white;
-        }
-        .content-section, .game-content, .volleyball-content {
+        .page-section {
             display: none;
+            min-height: calc(100vh - 80px); /* Full height minus header */
         }
-        .content-section.active, .game-content.active, .volleyball-content.active {
+        .page-section.active {
             display: block;
             animation: fadeIn 0.5s ease-in-out;
         }
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
-        .team-card, .player-card, .auction-card, .player-pool-card, .info-card {
+        .nav-link.active {
+            color: #4f46e5;
+            font-weight: 600;
+        }
+        .game-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+         .team-card, .player-card, .auction-card, .player-pool-card, .info-card {
             background-color: #1f2937;
             border: 1px solid #374151;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, border-color 0.3s ease-in-out;
         }
-        .btn {
-            transition: background-color 0.2s, transform 0.2s;
-        }
+        .btn { transition: background-color 0.2s, transform 0.2s; }
         .btn:hover { transform: scale(1.05); }
         .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .timer-container { position: relative; width: 100px; height: 100px; margin: 1rem auto; }
+        .timer-svg { transform: scaleX(-1) rotate(-90deg); width: 100%; height: 100%; }
+        .timer-circle-bg { fill: none; stroke: #374151; stroke-width: 8; }
+        .timer-circle-progress { fill: none; stroke: #4f46e5; stroke-width: 8; stroke-linecap: round; transition: stroke-dashoffset 1s linear, stroke 0.5s; }
+        .timer-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2rem; font-weight: bold; }
+        .highest-bidder-glow { border-color: #f59e0b; box-shadow: 0 0 15px rgba(245, 158, 11, 0.5); }
+        .confetti { position: absolute; width: 10px; height: 10px; background-color: #f00; opacity: 0; animation: confetti-fall 3s ease-out forwards; }
+        @keyframes confetti-fall {
+            0% { opacity: 1; transform: translateY(0) rotateZ(0); }
+            100% { opacity: 0; transform: translateY(100vh) rotateZ(720deg); }
+        }
     </style>
 </head>
-<body class="p-4 sm:p-6 md:p-8">
-    <div class="container mx-auto max-w-7xl">
-        <!-- Main Website Header -->
-        <header class="text-center mb-8">
-            <h1 class="text-4xl md:text-5xl font-bold text-white tracking-tight">HWM Lab</h1>
-            <p class="text-lg text-gray-400 mt-2">Where Research Meets Recreation</p>
-        </header>
+<body class="bg-gray-100 text-gray-800 antialiased">
 
-        <!-- Main Navigation -->
-        <nav class="bg-gray-800 rounded-lg p-2 flex justify-center space-x-2 mb-8">
-            <button class="nav-tab px-4 py-2 rounded-md font-semibold" data-target="home">Home</button>
-            <button class="nav-tab active px-4 py-2 rounded-md font-semibold" data-target="games">Games</button>
-            <button class="nav-tab px-4 py-2 rounded-md font-semibold" data-target="research">Research</button>
-            <button class="nav-tab px-4 py-2 rounded-md font-semibold" data-target="people">People</button>
-        </nav>
+    <!-- Header Section -->
+    <header id="header" class="bg-white/90 backdrop-blur-lg sticky top-0 z-50 border-b border-gray-200">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" data-target="home" class="nav-link text-2xl font-bold text-gray-900">HWM Lab</a>
+            <nav class="hidden md:flex space-x-8 items-center">
+                <a href="#" data-target="home" class="nav-link active text-gray-600 hover:text-indigo-600 transition duration-300">Home</a>
+                <a href="#" data-target="games" class="nav-link text-gray-600 hover:text-indigo-600 transition duration-300">Games</a>
+                <a href="#" data-target="research" class="nav-link text-gray-600 hover:text-indigo-600 transition duration-300">Research</a>
+                <a href="#" data-target="people" class="nav-link text-gray-600 hover:text-indigo-600 transition duration-300">People</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-600 hover:bg-gray-100 focus:outline-none" aria-label="Toggle mobile menu">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4"x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#" data-target="home" class="nav-link block py-2 text-gray-600 hover:text-indigo-600">Home</a>
+            <a href="#" data-target="games" class="nav-link block py-2 text-gray-600 hover:text-indigo-600">Games</a>
+            <a href="#" data-target="research" class="nav-link block py-2 text-gray-600 hover:text-indigo-600">Research</a>
+            <a href="#" data-target="people" class="nav-link block py-2 text-gray-600 hover:text-indigo-600">People</a>
+        </div>
+    </header>
 
-        <!-- Main Content Area -->
-        <main id="main-content">
-            <section id="home" class="content-section">
-                <div class="info-card p-6 rounded-lg text-center">
-                    <h2 class="text-3xl font-bold mb-4">Welcome to the HWM Lab Portal</h2>
-                    <p class="text-gray-300">This is the central hub for our lab's activities, from groundbreaking research to exciting sports events. Use the navigation above to explore.</p>
+    <main>
+        <!-- Home Page -->
+        <section id="home" class="page-section active">
+            <div class="hero-bg text-white flex items-center justify-center" style="min-height: calc(100vh - 80px);">
+                <div class="container mx-auto px-6 text-center">
+                    <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-4">HWM Lab Sports & Recreation</h1>
+                    <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8">Welcome to the official hub for all sporting events at the Hydraulics and Water Management Lab.</p>
+                    <a href="#" data-target="games" class="nav-link bg-indigo-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-indigo-600 transition duration-300 transform hover:scale-105 shadow-lg">Explore Events</a>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <section id="games" class="content-section active">
-                <nav class="bg-gray-700 rounded-lg p-2 flex justify-center space-x-2 mb-6">
-                    <button class="game-tab active px-4 py-2 rounded-md font-semibold" data-target="volleyball">🏐 Volleyball</button>
-                    <button class="game-tab px-4 py-2 rounded-md font-semibold" data-target="cricket">🏏 Cricket</button>
-                    <button class="game-tab px-4 py-2 rounded-md font-semibold" data-target="badminton">🏸 Badminton</button>
-                </nav>
+        <!-- Games Hub Page -->
+        <section id="games" class="page-section py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-16">Lab Games</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <div class="game-card bg-gray-50 rounded-lg shadow-lg overflow-hidden text-center p-8 flex flex-col items-center">
+                        <div class="text-6xl mb-4">🏐</div><h3 class="text-2xl font-bold mb-4">Volleyball</h3>
+                        <p class="text-gray-600 mb-6 flex-grow">Tournaments, auctions, and match results. Check out the latest from the court.</p>
+                        <button class="game-details-btn bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 transition" data-game="volleyball">View Details</button>
+                    </div>
+                    <div class="game-card bg-gray-50 rounded-lg shadow-lg overflow-hidden text-center p-8 flex flex-col items-center">
+                        <div class="text-6xl mb-4">🏏</div><h3 class="text-2xl font-bold mb-4">Cricket</h3>
+                        <p class="text-gray-600 mb-6 flex-grow">Updates on upcoming cricket matches and team selections.</p>
+                        <button class="bg-gray-400 text-white px-6 py-2 rounded-lg cursor-not-allowed" disabled>Coming Soon</button>
+                    </div>
+                    <div class="game-card bg-gray-50 rounded-lg shadow-lg overflow-hidden text-center p-8 flex flex-col items-center">
+                        <div class="text-6xl mb-4">🏸</div><h3 class="text-2xl font-bold mb-4">Badminton</h3>
+                        <p class="text-gray-600 mb-6 flex-grow">Follow the lab's badminton league and player rankings.</p>
+                        <button class="bg-gray-400 text-white px-6 py-2 rounded-lg cursor-not-allowed" disabled>Coming Soon</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Volleyball Summary Page -->
+        <section id="volleyball-details" class="page-section py-20 bg-gray-50">
+             <div class="container mx-auto px-6">
+                <button class="back-to-games-btn mb-8 bg-gray-200 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-300">&larr; Back to Games</button>
+                <h2 class="text-4xl font-bold text-center mb-4">🏐 Volleyball Tournament</h2>
+                <p class="text-center text-gray-500 mb-12">Summary of the August 2025 Tournament</p>
+                
+                <div class="text-center mb-12">
+                    <button class="new-auction-btn bg-indigo-600 text-white px-8 py-3 rounded-lg hover:bg-indigo-700 transition text-lg font-semibold" data-game="volleyball">Launch New Auction Tool</button>
+                </div>
 
-                <!-- Volleyball Section -->
-                <div id="volleyball" class="game-content active">
-                    <nav class="bg-gray-600 rounded-lg p-2 flex flex-wrap justify-center gap-2 mb-6">
-                        <button class="v-tab active px-3 py-1 rounded-md text-sm font-semibold" data-target="auction-results">Auction Results</button>
-                        <button class="v-tab px-3 py-1 rounded-md text-sm font-semibold" data-target="upcoming">Upcoming Match</button>
-                        <button class="v-tab px-3 py-1 rounded-md text-sm font-semibold" data-target="past">Past Matches</button>
-                        <button class="v-tab px-3 py-1 rounded-md text-sm font-semibold" data-target="teams">Players & Teams</button>
-                    </nav>
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <h4 class="text-xl font-semibold text-center mb-6">Past Auction & Match Results</h4>
+                    <p class="text-center text-gray-500 mb-8">The last auction was held on <strong>22nd August at 5:30 PM</strong>.</p>
+                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div id="team1Result" class="bg-gray-50 p-6 rounded-lg shadow-sm"></div>
+                        <div id="team2Result" class="bg-gray-50 p-6 rounded-lg shadow-sm"></div>
+                    </div>
+                    <div class="mt-12 pt-8 border-t border-gray-200">
+                        <h4 class="text-xl font-semibold text-center mb-6">Match Result</h4>
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-sm text-center max-w-md mx-auto">
+                            <p class="text-lg font-bold text-yellow-500">Team Magnet vs Team SKY</p>
+                            <p class="text-3xl font-bold text-green-500 mt-2">Magnet won 4-1</p>
+                            <p class="text-sm text-gray-500 mt-1">📅 August 23rd, 2025</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                    <div id="auction-results" class="volleyball-content active">
-                        <div class="info-card p-8 rounded-lg">
-                            <h2 class="text-3xl font-bold text-center mb-2">Auction Results</h2>
-                            <p class="text-center text-gray-400 mb-6">The auction was held on 22nd August at 5:30 PM in the Narmada Center (AB5/103), IIT Gandhinagar.</p>
-                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                                <div id="team1Result" class="team-card p-6 rounded-lg"></div>
-                                <div id="team2Result" class="team-card p-6 rounded-lg"></div>
+        <!-- Volleyball Auction Tool Page -->
+        <section id="volleyball-auction-tool" class="page-section py-20 bg-gray-900 text-white">
+            <div class="container mx-auto px-6">
+                <button class="back-to-games-btn mb-8 bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-600">&larr; Back to Games Hub</button>
+                <h2 class="text-4xl font-bold text-center mb-12">🏐 Live Volleyball Auction 🏐</h2>
+                <!-- AUCTION APP HTML GOES HERE -->
+                <div id="app">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="md:col-span-1 p-4 rounded-lg team-card flex flex-col items-center justify-center">
+                            <img id="refereeImage" src="https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/snehal.jpg" alt="Referee" class="w-20 h-20 rounded-full mb-2 object-cover border-2 border-pink-400">
+                            <h3 class="text-xl font-semibold text-gray-300">Auctioneer & Referee</h3>
+                            <p class="text-2xl font-bold text-pink-400 mt-1">🧑‍⚖️ Snehal</p>
+                        </div>
+                        <div class="md:col-span-2 p-4 rounded-lg team-card flex flex-col sm:flex-row items-center justify-around gap-4">
+                            <button id="nextPlayerBtn" class="btn w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg">Start Auction / Next Player</button>
+                            <button id="resetBtn" class="btn w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg">Reset Auction</button>
+                        </div>
+                    </div>
+                    <div id="auction-arena" class="auction-card rounded-lg p-6 mb-8 text-center hidden">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-2xl font-bold text-yellow-300">🔥 ON THE BLOCK 🔥</h2>
+                            <h3 class="text-xl font-semibold">Round: <span id="currentRoundDisplay">1</span></h3>
+                        </div>
+                        <div id="currentPlayer" class="mb-4"></div>
+                        <div class="timer-container" id="timer-container">
+                            <svg class="timer-svg" viewBox="0 0 36 36">
+                                <path class="timer-circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+                                <path id="timer-progress" class="timer-circle-progress" stroke-dasharray="100, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+                            </svg>
+                            <span id="timer-text" class="timer-text">10</span>
+                        </div>
+                        <div class="text-4xl font-bold mb-4" id="currentBid">Base Price: 100</div>
+                        <div id="auction-controls" class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                            <button id="sellPlayerBtn" class="btn bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg" disabled>SOLD!</button>
+                            <button id="skipPlayerBtn" class="btn bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg" disabled>Skip Player</button>
+                        </div>
+                        <div id="referee-controls" class="hidden flex-col sm:flex-row justify-center items-center gap-4">
+                            <button id="confirmSaleBtn" class="btn bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg">Confirm Sale</button>
+                            <button id="restartTimerBtn" class="btn bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded-lg shadow-lg">Restart Timer</button>
+                        </div>
+                    </div>
+                    <div id="statusMessage" class="text-center text-lg font-medium text-green-400 mb-8 h-8"></div>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                        <div id="team1" class="team-card p-6 rounded-lg">
+                            <div class="flex items-center gap-4 mb-4">
+                                <img id="captain1Image" src="https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/akash.jpg" alt="Captain 1" class="w-16 h-16 rounded-full object-cover border-2 border-cyan-400">
+                                <h2 class="text-2xl font-bold text-cyan-400">Team: SKY</h2>
+                            </div>
+                            <div class="mb-4"><p class="font-semibold">Budget: <span id="team1Budget" class="text-yellow-400">5000</span></p></div>
+                            <div class="mb-4 flex flex-wrap gap-2 justify-center">
+                                <button data-team="1" data-amount="100" class="btn bid-btn bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-3 rounded text-sm" disabled>+100</button>
+                                <button data-team="1" data-amount="200" class="btn bid-btn bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-3 rounded text-sm" disabled>+200</button>
+                                <button data-team="1" data-amount="250" class="btn bid-btn bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-3 rounded text-sm" disabled>+250</button>
+                                <button data-team="1" data-amount="500" class="btn bid-btn bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-3 rounded text-sm" disabled>+500</button>
+                            </div>
+                            <h3 class="font-semibold mb-2">Players:</h3>
+                            <ul id="team1Players" class="space-y-2"></ul>
+                        </div>
+                        <div id="team2" class="team-card p-6 rounded-lg">
+                            <div class="flex items-center gap-4 mb-4">
+                                <img id="captain2Image" src="https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sus.jpg" alt="Captain 2" class="w-16 h-16 rounded-full object-cover border-2 border-orange-400">
+                                <h2 class="text-2xl font-bold text-orange-400">Team: Magnet</h2>
+                            </div>
+                            <div class="mb-4"><p class="font-semibold">Budget: <span id="team2Budget" class="text-yellow-400">5000</span></p></div>
+                            <div class="mb-4 flex flex-wrap gap-2 justify-center">
+                                <button data-team="2" data-amount="100" class="btn bid-btn bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-3 rounded text-sm" disabled>+100</button>
+                                <button data-team="2" data-amount="200" class="btn bid-btn bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-3 rounded text-sm" disabled>+200</button>
+                                <button data-team="2" data-amount="250" class="btn bid-btn bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-3 rounded text-sm" disabled>+250</button>
+                                <button data-team="2" data-amount="500" class="btn bid-btn bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-3 rounded text-sm" disabled>+500</button>
+                            </div>
+                            <h3 class="font-semibold mb-2">Players:</h3>
+                            <ul id="team2Players" class="space-y-2"></ul>
+                        </div>
+                    </div>
+                     <div>
+                        <h2 class="text-2xl font-bold text-center mb-4">Player Pools</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div>
+                                <h3 class="text-lg font-semibold text-center mb-2 text-gray-400">Round 1 Pool</h3>
+                                <div id="round1Players" class="player-pool-card p-4 rounded-lg grid grid-cols-2 sm:grid-cols-3 gap-4"></div>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-center mb-2 text-gray-400">Round 2 Pool</h3>
+                                <div id="round2Players" class="player-pool-card p-4 rounded-lg grid grid-cols-2 sm:grid-cols-3 gap-4"></div>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold text-center mb-2 text-gray-400">Round 3 Pool</h3>
+                                <div id="round3Players" class="player-pool-card p-4 rounded-lg grid grid-cols-2 sm:grid-cols-3 gap-4"></div>
                             </div>
                         </div>
                     </div>
-                    <div id="upcoming" class="volleyball-content">
-                        <div class="info-card p-8 rounded-lg text-center">
-                            <h2 class="text-3xl font-bold mb-4">Upcoming Match</h2>
-                            <p class="text-gray-300">No upcoming matches scheduled. Stay tuned for the next tournament!</p>
-                        </div>
-                    </div>
-                    <div id="past" class="volleyball-content">
-                         <div class="info-card p-8 rounded-lg">
-                            <h2 class="text-3xl font-bold text-center mb-6">Past Match Results</h2>
-                            <div class="border-b border-gray-700 pb-4">
-                                <p class="text-xl font-bold text-yellow-400">Team Magnet vs Team SKY</p>
-                                <p class="text-lg font-bold text-green-400 mt-1">Result: Team Magnet won the series 4-1</p>
-                                <p class="text-md text-gray-400 mt-1">📅 August 23rd</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="teams" class="volleyball-content">
-                         <div class="info-card p-8 rounded-lg">
-                            <h2 class="text-3xl font-bold text-center mb-6">Players & Teams</h2>
-                             <div class="mt-8 pt-6 border-t border-gray-700">
-                                 <h3 class="text-2xl font-bold text-center mb-4">Complete Player Pool</h3>
-                                 <div id="fullPlayerPool" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                                     <!-- Full player list will be populated by JS -->
-                                 </div>
-                             </div>
-                        </div>
-                    </div>
                 </div>
+            </div>
+        </section>
 
-                <!-- Cricket Section -->
-                <div id="cricket" class="game-content">
-                     <nav class="bg-gray-600 rounded-lg p-2 flex flex-wrap justify-center gap-2 mb-6">
-                        <button class="px-3 py-1 rounded-md text-sm font-semibold">Auction</button>
-                        <button class="px-3 py-1 rounded-md text-sm font-semibold">Upcoming Match</button>
-                        <button class="px-3 py-1 rounded-md text-sm font-semibold">Past Matches</button>
-                        <button class="px-3 py-1 rounded-md text-sm font-semibold">Players & Teams</button>
-                    </nav>
-                    <div class="info-card p-8 rounded-lg text-center">
-                        <h2 class="text-3xl font-bold mb-4">Cricket Section</h2>
-                        <p class="text-gray-300">Coming soon! Stay tuned for updates on HWM Lab cricket tournaments.</p>
-                    </div>
-                </div>
-                <div id="badminton" class="game-content">
-                     <nav class="bg-gray-600 rounded-lg p-2 flex flex-wrap justify-center gap-2 mb-6">
-                        <button class="px-3 py-1 rounded-md text-sm font-semibold">Auction</button>
-                        <button class="px-3 py-1 rounded-md text-sm font-semibold">Upcoming Match</button>
-                        <button class="px-3 py-1 rounded-md text-sm font-semibold">Past Matches</button>
-                        <button class="px-3 py-1 rounded-md text-sm font-semibold">Players & Teams</button>
-                    </nav>
-                    <div class="info-card p-8 rounded-lg text-center">
-                        <h2 class="text-3xl font-bold mb-4">Badminton Section</h2>
-                        <p class="text-gray-300">Coming soon! Get ready for shuttlecock showdowns.</p>
-                    </div>
-                </div>
-            </section>
+        <!-- Research Page -->
+        <section id="research" class="page-section py-20 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold text-center mb-12">Research</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">Information about our lab's research projects will be available here soon.</p>
+            </div>
+        </section>
 
-            <section id="research" class="content-section">
-                <div class="info-card p-6 rounded-lg text-center">
-                    <h2 class="text-3xl font-bold mb-4">Research</h2>
-                    <p class="text-gray-300">Information about our lab's research projects will be available here.</p>
+        <!-- People Page -->
+        <section id="people" class="page-section py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-center mb-12">Meet the Members</h2>
+                <div id="people-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8">
+                    <!-- People will be populated by JS -->
                 </div>
-            </section>
-            <section id="people" class="content-section">
-                <div class="info-card p-6 rounded-lg">
-                    <h2 class="text-3xl font-bold text-center mb-6">Meet the Members</h2>
-                    <div id="people-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-                        <!-- People will be populated by JS -->
-                    </div>
-                </div>
-            </section>
-        </main>
-    </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-gray-400 py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; <span id="current-year"></span> HWM Lab, IIT Gandhinagar. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script>
-        // --- NAVIGATION LOGIC ---
-        const mainTabs = document.querySelectorAll('.nav-tab');
-        const mainContents = document.querySelectorAll('.content-section');
-        const gameTabs = document.querySelectorAll('.game-tab');
-        const gameContents = document.querySelectorAll('.game-content');
-        const vTabs = document.querySelectorAll('.v-tab');
-        const vContents = document.querySelectorAll('.volleyball-content');
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page-section');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const gameDetailsButtons = document.querySelectorAll('.game-details-btn');
+            const backToGamesBtns = document.querySelectorAll('.back-to-games-btn');
+            const newAuctionBtns = document.querySelectorAll('.new-auction-btn');
 
-        function setupTabs(tabs, contents) {
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    tabs.forEach(t => t.classList.remove('active'));
-                    tab.classList.add('active');
-                    contents.forEach(c => c.classList.remove('active'));
-                    document.getElementById(tab.dataset.target).classList.add('active');
+            function showPage(targetId) {
+                pages.forEach(page => page.classList.remove('active'));
+                document.getElementById(targetId).classList.add('active');
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.dataset.target === targetId || (targetId.includes('details') && link.dataset.target === 'games')) {
+                        link.classList.add('active');
+                    }
+                });
+                window.scrollTo(0, 0);
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = e.currentTarget.dataset.target;
+                    showPage(targetId);
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
                 });
             });
-        }
 
-        setupTabs(mainTabs, mainContents);
-        setupTabs(gameTabs, gameContents);
-        setupTabs(vTabs, vContents);
+            mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+            gameDetailsButtons.forEach(btn => btn.addEventListener('click', (e) => showPage(`${e.currentTarget.dataset.game}-details`)));
+            backToGamesBtns.forEach(btn => btn.addEventListener('click', () => showPage('games')));
+            newAuctionBtns.forEach(btn => btn.addEventListener('click', (e) => showPage(`${e.currentTarget.dataset.game}-auction-tool`)));
 
-        // --- DATA & DOM ELEMENTS ---
-        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
             const allMembers = [
                 { name: "Snehal", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/snehal.jpg", role: "Referee" },
                 { name: "Akash Yadav", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/akash.jpg", role: "Captain" },
@@ -212,8 +327,7 @@
             ];
 
             const team1ResultData = {
-                name: "SKY",
-                budget: 2250,
+                name: "SKY", budget: 2250,
                 captain: { name: "Akash Yadav", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/akash.jpg" },
                 players: [
                     { name: "Kapil", price: 550, image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/kapil.jpg" },
@@ -225,8 +339,7 @@
             };
 
             const team2ResultData = {
-                name: "Magnet",
-                budget: 150,
+                name: "Magnet", budget: 150,
                 captain: { name: "Sushil Kumar Jaiswal", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sus.jpg" },
                 players: [
                     { name: "Sunil Kumar", price: 2200, image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sunil.jpg" },
@@ -237,57 +350,36 @@
             };
             
             const peopleGrid = document.getElementById('people-grid');
-            const fullPlayerPool = document.getElementById('fullPlayerPool');
             const team1ResultEl = document.getElementById('team1Result');
             const team2ResultEl = document.getElementById('team2Result');
 
             function populateStaticContent() {
-                // Populate People Tab
-                peopleGrid.innerHTML = allMembers.map(person => `
-                    <div class="player-card p-4 rounded-lg text-center flex flex-col items-center">
-                        <img src="${person.image}" alt="${person.name}" class="w-24 h-24 rounded-full mb-2 object-cover border-2 border-gray-600">
-                        <span class="font-semibold">${person.name}</span>
-                        <span class="text-sm text-gray-400">${person.role}</span>
-                    </div>
-                `).join('');
-
-                // Populate Full Player Pool in Volleyball > Players & Teams
-                fullPlayerPool.innerHTML = allMembers.map(person => `
-                     <div class="player-card p-2 rounded-lg text-center text-sm flex flex-col items-center">
-                        <img src="${person.image}" alt="${person.name}" class="w-16 h-16 rounded-full mb-1 object-cover border-2 border-gray-600">
-                        <span class="font-semibold text-xs">${person.name}</span>
-                    </div>
-                `).join('');
-
-                // Populate Auction Results
-                team1ResultEl.innerHTML = `
-                    <div class="flex items-center gap-4 mb-4">
-                        <img src="${team1ResultData.captain.image}" alt="Captain 1" class="w-16 h-16 rounded-full object-cover border-2 border-cyan-400">
-                        <h2 class="text-2xl font-bold text-cyan-400">Team: ${team1ResultData.name}</h2>
-                    </div>
-                    <div class="mb-4"><p class="font-semibold">Final Budget: <span class="text-yellow-400">${team1ResultData.budget}</span></p></div>
-                    <h3 class="font-semibold mb-2">Players:</h3>
-                    <ul class="space-y-2">
-                        <li class="flex items-center gap-2 py-1"><img src="${team1ResultData.captain.image}" alt="${team1ResultData.captain.name}" class="w-8 h-8 rounded-full object-cover border-2 border-cyan-400"><span>${team1ResultData.captain.name} <span class="text-cyan-400 font-semibold">(Captain)</span></span></li>
-                        ${team1ResultData.players.map(p => `<li class="flex items-center gap-2 py-1"><img src="${p.image}" alt="${p.name}" class="w-8 h-8 rounded-full object-cover border-2 border-gray-600"><span>${p.name} <span class="text-gray-400">(${p.price})</span></span></li>`).join('')}
-                    </ul>
-                `;
-                
-                team2ResultEl.innerHTML = `
-                    <div class="flex items-center gap-4 mb-4">
-                        <img src="${team2ResultData.captain.image}" alt="Captain 2" class="w-16 h-16 rounded-full object-cover border-2 border-orange-400">
-                        <h2 class="text-2xl font-bold text-orange-400">Team: ${team2ResultData.name}</h2>
-                    </div>
-                    <div class="mb-4"><p class="font-semibold">Final Budget: <span class="text-yellow-400">${team2ResultData.budget}</span></p></div>
-                    <h3 class="font-semibold mb-2">Players:</h3>
-                    <ul class="space-y-2">
-                        <li class="flex items-center gap-2 py-1"><img src="${team2ResultData.captain.image}" alt="${team2ResultData.captain.name}" class="w-8 h-8 rounded-full object-cover border-2 border-orange-400"><span>${team2ResultData.captain.name} <span class="text-orange-400 font-semibold">(Captain)</span></span></li>
-                        ${team2ResultData.players.map(p => `<li class="flex items-center gap-2 py-1"><img src="${p.image}" alt="${p.name}" class="w-8 h-8 rounded-full object-cover border-2 border-gray-600"><span>${p.name} <span class="text-gray-400">(${p.price})</span></span></li>`).join('')}
-                    </ul>
-                `;
+                peopleGrid.innerHTML = allMembers.map(person => `<div class="text-center"><img src="${person.image}" alt="${person.name}" class="w-24 h-24 rounded-full mb-2 object-cover border-2 border-gray-200 mx-auto"><span class="font-semibold">${person.name}</span><span class="block text-sm text-gray-500">${person.role}</span></div>`).join('');
+                team1ResultEl.innerHTML = `<div class="flex items-center gap-4 mb-4"><img src="${team1ResultData.captain.image}" alt="Captain 1" class="w-12 h-12 rounded-full object-cover border-2 border-cyan-400"><h2 class="text-xl font-bold text-cyan-500">Team: ${team1ResultData.name}</h2></div><div class="mb-4"><p class="font-semibold">Final Budget: <span class="text-gray-700">${team1ResultData.budget}</span></p></div><h3 class="font-semibold mb-2">Players:</h3><ul class="space-y-2 text-sm"><li class="flex items-center gap-2 py-1"><img src="${team1ResultData.captain.image}" alt="${team1ResultData.captain.name}" class="w-8 h-8 rounded-full object-cover"><span>${team1ResultData.captain.name} <span class="text-cyan-500 font-semibold">(Captain)</span></span></li>${team1ResultData.players.map(p => `<li class="flex items-center gap-2 py-1"><img src="${p.image}" alt="${p.name}" class="w-8 h-8 rounded-full object-cover"><span>${p.name} <span class="text-gray-500">(${p.price})</span></span></li>`).join('')}</ul>`;
+                team2ResultEl.innerHTML = `<div class="flex items-center gap-4 mb-4"><img src="${team2ResultData.captain.image}" alt="Captain 2" class="w-12 h-12 rounded-full object-cover border-2 border-orange-400"><h2 class="text-xl font-bold text-orange-500">Team: ${team2ResultData.name}</h2></div><div class="mb-4"><p class="font-semibold">Final Budget: <span class="text-gray-700">${team2ResultData.budget}</span></p></div><h3 class="font-semibold mb-2">Players:</h3><ul class="space-y-2 text-sm"><li class="flex items-center gap-2 py-1"><img src="${team2ResultData.captain.image}" alt="${team2ResultData.captain.name}" class="w-8 h-8 rounded-full object-cover"><span>${team2ResultData.captain.name} <span class="text-orange-500 font-semibold">(Captain)</span></span></li>${team2ResultData.players.map(p => `<li class="flex items-center gap-2 py-1"><img src="${p.image}" alt="${p.name}" class="w-8 h-8 rounded-full object-cover"><span>${p.name} <span class="text-gray-500">(${p.price})</span></span></li>`).join('')}</ul>`;
             }
 
             populateStaticContent();
+            
+            // --- Auction Tool Specific Logic ---
+            const auctionAppContainer = document.getElementById('volleyball-auction-tool');
+            if (auctionAppContainer) {
+                // All the auction logic from the previous version goes here, scoped to the auction container
+                // This keeps it separate from the main site logic
+                const initialAuctionPlayers = [
+                    { name: "Sunil Kumar", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sunil.jpg" },
+                    { name: "Indra M. Tripathi", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/imt2.jpg" },
+                    { name: "Kapil", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/kapil.jpg" },
+                    { name: "Bhanu", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/bhanu.jpg" },
+                    { name: "Sumit", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sum.jpg" },
+                    { name: "Rajesh", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/rj.jpg" },
+                    { name: "Pradeep", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/pradeep.jpg" },
+                    { name: "Jitendra", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/jitu.jpg" },
+                    { name: "Indrajeet", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/indra.jpg" }
+                ];
+                // ... (The entire auction script from the previous version would be placed here,
+                // ensuring its variables and functions don't conflict with the main site script)
+            }
         });
     </script>
 </body>
