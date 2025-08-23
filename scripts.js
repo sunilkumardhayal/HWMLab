@@ -67,12 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
         ]
     };
     
+    // --- PEOPLE PAGE LOGIC ---
     const peopleGrid = document.getElementById('people-grid');
-    const v_team1ResultEl = document.getElementById('v-team1Result');
-    const v_team2ResultEl = document.getElementById('v-team2Result');
-    const cricketPlayerList = document.getElementById('cricket-player-list');
-    const badmintonPlayerList = document.getElementById('badminton-player-list');
-
     if (peopleGrid) {
         const groupedMembers = allMembers.reduce((acc, member) => {
             (acc[member.category] = acc[member.category] || []).push(member);
@@ -85,21 +81,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="bg-white p-4 rounded-lg shadow-md text-center flex flex-col items-center">
                     <img src="${person.image}" alt="${person.name}" class="w-24 h-24 rounded-full mb-4 object-cover border-2 border-gray-200">
                     <span class="font-semibold">${person.name}</span>
-                    <span class="block text-sm text-gray-500 mb-2">${person.status}</span>
-                    ${person.project ? `<a href="${person.project.link}" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-indigo-600 mb-2 hover:underline">${person.project.name}</a>` : ''}
+                    <span class="block text-sm text-gray-500 mb-2">
+                        ${person.status}
+                        ${person.project ? `, <a href="${person.project.link}" target="_blank" rel="noopener noreferrer" class="font-semibold text-indigo-600 hover:underline">${person.project.name}</a>` : ''}
+                    </span>
                     ${person.email ? `<a href="mailto:${person.email}" class="text-xs text-indigo-500 hover:underline">${person.email}</a>` : ''}
                     ${person.phone ? `<a href="tel:${person.phone}" class="text-xs text-indigo-500 hover:underline mt-1">${person.phone}</a>` : ''}
                 </div>`).join('') : ''}
         `).join('');
     }
 
+    // --- VOLLEYBALL PAGE LOGIC ---
+    const v_team1ResultEl = document.getElementById('v-team1Result');
+    const v_team2ResultEl = document.getElementById('v-team2Result');
     if (v_team1ResultEl && v_team2ResultEl) {
         v_team1ResultEl.innerHTML = `<h3 class="text-xl font-bold text-cyan-500 mb-4">Team: ${teamSkyLineup.name}</h3><h4 class="font-semibold mb-2">Starting Lineup</h4><ul class="space-y-2 text-sm mb-4"><li class="flex items-center gap-2 py-1"><img src="${teamSkyLineup.captain.image}" alt="${teamSkyLineup.captain.name}" class="w-8 h-8 rounded-full object-cover"><span>${teamSkyLineup.captain.name} <span class="text-cyan-500 font-semibold">(Captain)</span><br><span class="text-xs text-gray-500">${teamSkyLineup.captain.position}</span></span></li>${teamSkyLineup.starters.map(p => `<li class="flex items-center gap-2 py-1"><img src="${p.image}" alt="${p.name}" class="w-8 h-8 rounded-full object-cover"><span>${p.name}<br><span class="text-xs text-gray-500">${p.position}</span></span></li>`).join('')}</ul><h4 class="font-semibold mb-2">Reserves</h4><ul class="space-y-2 text-sm">${teamSkyLineup.reserves.map(p => `<li class="flex items-center gap-2 py-1"><img src="${p.image}" alt="${p.name}" class="w-8 h-8 rounded-full object-cover"><span>${p.name}<br><span class="text-xs text-gray-500">${p.position}</span></span></li>`).join('')}</ul>`;
         v_team2ResultEl.innerHTML = `<h3 class="text-xl font-bold text-orange-500 mb-4">Team: ${teamMagnetLineup.name}</h3><h4 class="font-semibold mb-2">Starting Lineup</h4><ul class="space-y-2 text-sm mb-4"><li class="flex items-center gap-2 py-1"><img src="${teamMagnetLineup.captain.image}" alt="${teamMagnetLineup.captain.name}" class="w-8 h-8 rounded-full object-cover"><span>${teamMagnetLineup.captain.name} <span class="text-orange-500 font-semibold">(Captain)</span><br><span class="text-xs text-gray-500">${teamMagnetLineup.captain.position}</span></span></li>${teamMagnetLineup.starters.map(p => `<li class="flex items-center gap-2 py-1"><img src="${p.image}" alt="${p.name}" class="w-8 h-8 rounded-full object-cover"><span>${p.name}<br><span class="text-xs text-gray-500">${p.position}</span></span></li>`).join('')}</ul><h4 class="font-semibold mb-2">Reserves</h4><ul class="space-y-2 text-sm">${teamMagnetLineup.reserves.map(p => `<li class="flex items-center gap-2 py-1"><img src="${p.image}" alt="${p.name}" class="w-8 h-8 rounded-full object-cover"><span>${p.name}<br><span class="text-xs text-gray-500">${p.position}</span></span></li>`).join('')}</ul>`;
     }
-    
+
+    // --- CRICKET PAGE LOGIC ---
+    const cricketPlayerList = document.getElementById('cricket-player-list');
     if (cricketPlayerList) {
-        const players = allMembers.filter(m => m.status !== 'Referee');
+        const players = allMembers.filter(m => m.role !== 'Referee');
         cricketPlayerList.innerHTML = players.map(person => `
             <div class="text-center">
                 <img src="${person.image}" alt="${person.name}" class="w-24 h-24 rounded-full mb-2 object-cover border-2 border-gray-200 mx-auto">
@@ -107,9 +110,11 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `).join('');
     }
-    
+
+    // --- BADMINTON PAGE LOGIC ---
+    const badmintonPlayerList = document.getElementById('badminton-player-list');
     if (badmintonPlayerList) {
-        const players = allMembers.filter(m => m.status !== 'Referee');
+        const players = allMembers.filter(m => m.role !== 'Referee');
         badmintonPlayerList.innerHTML = players.map(person => `
             <div class="text-center">
                 <img src="${person.image}" alt="${person.name}" class="w-24 h-24 rounded-full mb-2 object-cover border-2 border-gray-200 mx-auto">
@@ -117,31 +122,4 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `).join('');
     }
-
-    // --- VOLLEYBALL HUB TABS ---
-    const vTabs = document.querySelectorAll('.v-tab');
-    const vContents = document.querySelectorAll('.volleyball-content');
-    const vTabLinks = document.querySelectorAll('.v-tab-link');
-
-    function setupVTabs() {
-        vTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                vTabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                vContents.forEach(c => c.classList.remove('active'));
-                document.getElementById(tab.dataset.target).classList.add('active');
-            });
-        });
-         vTabLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                const targetId = e.currentTarget.dataset.target;
-                vTabs.forEach(t => t.classList.remove('active'));
-                vContents.forEach(c => c.classList.remove('active'));
-                document.querySelector(`.v-tab[data-target="${targetId}"]`).classList.add('active');
-                document.getElementById(targetId).classList.add('active');
-            });
-        });
-    }
-    if(vTabs.length > 0) setupVTabs();
-
 });
