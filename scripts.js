@@ -7,7 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
             mobileMenu.classList.toggle('hidden');
         });
     }
-    document.getElementById('current-year').textContent = new Date().getFullYear();
+    
+    // Set current year in the footer
+    const currentYearEl = document.getElementById('current-year');
+    if(currentYearEl) {
+        currentYearEl.textContent = new Date().getFullYear();
+    }
+
 
     // --- BACK TO TOP BUTTON ---
     const toTopButton = document.getElementById('to-top-button');
@@ -95,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     if (v_team1AuctionEl && v_team2AuctionEl) {
-        v_team1AuctionEl.innerHTML = v_team1ResultEl.innerHTML; // Simplified for now
+        v_team1AuctionEl.innerHTML = v_team1ResultEl.innerHTML;
         v_team2AuctionEl.innerHTML = v_team2ResultEl.innerHTML;
     }
     
