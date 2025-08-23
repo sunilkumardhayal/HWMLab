@@ -3,120 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HWM Lab - Volleyball</title>
+    <title>HWM Lab - Volleyball Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="bg-gray-50 text-gray-800 antialiased">
 
-    <!-- Header Section -->
+    <!-- Header & Navigation -->
     <header id="header" class="bg-white/90 backdrop-blur-lg sticky top-0 z-50 border-b border-gray-200">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-gray-900">HWM Lab</a>
-            <nav class="hidden md:flex space-x-8 items-center">
-                <a href="index.html" class="text-gray-600 hover:text-indigo-600 transition duration-300">Home</a>
-                <a href="games.html" class="text-indigo-600 font-semibold transition duration-300">Games</a>
-                <a href="research.html" class="text-gray-600 hover:text-indigo-600 transition duration-300">Research</a>
-                <a href="people.html" class="text-gray-600 hover:text-indigo-600 transition duration-300">People</a>
-            </nav>
-            <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-600 hover:bg-gray-100 focus:outline-none" aria-label="Toggle mobile menu">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4"x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
-            </button>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
-            <a href="index.html" class="block py-2 text-gray-600 hover:text-indigo-600">Home</a>
-            <a href="games.html" class="block py-2 text-indigo-600 font-semibold">Games</a>
-            <a href="research.html" class="block py-2 text-gray-600 hover:text-indigo-600">Research</a>
-            <a href="people.html" class="block py-2 text-gray-600 hover:text-indigo-600">People</a>
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <h1 class="text-3xl font-bold text-gray-900 mb-4 md:mb-0">🏐 Volleyball Hub</h1>
+                <nav id="volleyball-nav" class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+                    <a href="#summary" class="v-nav-link text-gray-600 hover:text-indigo-600 border-b-2 border-transparent pb-1">Summary</a>
+                    <a href="#teams" class="v-nav-link text-gray-600 hover:text-indigo-600 border-b-2 border-transparent pb-1">Teams</a>
+                    <a href="#rules" class="v-nav-link text-gray-600 hover:text-indigo-600 border-b-2 border-transparent pb-1">Rules</a>
+                    <a href="#auction" class="v-nav-link text-gray-600 hover:text-indigo-600 border-b-2 border-transparent pb-1">Auction</a>
+                    <a href="#main-menu" class="v-nav-link text-gray-600 hover:text-indigo-600 border-b-2 border-transparent pb-1">Main Menu</a>
+                </nav>
+            </div>
         </div>
     </header>
 
-    <main class="py-20">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-4">🏐 Volleyball Tournament</h2>
-            <p class="text-center text-gray-500 mb-12">Summary of the August 2025 Tournament</p>
-            <div class="text-center mb-12">
-                <a href="auction.html" class="bg-indigo-600 text-white px-8 py-3 rounded-lg hover:bg-indigo-700 transition text-lg font-semibold">Launch New Auction Tool</a>
-            </div>
-            <div class="bg-white p-8 rounded-lg shadow-lg mb-12">
-                <h3 class="text-2xl font-bold text-center mb-8">Match Summary: Team Magnet vs Team SKY</h3>
-                <div class="bg-gray-50 p-6 rounded-lg shadow-sm text-center max-w-2xl mx-auto mb-10">
-                    <div class="flex justify-around items-center"><div class="text-2xl font-bold text-orange-500">Team Magnet</div><div class="text-5xl font-bold">4 - 1</div><div class="text-2xl font-bold text-cyan-500">Team SKY</div></div>
-                    <p class="mt-2 font-semibold text-green-600">🏆 Winner: Team Magnet</p><p class="text-sm text-gray-500 mt-2">📅 August 23rd, 2025</p>
-                </div>
-                <div class="max-w-md mx-auto mb-12">
-                    <h4 class="text-xl font-semibold text-center mb-4">Game-by-Game Score</h4>
-                    <ul class="space-y-2 text-center"><li class="bg-gray-50 p-3 rounded-md">Game 1: <span class="font-bold text-orange-500">Team Magnet</span> won 25-13</li><li class="bg-gray-50 p-3 rounded-md">Game 2: <span class="font-bold text-cyan-500">Team SKY</span> won 25-23</li><li class="bg-gray-50 p-3 rounded-md">Game 3: <span class="font-bold text-orange-500">Team Magnet</span> won 25-18</li><li class="bg-gray-50 p-3 rounded-md">Game 4: <span class="font-bold text-orange-500">Team Magnet</span> won 25-16</li><li class="bg-gray-50 p-3 rounded-md">Game 5: <span class="font-bold text-orange-500">Team Magnet</span> won 25-9</li></ul>
-                </div>
-                <div class="text-center mb-12">
-                    <h4 class="text-xl font-semibold mb-4">🏆 Man of the Series 🏆</h4>
-                    <div class="inline-block bg-yellow-100 p-4 rounded-lg"><img src="https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sus.jpg" alt="Sushil Kumar Jaiswal" class="w-20 h-20 rounded-full mx-auto mb-2 border-4 border-yellow-400"><p class="font-bold text-lg">Sushil Kumar Jaiswal</p><p class="text-orange-600 font-semibold">(Team Magnet)</p></div>
-                </div>
-                <div>
-                    <h4 class="text-xl font-semibold text-center mb-6">Match Day Lineups</h4>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8"><div id="v-team2Result" class="bg-gray-50 p-6 rounded-lg shadow-sm"></div><div id="v-team1Result" class="bg-gray-50 p-6 rounded-lg shadow-sm"></div></div>
-                </div>
-                <div class="mt-12 pt-8 border-t border-gray-200 text-center">
-                    <h4 class="text-xl font-semibold mb-4">Match Officials</h4>
-                    <div class="inline-block bg-gray-50 p-4 rounded-lg shadow-sm">
-                        <img src="https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/snehal.jpg" alt="Snehal B. Rathod" class="w-16 h-16 rounded-full mx-auto mb-2 border-2 border-gray-300">
-                        <p class="font-semibold">Snehal B. Rathod</p>
-                        <p class="text-sm text-gray-500">(Auctioneer & Referee)</p>
+    <main>
+        <!-- Match Summary Section -->
+        <section id="summary" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="bg-white p-8 rounded-lg">
+                    <h3 class="text-3xl font-bold text-center mb-8">Match Summary: Team Magnet vs Team SKY</h3>
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md text-center max-w-2xl mx-auto mb-10">
+                        <div class="flex justify-around items-center"><div class="text-2xl font-bold text-orange-500">Team Magnet</div><div class="text-5xl font-bold">4 - 1</div><div class="text-2xl font-bold text-cyan-500">Team SKY</div></div>
+                        <p class="mt-2 font-semibold text-green-600">🏆 Winner: <span class="text-orange-500">Team Magnet</span></p><p class="text-sm text-gray-500 mt-2">📅 August 23rd, 2025</p>
+                    </div>
+                    <div class="max-w-md mx-auto mb-12">
+                        <h4 class="text-xl font-semibold text-center mb-4">Game-by-Game Score</h4>
+                        <ul class="space-y-2 text-center"><li class="bg-gray-50 p-3 rounded-md">Game 1: <span class="font-bold text-orange-500">Team Magnet</span> won 25-13</li><li class="bg-gray-50 p-3 rounded-md">Game 2: <span class="font-bold text-cyan-500">Team SKY</span> won 25-23</li><li class="bg-gray-50 p-3 rounded-md">Game 3: <span class="font-bold text-orange-500">Team Magnet</span> won 25-18</li><li class="bg-gray-50 p-3 rounded-md">Game 4: <span class="font-bold text-orange-500">Team Magnet</span> won 25-16</li><li class="bg-gray-50 p-3 rounded-md">Game 5: <span class="font-bold text-orange-500">Team Magnet</span> won 25-9</li></ul>
+                    </div>
+                    <div class="text-center mb-12">
+                        <h4 class="text-xl font-semibold mb-4">🏆 Man of the Series 🏆</h4>
+                        <div class="inline-block bg-yellow-100 p-4 rounded-lg"><img src="https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sus.jpg" alt="Sushil Kumar Jaiswal" class="w-20 h-20 rounded-full mx-auto mb-2 border-4 border-yellow-400"><p class="font-bold text-lg">Sushil Kumar Jaiswal</p><p class="text-orange-600 font-semibold">(Team Magnet)</p></div>
                     </div>
                 </div>
             </div>
-            
-            <!-- Rules and Regulations Section -->
-            <div class="bg-white p-8 rounded-lg shadow-lg">
-                <h3 class="text-2xl font-bold text-center mb-8">Rules & Regulations</h3>
-                <div class="max-w-4xl mx-auto text-gray-700 space-y-6">
-                    <div>
-                        <h4 class="text-xl font-semibold mb-2">1. General Gameplay & Teams</h4>
-                        <ul class="list-disc list-inside space-y-2 pl-4">
-                            <li><strong>Objective:</strong> The goal is to score points by sending the ball over the net so it lands within the opponent's court.</li>
-                            <li><strong>Teams:</strong> Games are played between two teams. The number of players on the court will be decided per match.</li>
-                            <li><strong>Scoring:</strong> We will use rally scoring. A point is awarded on every rally, regardless of which team served. Sets are typically played to 25 points, and a team must win by at least a two-point margin.</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 class="text-xl font-semibold mb-2">2. Hitting & Attacks (Custom Rules)</h4>
-                        <ul class="list-disc list-inside space-y-2 pl-4">
-                           <li><strong>Consecutive Hits:</strong> A single player is allowed to hit the ball twice in a row.</li>
-                           <li><strong>Team Hits:</strong> There is no limit to the total number of hits a team can make before sending the ball over the net.</li>
-                           <li><strong>Legal Contact:</strong> Contact with the ball must be a clean, brief hit. Holding, catching, lifting, or throwing the ball is not permitted and will result in a fault.</li>
-                        </ul>
-                    </div>
-                     <div>
-                        <h4 class="text-xl font-semibold mb-2">3. Serving (Custom Rules)</h4>
-                        <ul class="list-disc list-inside space-y-2 pl-4">
-                           <li><strong>Service Style:</strong> All serves must be performed underhand. Overhand or jump serves are not allowed.</li>
-                           <li><strong>Service Location:</strong> The server is permitted to serve from inside the court. The serve must be executed from behind the 3-meter (10-foot) attack line.</li>
-                           <li><strong>Valid Serve:</strong> The served ball must cross the net and travel over the opponent's 3-meter attack line to be considered a valid serve.</li>
-                           <li><strong>Service Rotation:</strong> Service must be done by each player in the team in a rotational sequence.</li>
-                           <li><strong>Continuous Serving:</strong> A player can continue to serve as long as their team keeps winning points. When the serving team loses a rally, the serve switches to the opposing team, and they must rotate to their next server.</li>
-                        </ul>
-                    </div>
-                     <div>
-                        <h4 class="text-xl font-semibold mb-2">4. Fouls & Violations</h4>
-                        <ul class="list-disc list-inside space-y-2 pl-4">
-                           <li><strong>Net Contact:</strong> Players are not allowed to touch the net during play. If a player touches the net, their team loses the point.</li>
-                           <li><strong>Center Line:</strong> A player may step on the center line, but their entire foot cannot cross completely over the line into the opponent's court.</li>
-                           <li><strong>Out of Bounds:</strong> A ball is considered 'out' if it lands completely outside the boundary lines, touches the ceiling, or hits the antennas on the net. A ball that lands on a boundary line is 'in'.</li>
-                        </ul>
-                    </div>
-                     <div>
-                        <h4 class="text-xl font-semibold mb-2">5. Sportsmanship</h4>
-                        <ul class="list-disc list-inside space-y-2 pl-4">
-                           <li>All players are expected to show good sportsmanship.</li>
-                           <li>The referee's calls are final. Please respect their decisions.</li>
-                           <li>Let's prioritize safety, fair play, and fun for everyone involved!</li>
-                        </ul>
+        </section>
+
+        <!-- Teams Section -->
+        <section id="teams" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-3xl font-bold text-center mb-8">Match Day Lineups</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8"><div id="v-team2Result" class="bg-gray-100 p-6 rounded-lg"></div><div id="v-team1Result" class="bg-gray-100 p-6 rounded-lg"></div></div>
+                    <div class="mt-12 pt-8 border-t border-gray-200 text-center">
+                        <h4 class="text-xl font-semibold mb-4">Match Officials</h4>
+                        <div class="inline-block bg-gray-100 p-4 rounded-lg">
+                            <img src="https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/snehal.jpg" alt="Snehal B. Rathod" class="w-16 h-16 rounded-full mx-auto mb-2 border-2 border-gray-300">
+                            <p class="font-semibold">Snehal B. Rathod</p>
+                            <p class="text-sm text-gray-500">(Auctioneer & Referee)</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <!-- Rules Section -->
+        <section id="rules" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                 <div class="bg-white p-8 rounded-lg">
+                    <h3 class="text-3xl font-bold text-center mb-8">Rules & Regulations</h3>
+                    <div class="max-w-4xl mx-auto text-gray-700 space-y-6">
+                        <div><h4 class="text-xl font-semibold mb-2">1. General Gameplay & Teams</h4><ul class="list-disc list-inside space-y-2 pl-4"><li><strong>Objective:</strong> The goal is to score points by sending the ball over the net so it lands within the opponent's court.</li><li><strong>Teams:</strong> Games are played between two teams. The number of players on the court will be decided per match.</li><li><strong>Scoring:</strong> We will use rally scoring. A point is awarded on every rally, regardless of which team served. Sets are typically played to 25 points, and a team must win by at least a two-point margin.</li></ul></div>
+                        <div><h4 class="text-xl font-semibold mb-2">2. Hitting & Attacks (Custom Rules)</h4><ul class="list-disc list-inside space-y-2 pl-4"><li><strong>Consecutive Hits:</strong> A single player is allowed to hit the ball twice in a row.</li><li><strong>Team Hits:</strong> There is no limit to the total number of hits a team can make before sending the ball over the net.</li><li><strong>Legal Contact:</strong> Contact with the ball must be a clean, brief hit. Holding, catching, lifting, or throwing the ball is not permitted and will result in a fault.</li></ul></div>
+                        <div><h4 class="text-xl font-semibold mb-2">3. Serving (Custom Rules)</h4><ul class="list-disc list-inside space-y-2 pl-4"><li><strong>Service Style:</strong> All serves must be performed underhand. Overhand or jump serves are not allowed.</li><li><strong>Service Location:</strong> The server is permitted to serve from inside the court. The serve must be executed from behind the 3-meter (10-foot) attack line.</li><li><strong>Valid Serve:</strong> The served ball must cross the net and travel over the opponent's 3-meter attack line to be considered a valid serve.</li><li><strong>Service Rotation:</strong> Service must be done by each player in the team in a rotational sequence.</li><li><strong>Continuous Serving:</strong> A player can continue to serve as long as their team keeps winning points. When the serving team loses a rally, the serve switches to the opposing team, and they must rotate to their next server.</li></ul></div>
+                        <div><h4 class="text-xl font-semibold mb-2">4. Fouls & Violations</h4><ul class="list-disc list-inside space-y-2 pl-4"><li><strong>Net Contact:</strong> Players are not allowed to touch the net during play. If a player touches the net, their team loses the point.</li><li><strong>Center Line:</strong> A player may step on the center line, but their entire foot cannot cross completely over the line into the opponent's court.</li><li><strong>Out of Bounds:</strong> A ball is considered 'out' if it lands completely outside the boundary lines, touches the ceiling, or hits the antennas on the net. A ball that lands on a boundary line is 'in'.</li></ul></div>
+                        <div><h4 class="text-xl font-semibold mb-2">5. Sportsmanship</h4><ul class="list-disc list-inside space-y-2 pl-4"><li>All players are expected to show good sportsmanship.</li><li>The referee's calls are final. Please respect their decisions.</li><li>Let's prioritize safety, fair play, and fun for everyone involved!</li></ul></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Auction Section -->
+        <section id="auction" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                 <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-3xl font-bold text-center mb-8">Auction</h3>
+                    <div class="text-center mb-12">
+                        <a href="auction.html" class="bg-indigo-600 text-white px-8 py-3 rounded-lg hover:bg-indigo-700 transition text-lg font-semibold">Launch New Auction Tool</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Menu Section -->
+        <section id="main-menu" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="bg-white p-8 rounded-lg text-center">
+                    <h3 class="text-3xl font-bold mb-6">Main Menu</h3>
+                    <div class="flex flex-col items-center space-y-4">
+                        <a href="index.html" class="w-full md:w-1/2 bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition">Home</a>
+                        <a href="games.html" class="w-full md:w-1/2 bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition">Games</a>
+                        <a href="research.html" class="w-full md:w-1/2 bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition">Research</a>
+                        <a href="people.html" class="w-full md:w-1/2 bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition">People</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- Footer Section -->
@@ -126,9 +118,8 @@
         </div>
     </footer>
     
-    <!-- Back to Top Button -->
     <a href="#header" id="to-top-button" class="bg-indigo-600 text-white p-3 rounded-full shadow-lg hover:bg-indigo-700" aria-label="Go to top">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
     </a>
 
     <script src="scripts.js"></script>
