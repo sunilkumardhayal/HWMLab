@@ -3,48 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HWM Lab - Badminton</title>
+    <title>HWM Lab - Badminton Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="bg-gray-50 text-gray-800 antialiased">
 
-    <!-- Header Section -->
+    <!-- Header & Navigation -->
     <header id="header" class="bg-white/90 backdrop-blur-lg sticky top-0 z-50 border-b border-gray-200">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-gray-900">HWM Lab</a>
-            <nav class="hidden md:flex space-x-8 items-center">
-                <a href="index.html" class="text-gray-600 hover:text-indigo-600 transition duration-300">Home</a>
-                <a href="games.html" class="text-indigo-600 font-semibold transition duration-300">Games</a>
-                <a href="research.html" class="text-gray-600 hover:text-indigo-600 transition duration-300">Research</a>
-                <a href="people.html" class="text-gray-600 hover:text-indigo-600 transition duration-300">People</a>
-            </nav>
-            <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-600 hover:bg-gray-100 focus:outline-none" aria-label="Toggle mobile menu">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4"x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
-            </button>
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <!-- Left Side -->
+                <div class="flex items-center space-x-8">
+                    <a href="index.html" class="text-2xl font-bold text-gray-900">HWM Lab</a>
+                    <h1 class="text-2xl font-semibold text-gray-700 hidden md:flex items-center gap-x-2">🏸 Badminton Hub</h1>
+                </div>
+
+                <!-- Right Side -->
+                <div>
+                    <nav id="badminton-nav" class="hidden md:flex flex-wrap justify-end gap-x-6 gap-y-2 items-center">
+                        <a href="#results" class="v-nav-link text-gray-600 hover:text-indigo-600 border-b-2 border-transparent pb-1">Results</a>
+                        <a href="#teams" class="v-nav-link text-gray-600 hover:text-indigo-600 border-b-2 border-transparent pb-1">Teams</a>
+                        <a href="#players" class="v-nav-link text-gray-600 hover:text-indigo-600 border-b-2 border-transparent pb-1">Players</a>
+                        <a href="#rules" class="v-nav-link text-gray-600 hover:text-indigo-600 border-b-2 border-transparent pb-1">Rules</a>
+                        <a href="#auction" class="v-nav-link text-gray-600 hover:text-indigo-600 border-b-2 border-transparent pb-1">Auction</a>
+                        <a href="#gallery" class="v-nav-link text-gray-600 hover:text-indigo-600 border-b-2 border-transparent pb-1">Gallery</a>
+                        <div class="relative group">
+                            <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition duration-300 shadow">Main Menu</button>
+                            <div class="absolute hidden group-hover:block pt-2 right-0">
+                                <div class="bg-white text-left rounded-lg shadow-lg py-2 w-48">
+                                    <a href="index.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Home</a>
+                                    <a href="games.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Games</a>
+                                    <a href="research.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Research</a>
+                                    <a href="people.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">People</a>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                    <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-600 hover:bg-gray-100 focus:outline-none" aria-label="Toggle mobile menu">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4"x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+                    </button>
+                </div>
+            </div>
+             <!-- Mobile Title -->
+             <h1 class="text-2xl font-bold text-gray-900 text-center mt-4 md:hidden">🏸 Badminton Hub</h1>
         </div>
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
-            <a href="index.html" class="block py-2 text-gray-600 hover:text-indigo-600">Home</a>
-            <a href="games.html" class="block py-2 text-indigo-600 font-semibold">Games</a>
-            <a href="research.html" class="block py-2 text-gray-600 hover:text-indigo-600">Research</a>
-            <a href="people.html" class="block py-2 text-gray-600 hover:text-indigo-600">People</a>
+            <a href="#results" class="v-nav-link block py-2 text-gray-600 hover:text-indigo-600">Results</a>
+            <a href="#teams" class="v-nav-link block py-2 text-gray-600 hover:text-indigo-600">Teams</a>
+            <a href="#players" class="v-nav-link block py-2 text-gray-600 hover:text-indigo-600">Players</a>
+            <a href="#rules" class="v-nav-link block py-2 text-gray-600 hover:text-indigo-600">Rules</a>
+            <a href="#auction" class="v-nav-link block py-2 text-gray-600 hover:text-indigo-600">Auction</a>
+            <a href="#gallery" class="v-nav-link block py-2 text-gray-600 hover:text-indigo-600">Gallery</a>
+            <div class="border-t mt-2 pt-2">
+                <a href="index.html" class="block py-2 text-gray-600 hover:text-indigo-600">HWM Lab Home</a>
+                <a href="games.html" class="block py-2 text-gray-600 hover:text-indigo-600">All Games</a>
+            </div>
         </div>
     </header>
 
-    <main class="py-20">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-4">🏸 Badminton Tournament</h2>
-            <p class="text-center text-gray-500 mb-12">No tournaments yet. Plan the next one!</p>
-            <div class="text-center mb-12">
-                <a href="auction.html" class="bg-indigo-600 text-white px-8 py-3 rounded-lg hover:bg-indigo-700 transition text-lg font-semibold">Launch New Auction Tool</a>
+    <main>
+        <!-- Results Section -->
+        <section id="results" class="py-20 bg-white">
+            <div class="container mx-auto px-6 text-center">
+                <h3 class="text-3xl font-bold mb-4">Tournament Results</h3>
+                <p class="text-gray-500">No tournaments have been played yet. Plan the next one!</p>
             </div>
-            <div class="bg-white p-8 rounded-lg shadow-lg text-center">
-                <h4 class="text-xl font-semibold text-center mb-6">Past Results</h4>
-                <p class="text-gray-500">No past matches recorded.</p>
+        </section>
+
+        <!-- Teams Section -->
+        <section id="teams" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-3xl font-bold text-center mb-8">Teams</h3>
+                     <p class="text-center text-gray-500 mb-8">Teams will be formed after the auction.</p>
+                    <div class="mt-12 pt-8 border-t border-gray-200 text-center">
+                        <h4 class="text-xl font-semibold mb-4">Match Officials</h4>
+                        <div class="flex justify-center space-x-8">
+                            <div class="inline-block bg-gray-100 p-4 rounded-lg">
+                                <img src="https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sunil.jpg" alt="Sunil Kumar" class="w-16 h-16 rounded-full mx-auto mb-2 border-2 border-gray-300">
+                                <p class="font-semibold">Sunil Kumar</p>
+                            </div>
+                            <div class="inline-block bg-gray-100 p-4 rounded-lg">
+                                <img src="https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/snehal.jpg" alt="Snehal B. Rathod" class="w-16 h-16 rounded-full mx-auto mb-2 border-2 border-gray-300">
+                                <p class="font-semibold">Snehal B. Rathod</p>
+                            </div>
+                            <div class="inline-block bg-gray-100 p-4 rounded-lg">
+                                <img src="https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/kapil.jpg" alt="Kapil Rathod" class="w-16 h-16 rounded-full mx-auto mb-2 border-2 border-gray-300">
+                                <p class="font-semibold">Kapil Rathod</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
+
+        <!-- Players Section -->
+        <section id="players" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-3xl font-bold text-center mb-8">Player Pool</h3>
+                    <p class="text-center text-gray-500 mb-8">All available players for the upcoming tournament auction.</p>
+                    <div id="badminton-player-list" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8">
+                        <!-- Player list will be populated by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rules Section -->
+        <section id="rules" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                 <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-3xl font-bold text-center mb-8">Rules & Regulations</h3>
+                    <div class="max-w-4xl mx-auto text-gray-700 space-y-6">
+                        <div><h4 class="text-xl font-semibold mb-2">1. Scoring</h4><ul class="list-disc list-inside space-y-2 pl-4"><li>A match consists of the best of 3 games to 21 points.</li><li>A point is scored on every rally (rally scoring).</li><li>At 20-20, the side that gains a 2-point lead first wins the game.</li><li>At 29-29, the side scoring the 30th point wins the game.</li></ul></div>
+                        <div><h4 class="text-xl font-semibold mb-2">2. Serving</h4><ul class="list-disc list-inside space-y-2 pl-4"><li>The serve must be hit underhand and below the server's waist.</li><li>The server and receiver must stand in diagonally opposite service courts.</li><li>The shuttlecock must land in the receiver's service court to be a valid serve.</li></ul></div>
+                        <div><h4 class="text-xl font-semibold mb-2">3. Faults</h4><ul class="list-disc list-inside space-y-2 pl-4"><li>If the shuttlecock lands outside the boundaries of the court.</li><li>If a player touches the net with their racket or body during play.</li><li>If the shuttlecock is hit twice in succession by the same player.</li></ul></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Auction Section -->
+        <section id="auction" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                 <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-3xl font-bold text-center mb-8">Auction</h3>
+                    <div class="text-center mb-12">
+                        <a href="auction.html" class="bg-indigo-600 text-white px-8 py-3 rounded-lg hover:bg-indigo-700 transition text-lg font-semibold">Launch New Auction Tool</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Gallery Section -->
+        <section id="gallery" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
+                 <div class="bg-white p-8 rounded-lg shadow-lg text-center">
+                    <h3 class="text-3xl font-bold text-center mb-8">Gallery</h3>
+                    <p class="text-gray-500">Photo and video gallery coming soon!</p>
+                </div>
+            </div>
+        </section>
     </main>
 
     <!-- Footer Section -->
@@ -54,11 +157,66 @@
         </div>
     </footer>
     
-    <!-- Back to Top Button -->
     <a href="#header" id="to-top-button" class="bg-indigo-600 text-white p-3 rounded-full shadow-lg hover:bg-indigo-700" aria-label="Go to top">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
     </a>
 
-    <script src="scripts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- MOBILE MENU ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+            
+            const currentYearEl = document.getElementById('current-year');
+            if(currentYearEl) {
+                currentYearEl.textContent = new Date().getFullYear();
+            }
+
+            // --- BACK TO TOP BUTTON ---
+            const toTopButton = document.getElementById('to-top-button');
+            if(toTopButton) {
+                window.onscroll = function() {
+                    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+                        toTopButton.style.display = "block";
+                    } else {
+                        toTopButton.style.display = "none";
+                    }
+                };
+            }
+
+            // --- DATA ---
+            const allMembers = [
+                { name: "Indra Mani Tripathi", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/imt2.jpg", status: "PhD Student", email: "indra.tripathi@iitgn.ac.in", phone: "+91 96542 65217", category: "PhD Students" },
+                { name: "Sunil Kumar", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sunil.jpg", status: "PhD Student", email: "sunil.k@iitgn.ac.in", phone: "+91 90016 46544", category: "PhD Students" },
+                { name: "Kapil Rathod", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/kapil.jpg", status: "PhD Student", email: "kapil.rathod@iitgn.ac.in", phone: "+91 72858 70459", category: "PhD Students" },
+                { name: "Sushil Kumar Jaiswal", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sus.jpg", status: "PhD Student", email: "sushil.jaiswal@iitgn.ac.in", phone: "+91 81125 75098", category: "PhD Students" },
+                { name: "Snehal B. Rathod", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/snehal.jpg", status: "Project Employee", email: "rathodsnehal.b@iitgn.ac.in", phone: "+91 81605 49901", category: "Project Staff" },
+                { name: "Akash Yadav", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/akash.jpg", status: "Project Assistant", email: "akash.yadav@iitgn.ac.in", phone: "+91 96850 75978", category: "Project Staff" },
+                { name: "Bhanu Parmar", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/bhanu.jpg", status: "JRF", email: "bhanu.parmar@iitgn.ac.in", phone: "+91 97257 29534", category: "Project Staff" },
+                { name: "Indrajitsinh Bihola", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/indra.jpg", status: "Trainee", email: "indrajitsinh.bihola@iitgn.ac.in", phone: "+91 91048 14088", category: "Project Staff" },
+                { name: "Rajesh", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/rj.jpg", status: "Project Associate", email: "rajesh.k@iitgn.ac.in", phone: "+91 87418 84275", category: "Project Staff" },
+                { name: "Sumit", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sum.jpg", status: "Project Employee", phone: "+91 81720 01881", category: "Project Staff" },
+                { name: "Pardeep Sangwan", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/pradeep.jpg", status: "Project Employee", phone: "+91 80534 02248", category: "Project Staff" },
+                { name: "Jitendra Poddar", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/jitu.jpg", status: "M.Tech Alumni", email: "jitendra.poddar@iitgn.ac.in", phone: "+91 79800 11828", category: "Alumni" }
+            ];
+            
+            const badmintonPlayerList = document.getElementById('badminton-player-list');
+            
+            if (badmintonPlayerList) {
+                const players = allMembers.filter(m => m.status !== 'Referee');
+                badmintonPlayerList.innerHTML = players.map(person => `
+                    <div class="text-center">
+                        <img src="${person.image}" alt="${person.name}" class="w-24 h-24 rounded-full mb-2 object-cover border-2 border-gray-200 mx-auto">
+                        <span class="font-semibold">${person.name}</span>
+                    </div>
+                `).join('');
+            }
+        });
+    </script>
 </body>
 </html>
