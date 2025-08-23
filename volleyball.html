@@ -13,33 +13,59 @@
     <!-- Header & Navigation -->
     <header id="header" class="bg-white/90 backdrop-blur-lg sticky top-0 z-50 border-b border-gray-200">
         <div class="container mx-auto px-6 py-4">
-            <div class="flex flex-col md:flex-row items-center justify-between">
-                <h1 class="text-3xl font-bold text-gray-900 mb-4 md:mb-0">🏐 Volleyball Hub</h1>
-                <nav id="volleyball-nav" class="flex flex-wrap justify-center gap-x-6 gap-y-2 items-center">
-                    <a href="#summary" class="v-nav-link text-gray-600 hover:text-indigo-600 border-b-2 border-transparent pb-1">Summary</a>
-                    <a href="#teams" class="v-nav-link text-gray-600 hover:text-indigo-600 border-b-2 border-transparent pb-1">Teams</a>
-                    <a href="#rules" class="v-nav-link text-gray-600 hover:text-indigo-600 border-b-2 border-transparent pb-1">Rules</a>
-                    <a href="#auction" class="v-nav-link text-gray-600 hover:text-indigo-600 border-b-2 border-transparent pb-1">Auction</a>
-                    <div class="relative group">
-                        <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition duration-300 shadow">HWM Lab</button>
-                        <div class="absolute hidden group-hover:block bg-white text-left rounded-lg shadow-lg py-2 w-48 right-0 md:left-0">
-                            <a href="index.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Home</a>
-                            <a href="games.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Games</a>
-                            <a href="research.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Research</a>
-                            <a href="people.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">People</a>
+            <div class="flex items-center justify-between">
+                <!-- Left Side -->
+                <div class="flex items-center space-x-8">
+                    <a href="index.html" class="text-2xl font-bold text-gray-900">HWM Lab</a>
+                    <h1 class="text-2xl font-semibold text-gray-700 hidden md:flex items-center gap-x-2">🏐 Volleyball Hub</h1>
+                </div>
+
+                <!-- Right Side -->
+                <div>
+                    <nav id="volleyball-nav" class="hidden md:flex flex-wrap justify-end gap-x-6 gap-y-2 items-center">
+                        <a href="#results" class="v-nav-link text-gray-600 hover:text-indigo-600 border-b-2 border-transparent pb-1">Results</a>
+                        <a href="#teams" class="v-nav-link text-gray-600 hover:text-indigo-600 border-b-2 border-transparent pb-1">Teams</a>
+                        <a href="#rules" class="v-nav-link text-gray-600 hover:text-indigo-600 border-b-2 border-transparent pb-1">Rules</a>
+                        <a href="#auction" class="v-nav-link text-gray-600 hover:text-indigo-600 border-b-2 border-transparent pb-1">Auction</a>
+                        <div class="relative group">
+                            <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition duration-300 shadow">Main Menu</button>
+                            <div class="absolute hidden group-hover:block pt-2 right-0">
+                                <div class="bg-white text-left rounded-lg shadow-lg py-2 w-48">
+                                    <a href="index.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Home</a>
+                                    <a href="games.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Games</a>
+                                    <a href="research.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Research</a>
+                                    <a href="people.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">People</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </nav>
+                    </nav>
+                    <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-600 hover:bg-gray-100 focus:outline-none" aria-label="Toggle mobile menu">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4"x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+                    </button>
+                </div>
+            </div>
+             <!-- Mobile Title -->
+             <h1 class="text-2xl font-bold text-gray-900 text-center mt-4 md:hidden">🏐 Volleyball Hub</h1>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#results" class="block py-2 text-gray-600 hover:text-indigo-600">Results</a>
+            <a href="#teams" class="block py-2 text-gray-600 hover:text-indigo-600">Teams</a>
+            <a href="#rules" class="block py-2 text-gray-600 hover:text-indigo-600">Rules</a>
+            <a href="#auction" class="block py-2 text-gray-600 hover:text-indigo-600">Auction</a>
+            <div class="border-t mt-2 pt-2">
+                <a href="index.html" class="block py-2 text-gray-600 hover:text-indigo-600">HWM Lab Home</a>
+                <a href="games.html" class="block py-2 text-gray-600 hover:text-indigo-600">All Games</a>
             </div>
         </div>
     </header>
 
     <main>
-        <!-- Match Summary Section -->
-        <section id="summary" class="py-20 bg-white">
+        <!-- Match Results Section -->
+        <section id="results" class="py-20 bg-white">
             <div class="container mx-auto px-6">
                 <div class="bg-white p-8 rounded-lg">
-                    <h3 class="text-3xl font-bold text-center mb-8">Match Summary: Team Magnet vs Team SKY</h3>
+                    <h3 class="text-3xl font-bold text-center mb-8">Match Results: Team Magnet vs Team SKY</h3>
                     <div class="bg-gray-50 p-6 rounded-lg shadow-md text-center max-w-2xl mx-auto mb-10">
                         <div class="flex justify-around items-center"><div class="text-2xl font-bold text-orange-500">Team Magnet</div><div class="text-5xl font-bold">4 - 1</div><div class="text-2xl font-bold text-cyan-500">Team SKY</div></div>
                         <p class="mt-2 font-semibold text-green-600">🏆 Winner: <span class="text-orange-500">Team Magnet</span></p><p class="text-sm text-gray-500 mt-2">📅 August 23rd, 2025</p>
