@@ -44,17 +44,6 @@
         }
         .btn:hover { transform: scale(1.05); }
         .btn:disabled { opacity: 0.5; cursor: not-allowed; }
-        .timer-container { position: relative; width: 100px; height: 100px; margin: 1rem auto; }
-        .timer-svg { transform: scaleX(-1) rotate(-90deg); width: 100%; height: 100%; }
-        .timer-circle-bg { fill: none; stroke: #374151; stroke-width: 8; }
-        .timer-circle-progress { fill: none; stroke: #4f46e5; stroke-width: 8; stroke-linecap: round; transition: stroke-dashoffset 1s linear, stroke 0.5s; }
-        .timer-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2rem; font-weight: bold; }
-        .highest-bidder-glow { border-color: #f59e0b; box-shadow: 0 0 15px rgba(245, 158, 11, 0.5); }
-        .confetti { position: absolute; width: 10px; height: 10px; background-color: #f00; opacity: 0; animation: confetti-fall 3s ease-out forwards; }
-        @keyframes confetti-fall {
-            0% { opacity: 1; transform: translateY(0) rotateZ(0); }
-            100% { opacity: 0; transform: translateY(100vh) rotateZ(720deg); }
-        }
     </style>
 </head>
 <body class="p-4 sm:p-6 md:p-8">
@@ -92,134 +81,41 @@
                 <!-- Volleyball Section -->
                 <div id="volleyball" class="game-content active">
                     <nav class="bg-gray-600 rounded-lg p-2 flex flex-wrap justify-center gap-2 mb-6">
-                        <button class="v-tab active px-3 py-1 rounded-md text-sm font-semibold" data-target="auction">Auction</button>
+                        <button class="v-tab active px-3 py-1 rounded-md text-sm font-semibold" data-target="auction-results">Auction Results</button>
                         <button class="v-tab px-3 py-1 rounded-md text-sm font-semibold" data-target="upcoming">Upcoming Match</button>
                         <button class="v-tab px-3 py-1 rounded-md text-sm font-semibold" data-target="past">Past Matches</button>
                         <button class="v-tab px-3 py-1 rounded-md text-sm font-semibold" data-target="teams">Players & Teams</button>
                     </nav>
 
-                    <div id="auction" class="volleyball-content active">
-                        <!-- AUCTION APP HTML GOES HERE -->
-                        <div id="app">
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                                <div class="md:col-span-1 p-4 rounded-lg team-card flex flex-col items-center justify-center">
-                                    <img id="refereeImage" src="https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/snehal.jpg" alt="Referee" class="w-20 h-20 rounded-full mb-2 object-cover border-2 border-pink-400">
-                                    <h3 class="text-xl font-semibold text-gray-300">Auctioneer & Referee</h3>
-                                    <p class="text-2xl font-bold text-pink-400 mt-1">🧑‍⚖️ Snehal</p>
-                                </div>
-                                <div class="md:col-span-2 p-4 rounded-lg team-card flex flex-col sm:flex-row items-center justify-around gap-4">
-                                    <button id="nextPlayerBtn" class="btn w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg">Start Auction / Next Player</button>
-                                    <button id="resetBtn" class="btn w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg">Reset Auction</button>
-                                </div>
-                            </div>
-                            <div id="auction-arena" class="auction-card rounded-lg p-6 mb-8 text-center hidden">
-                                <div class="flex justify-between items-center mb-4">
-                                    <h2 class="text-2xl font-bold text-yellow-300">🔥 ON THE BLOCK 🔥</h2>
-                                    <h3 class="text-xl font-semibold">Round: <span id="currentRoundDisplay">1</span></h3>
-                                </div>
-                                <div id="currentPlayer" class="mb-4"></div>
-                                <div class="timer-container" id="timer-container">
-                                    <svg class="timer-svg" viewBox="0 0 36 36">
-                                        <path class="timer-circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"></path>
-                                        <path id="timer-progress" class="timer-circle-progress" stroke-dasharray="100, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"></path>
-                                    </svg>
-                                    <span id="timer-text" class="timer-text">10</span>
-                                </div>
-                                <div class="text-4xl font-bold mb-4" id="currentBid">Base Price: 100</div>
-                                <div id="auction-controls" class="flex flex-col sm:flex-row justify-center items-center gap-4">
-                                    <button id="sellPlayerBtn" class="btn bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg" disabled>SOLD!</button>
-                                    <button id="skipPlayerBtn" class="btn bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg" disabled>Skip Player</button>
-                                </div>
-                                <div id="referee-controls" class="hidden flex-col sm:flex-row justify-center items-center gap-4">
-                                    <button id="confirmSaleBtn" class="btn bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg">Confirm Sale</button>
-                                    <button id="restartTimerBtn" class="btn bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded-lg shadow-lg">Restart Timer</button>
-                                </div>
-                            </div>
-                            <div id="statusMessage" class="text-center text-lg font-medium text-green-400 mb-8 h-8"></div>
-                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-                                <div id="team1" class="team-card p-6 rounded-lg">
-                                    <div class="flex items-center gap-4 mb-4">
-                                        <img id="captain1Image" src="https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/akash.jpg" alt="Captain 1" class="w-16 h-16 rounded-full object-cover border-2 border-cyan-400">
-                                        <h2 class="text-2xl font-bold text-cyan-400">Team: SKY</h2>
-                                    </div>
-                                    <div class="mb-4"><p class="font-semibold">Budget: <span id="team1Budget" class="text-yellow-400">5000</span></p></div>
-                                    <div class="mb-4 flex flex-wrap gap-2 justify-center">
-                                        <button data-team="1" data-amount="100" class="btn bid-btn bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-3 rounded text-sm" disabled>+100</button>
-                                        <button data-team="1" data-amount="200" class="btn bid-btn bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-3 rounded text-sm" disabled>+200</button>
-                                        <button data-team="1" data-amount="250" class="btn bid-btn bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-3 rounded text-sm" disabled>+250</button>
-                                        <button data-team="1" data-amount="500" class="btn bid-btn bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-3 rounded text-sm" disabled>+500</button>
-                                    </div>
-                                    <h3 class="font-semibold mb-2">Players:</h3>
-                                    <ul id="team1Players" class="space-y-2"></ul>
-                                </div>
-                                <div id="team2" class="team-card p-6 rounded-lg">
-                                    <div class="flex items-center gap-4 mb-4">
-                                        <img id="captain2Image" src="https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sus.jpg" alt="Captain 2" class="w-16 h-16 rounded-full object-cover border-2 border-orange-400">
-                                        <h2 class="text-2xl font-bold text-orange-400">Team: Magnet</h2>
-                                    </div>
-                                    <div class="mb-4"><p class="font-semibold">Budget: <span id="team2Budget" class="text-yellow-400">5000</span></p></div>
-                                    <div class="mb-4 flex flex-wrap gap-2 justify-center">
-                                        <button data-team="2" data-amount="100" class="btn bid-btn bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-3 rounded text-sm" disabled>+100</button>
-                                        <button data-team="2" data-amount="200" class="btn bid-btn bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-3 rounded text-sm" disabled>+200</button>
-                                        <button data-team="2" data-amount="250" class="btn bid-btn bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-3 rounded text-sm" disabled>+250</button>
-                                        <button data-team="2" data-amount="500" class="btn bid-btn bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-3 rounded text-sm" disabled>+500</button>
-                                    </div>
-                                    <h3 class="font-semibold mb-2">Players:</h3>
-                                    <ul id="team2Players" class="space-y-2"></ul>
-                                </div>
-                            </div>
-                             <div>
-                                <h2 class="text-2xl font-bold text-center mb-4">Player Pools</h2>
-                                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                    <div>
-                                        <h3 class="text-lg font-semibold text-center mb-2 text-gray-400">Round 1 Pool</h3>
-                                        <div id="round1Players" class="player-pool-card p-4 rounded-lg grid grid-cols-2 sm:grid-cols-3 gap-4"></div>
-                                    </div>
-                                    <div>
-                                        <h3 class="text-lg font-semibold text-center mb-2 text-gray-400">Round 2 Pool</h3>
-                                        <div id="round2Players" class="player-pool-card p-4 rounded-lg grid grid-cols-2 sm:grid-cols-3 gap-4"></div>
-                                    </div>
-                                    <div>
-                                        <h3 class="text-lg font-semibold text-center mb-2 text-gray-400">Round 3 Pool</h3>
-                                        <div id="round3Players" class="player-pool-card p-4 rounded-lg grid grid-cols-2 sm:grid-cols-3 gap-4"></div>
-                                    </div>
-                                </div>
+                    <div id="auction-results" class="volleyball-content active">
+                        <div class="info-card p-8 rounded-lg">
+                            <h2 class="text-3xl font-bold text-center mb-2">Auction Results</h2>
+                            <p class="text-center text-gray-400 mb-6">The auction was held on 22nd August at 5:30 PM in the Narmada Center (AB5/103), IIT Gandhinagar.</p>
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                                <div id="team1Result" class="team-card p-6 rounded-lg"></div>
+                                <div id="team2Result" class="team-card p-6 rounded-lg"></div>
                             </div>
                         </div>
                     </div>
                     <div id="upcoming" class="volleyball-content">
-                        <div class="info-card p-8 rounded-lg">
-                            <h2 class="text-3xl font-bold text-center mb-6">Upcoming Match</h2>
-                            <div class="text-center">
-                                <p class="text-2xl font-bold text-yellow-400">Team SKY vs Team Magnet</p>
-                                <p class="text-lg text-gray-300 mt-2">📅 23rd August, 10:30 AM</p>
-                                <p class="text-lg text-gray-300">📍 Indoor Hiralal Karani Sports Complex, IIT Gandhinagar</p>
-                            </div>
+                        <div class="info-card p-8 rounded-lg text-center">
+                            <h2 class="text-3xl font-bold mb-4">Upcoming Match</h2>
+                            <p class="text-gray-300">No upcoming matches scheduled. Stay tuned for the next tournament!</p>
                         </div>
                     </div>
                     <div id="past" class="volleyball-content">
                          <div class="info-card p-8 rounded-lg">
                             <h2 class="text-3xl font-bold text-center mb-6">Past Match Results</h2>
-                            <div class="text-center text-gray-400">No past matches recorded yet.</div>
+                            <div class="border-b border-gray-700 pb-4">
+                                <p class="text-xl font-bold text-yellow-400">Team Magnet vs Team SKY</p>
+                                <p class="text-lg font-bold text-green-400 mt-1">Result: Team Magnet won the series 4-1</p>
+                                <p class="text-md text-gray-400 mt-1">📅 August 23rd</p>
+                            </div>
                         </div>
                     </div>
                     <div id="teams" class="volleyball-content">
                          <div class="info-card p-8 rounded-lg">
                             <h2 class="text-3xl font-bold text-center mb-6">Players & Teams</h2>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <div>
-                                    <h3 class="text-2xl font-bold text-cyan-400 mb-4 text-center">Team: SKY</h3>
-                                    <ul id="finalTeam1List" class="space-y-2">
-                                        <!-- Final team list will be populated by JS -->
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h3 class="text-2xl font-bold text-orange-400 mb-4 text-center">Team: Magnet</h3>
-                                    <ul id="finalTeam2List" class="space-y-2">
-                                         <!-- Final team list will be populated by JS -->
-                                    </ul>
-                                </div>
-                            </div>
                              <div class="mt-8 pt-6 border-t border-gray-700">
                                  <h3 class="text-2xl font-bold text-center mb-4">Complete Player Pool</h3>
                                  <div id="fullPlayerPool" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
@@ -230,13 +126,26 @@
                     </div>
                 </div>
 
+                <!-- Cricket Section -->
                 <div id="cricket" class="game-content">
+                     <nav class="bg-gray-600 rounded-lg p-2 flex flex-wrap justify-center gap-2 mb-6">
+                        <button class="px-3 py-1 rounded-md text-sm font-semibold">Auction</button>
+                        <button class="px-3 py-1 rounded-md text-sm font-semibold">Upcoming Match</button>
+                        <button class="px-3 py-1 rounded-md text-sm font-semibold">Past Matches</button>
+                        <button class="px-3 py-1 rounded-md text-sm font-semibold">Players & Teams</button>
+                    </nav>
                     <div class="info-card p-8 rounded-lg text-center">
                         <h2 class="text-3xl font-bold mb-4">Cricket Section</h2>
                         <p class="text-gray-300">Coming soon! Stay tuned for updates on HWM Lab cricket tournaments.</p>
                     </div>
                 </div>
                 <div id="badminton" class="game-content">
+                     <nav class="bg-gray-600 rounded-lg p-2 flex flex-wrap justify-center gap-2 mb-6">
+                        <button class="px-3 py-1 rounded-md text-sm font-semibold">Auction</button>
+                        <button class="px-3 py-1 rounded-md text-sm font-semibold">Upcoming Match</button>
+                        <button class="px-3 py-1 rounded-md text-sm font-semibold">Past Matches</button>
+                        <button class="px-3 py-1 rounded-md text-sm font-semibold">Players & Teams</button>
+                    </nav>
                     <div class="info-card p-8 rounded-lg text-center">
                         <h2 class="text-3xl font-bold mb-4">Badminton Section</h2>
                         <p class="text-gray-300">Coming soon! Get ready for shuttlecock showdowns.</p>
@@ -285,99 +194,55 @@
         setupTabs(gameTabs, gameContents);
         setupTabs(vTabs, vContents);
 
-        // --- AUCTION APP LOGIC ---
+        // --- DATA & DOM ELEMENTS ---
         document.addEventListener('DOMContentLoaded', () => {
-            const initialPlayers = [
-                { name: "Sunil Kumar", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sunil.jpg" },
-                { name: "Indra M. Tripathi", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/imt2.jpg" },
-                { name: "Kapil", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/kapil.jpg" },
-                { name: "Bhanu", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/bhanu.jpg" },
-                { name: "Sumit", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sum.jpg" },
-                { name: "Rajesh", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/rj.jpg" },
-                { name: "Pradeep", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/pradeep.jpg" },
-                { name: "Jitendra", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/jitu.jpg" },
-                { name: "Indrajeet", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/indra.jpg" }
-            ];
-            const initialBudget = 5000;
-            const basePrice = 100;
-            const auctionTime = 10;
-            const auctioneerPasscode = "6329";
-            
             const allMembers = [
                 { name: "Snehal", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/snehal.jpg", role: "Referee" },
                 { name: "Akash Yadav", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/akash.jpg", role: "Captain" },
                 { name: "Sushil Kumar Jaiswal", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sus.jpg", role: "Captain" },
-                ...initialPlayers.map(p => ({...p, role: "Player"}))
+                { name: "Sunil Kumar", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sunil.jpg", role: "Player" },
+                { name: "Indra M. Tripathi", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/imt2.jpg", role: "Player" },
+                { name: "Kapil", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/kapil.jpg", role: "Player" },
+                { name: "Bhanu", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/bhanu.jpg", role: "Player" },
+                { name: "Sumit", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sum.jpg", role: "Player" },
+                { name: "Rajesh", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/rj.jpg", role: "Player" },
+                { name: "Pradeep", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/pradeep.jpg", role: "Player" },
+                { name: "Jitendra", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/jitu.jpg", role: "Player" },
+                { name: "Indrajeet", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/indra.jpg", role: "Player" }
             ];
 
-            let state = {};
-            let speechVoice = null;
+            const team1ResultData = {
+                name: "SKY",
+                budget: 2250,
+                captain: { name: "Akash Yadav", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/akash.jpg" },
+                players: [
+                    { name: "Kapil", price: 550, image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/kapil.jpg" },
+                    { name: "Bhanu", price: 450, image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/bhanu.jpg" },
+                    { name: "Sumit", price: 500, image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sum.jpg" },
+                    { name: "Pradeep", price: 500, image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/pradeep.jpg" },
+                    { name: "Indrajeet", price: 750, image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/indra.jpg" }
+                ]
+            };
 
-            const roundPools = { 1: document.getElementById('round1Players'), 2: document.getElementById('round2Players'), 3: document.getElementById('round3Players') };
-            const team1El = document.getElementById('team1');
-            const team2El = document.getElementById('team2');
-            const team1BudgetEl = document.getElementById('team1Budget');
-            const team2BudgetEl = document.getElementById('team2Budget');
-            const team1PlayersEl = document.getElementById('team1Players');
-            const team2PlayersEl = document.getElementById('team2Players');
-            const currentPlayerContainer = document.getElementById('currentPlayer');
-            const currentBidEl = document.getElementById('currentBid');
-            const nextPlayerBtn = document.getElementById('nextPlayerBtn');
-            const sellPlayerBtn = document.getElementById('sellPlayerBtn');
-            const skipPlayerBtn = document.getElementById('skipPlayerBtn');
-            const resetBtn = document.getElementById('resetBtn');
-            const bidBtns = document.querySelectorAll('.bid-btn');
-            const statusMessageEl = document.getElementById('statusMessage');
-            const auctionArena = document.getElementById('auction-arena');
-            const timerProgress = document.getElementById('timer-progress');
-            const timerText = document.getElementById('timer-text');
-            const currentRoundDisplay = document.getElementById('currentRoundDisplay');
-            const auctionControls = document.getElementById('auction-controls');
-            const refereeControls = document.getElementById('referee-controls');
-            const confirmSaleBtn = document.getElementById('confirmSaleBtn');
-            const restartTimerBtn = document.getElementById('restartTimerBtn');
-            const peopleGrid = document.getElementById('people-grid');
-            const finalTeam1List = document.getElementById('finalTeam1List');
-            const finalTeam2List = document.getElementById('finalTeam2List');
-            const fullPlayerPool = document.getElementById('fullPlayerPool');
-            const CIRCLE_LENGTH = 100;
-
-            let soundsReady = false;
-            const bidSound = new Tone.Synth({ oscillator: { type: "sine" }, envelope: { attack: 0.005, decay: 0.1, sustain: 0.3, release: 1 } }).toDestination();
-            const soldSound = new Tone.Synth({ oscillator: { type: "triangle" }, envelope: { attack: 0.005, decay: 0.2, sustain: 0.5, release: 1 } }).toDestination();
-            const tickSound = new Tone.MembraneSynth().toDestination();
-
-            document.body.addEventListener('click', async () => {
-                if (!soundsReady) {
-                    await Tone.start();
-                    soundsReady = true;
-                }
-            }, { once: true });
-
-            function loadVoices() {
-                const voices = speechSynthesis.getVoices();
-                speechVoice = voices.find(v => v.name.includes('Female') && v.lang.includes('en')) || voices[0];
-            }
-            speechSynthesis.onvoiceschanged = loadVoices;
-            loadVoices();
-
-            function initializeState() {
-                stopTimer();
-                state = {
-                    rounds: { 1: JSON.parse(JSON.stringify(initialPlayers)), 2: [], 3: [] },
-                    currentRound: 1,
-                    teams: {
-                        1: { name: "SKY", budget: initialBudget, players: [] },
-                        2: { name: "Magnet", budget: initialBudget, players: [] }
-                    },
-                    currentPlayer: null, currentBid: 0, highestBidder: null, auctionInProgress: false,
-                    biddingTurn: Math.ceil(Math.random() * 2), timerId: null, timeLeft: auctionTime
-                };
-                renderAll();
-                populateStaticLists();
-            }
+            const team2ResultData = {
+                name: "Magnet",
+                budget: 150,
+                captain: { name: "Sushil Kumar Jaiswal", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sus.jpg" },
+                players: [
+                    { name: "Sunil Kumar", price: 2200, image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sunil.jpg" },
+                    { name: "Indra M. Tripathi", price: 2300, image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/imt2.jpg" },
+                    { name: "Jitendra", price: 100, image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/jitu.jpg" },
+                    { name: "Rajesh", price: 250, image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/rj.jpg" }
+                ]
+            };
             
-            function populateStaticLists() {
+            const peopleGrid = document.getElementById('people-grid');
+            const fullPlayerPool = document.getElementById('fullPlayerPool');
+            const team1ResultEl = document.getElementById('team1Result');
+            const team2ResultEl = document.getElementById('team2Result');
+
+            function populateStaticContent() {
+                // Populate People Tab
                 peopleGrid.innerHTML = allMembers.map(person => `
                     <div class="player-card p-4 rounded-lg text-center flex flex-col items-center">
                         <img src="${person.image}" alt="${person.name}" class="w-24 h-24 rounded-full mb-2 object-cover border-2 border-gray-600">
@@ -385,7 +250,8 @@
                         <span class="text-sm text-gray-400">${person.role}</span>
                     </div>
                 `).join('');
-                
+
+                // Populate Full Player Pool in Volleyball > Players & Teams
                 fullPlayerPool.innerHTML = allMembers.map(person => `
                      <div class="player-card p-2 rounded-lg text-center text-sm flex flex-col items-center">
                         <img src="${person.image}" alt="${person.name}" class="w-16 h-16 rounded-full mb-1 object-cover border-2 border-gray-600">
@@ -393,285 +259,35 @@
                     </div>
                 `).join('');
 
-                finalTeam1List.innerHTML = `<li class="flex items-center gap-2 py-1"><img src="https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/akash.jpg" alt="Akash Yadav" class="w-8 h-8 rounded-full object-cover border-2 border-cyan-400"><span>Akash Yadav <span class="text-cyan-400 font-semibold">(Captain)</span></span></li> <li class="text-gray-400 text-center py-4">Roster will be updated after auction.</li>`;
-                finalTeam2List.innerHTML = `<li class="flex items-center gap-2 py-1"><img src="https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sus.jpg" alt="Sushil Kumar Jaiswal" class="w-8 h-8 rounded-full object-cover border-2 border-orange-400"><span>Sushil Kumar Jaiswal <span class="text-orange-400 font-semibold">(Captain)</span></span></li> <li class="text-gray-400 text-center py-4">Roster will be updated after auction.</li>`;
+                // Populate Auction Results
+                team1ResultEl.innerHTML = `
+                    <div class="flex items-center gap-4 mb-4">
+                        <img src="${team1ResultData.captain.image}" alt="Captain 1" class="w-16 h-16 rounded-full object-cover border-2 border-cyan-400">
+                        <h2 class="text-2xl font-bold text-cyan-400">Team: ${team1ResultData.name}</h2>
+                    </div>
+                    <div class="mb-4"><p class="font-semibold">Final Budget: <span class="text-yellow-400">${team1ResultData.budget}</span></p></div>
+                    <h3 class="font-semibold mb-2">Players:</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-2 py-1"><img src="${team1ResultData.captain.image}" alt="${team1ResultData.captain.name}" class="w-8 h-8 rounded-full object-cover border-2 border-cyan-400"><span>${team1ResultData.captain.name} <span class="text-cyan-400 font-semibold">(Captain)</span></span></li>
+                        ${team1ResultData.players.map(p => `<li class="flex items-center gap-2 py-1"><img src="${p.image}" alt="${p.name}" class="w-8 h-8 rounded-full object-cover border-2 border-gray-600"><span>${p.name} <span class="text-gray-400">(${p.price})</span></span></li>`).join('')}
+                    </ul>
+                `;
+                
+                team2ResultEl.innerHTML = `
+                    <div class="flex items-center gap-4 mb-4">
+                        <img src="${team2ResultData.captain.image}" alt="Captain 2" class="w-16 h-16 rounded-full object-cover border-2 border-orange-400">
+                        <h2 class="text-2xl font-bold text-orange-400">Team: ${team2ResultData.name}</h2>
+                    </div>
+                    <div class="mb-4"><p class="font-semibold">Final Budget: <span class="text-yellow-400">${team2ResultData.budget}</span></p></div>
+                    <h3 class="font-semibold mb-2">Players:</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-2 py-1"><img src="${team2ResultData.captain.image}" alt="${team2ResultData.captain.name}" class="w-8 h-8 rounded-full object-cover border-2 border-orange-400"><span>${team2ResultData.captain.name} <span class="text-orange-400 font-semibold">(Captain)</span></span></li>
+                        ${team2ResultData.players.map(p => `<li class="flex items-center gap-2 py-1"><img src="${p.image}" alt="${p.name}" class="w-8 h-8 rounded-full object-cover border-2 border-gray-600"><span>${p.name} <span class="text-gray-400">(${p.price})</span></span></li>`).join('')}
+                    </ul>
+                `;
             }
 
-            function renderAll() {
-                renderPlayerPools();
-                renderTeams();
-                renderAuctionArena();
-                updateBidButtons();
-            }
-
-            function renderPlayerPools() {
-                for (const round in roundPools) {
-                    roundPools[round].innerHTML = '';
-                    state.rounds[round].forEach(player => {
-                        const playerCard = document.createElement('div');
-                        playerCard.className = 'player-card p-2 rounded-lg text-center text-sm flex flex-col items-center';
-                        playerCard.innerHTML = `<img src="${player.image}" alt="${player.name}" class="w-16 h-16 rounded-full mb-1 object-cover border-2 border-gray-600"><span class="font-semibold text-xs">${player.name}</span>`;
-                        roundPools[round].appendChild(playerCard);
-                    });
-                }
-            }
-
-            function renderTeams() {
-                team1BudgetEl.textContent = state.teams[1].budget;
-                const captain1HTML = `<li class="flex items-center gap-2 py-1"><img src="https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/akash.jpg" alt="Akash Yadav" class="w-8 h-8 rounded-full object-cover border-2 border-cyan-400"><span>Akash Yadav <span class="text-cyan-400 font-semibold">(Captain)</span></span></li>`;
-                const team1PlayersHTML = state.teams[1].players.map(p => `<li class="flex items-center gap-2 py-1"><img src="${p.image}" alt="${p.name}" class="w-8 h-8 rounded-full object-cover border-2 border-gray-600"><span>${p.name} <span class="text-gray-400">(${p.price})</span></span></li>`).join('');
-                team1PlayersEl.innerHTML = captain1HTML + team1PlayersHTML;
-
-                team2BudgetEl.textContent = state.teams[2].budget;
-                const captain2HTML = `<li class="flex items-center gap-2 py-1"><img src="https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sus.jpg" alt="Sushil Kumar Jaiswal" class="w-8 h-8 rounded-full object-cover border-2 border-orange-400"><span>Sushil Kumar Jaiswal <span class="text-orange-400 font-semibold">(Captain)</span></span></li>`;
-                const team2PlayersHTML = state.teams[2].players.map(p => `<li class="flex items-center gap-2 py-1"><img src="${p.image}" alt="${p.name}" class="w-8 h-8 rounded-full object-cover border-2 border-gray-600"><span>${p.name} <span class="text-gray-400">(${p.price})</span></span></li>`).join('');
-                team2PlayersEl.innerHTML = captain2HTML + team2PlayersHTML;
-
-                team1El.classList.remove('highest-bidder-glow');
-                team2El.classList.remove('highest-bidder-glow');
-                if (state.highestBidder === 1) team1El.classList.add('highest-bidder-glow');
-                else if (state.highestBidder === 2) team2El.classList.add('highest-bidder-glow');
-            }
-
-            function renderAuctionArena() {
-                if (state.currentPlayer) {
-                    auctionArena.classList.remove('hidden');
-                    currentRoundDisplay.textContent = state.currentRound;
-                    currentPlayerContainer.innerHTML = `<img src="${state.currentPlayer.image}" alt="${state.currentPlayer.name}" class="w-24 h-24 rounded-full mx-auto mb-2 object-cover border-4 border-indigo-500"><p class="text-4xl font-extrabold text-white">${state.currentPlayer.name}</p>`;
-                    currentBidEl.textContent = state.currentBid === 0 ? `Base Price: ${basePrice}` : `Current Bid: ${state.currentBid}`;
-                    updateTimerDisplay(auctionTime);
-                } else {
-                    auctionArena.classList.add('hidden');
-                }
-            }
-
-            function announce(text) {
-                speechSynthesis.cancel();
-                const utterance = new SpeechSynthesisUtterance(text);
-                if (speechVoice) utterance.voice = speechVoice;
-                utterance.rate = 0.8;
-                utterance.pitch = 1.1;
-                speechSynthesis.speak(utterance);
-            }
-
-            function selectNextPlayer() {
-                while (state.rounds[state.currentRound].length === 0 && state.currentRound < 3) {
-                    state.currentRound++;
-                    showStatus(`Starting Round ${state.currentRound}!`, "info");
-                }
-                const currentPool = state.rounds[state.currentRound];
-                if (currentPool.length === 0) {
-                    showStatus("All players have been auctioned!", "info", 5000);
-                    endAuction();
-                    return;
-                }
-                const randomIndex = Math.floor(Math.random() * currentPool.length);
-                state.currentPlayer = currentPool.splice(randomIndex, 1)[0];
-                state.currentBid = 0;
-                state.highestBidder = null;
-                state.auctionInProgress = true;
-                const announcementText = `The next player is... ${state.currentPlayer.name.replace(/ /g, '... ')}`;
-                showStatus(`${state.currentPlayer.name} is now up for auction!`, "normal");
-                announce(announcementText);
-                renderAll();
-                sellPlayerBtn.disabled = true;
-                skipPlayerBtn.disabled = false;
-                startTimer();
-            }
-
-            function placeBid(teamId, amount) {
-                if (soundsReady) bidSound.triggerAttackRelease("C5", "8n");
-                const team = state.teams[teamId];
-                const newBid = state.currentBid === 0 ? Math.max(basePrice, amount) : state.currentBid + amount;
-                if (team.budget < newBid) {
-                    showStatus(`Team ${team.name} does not have enough budget!`, "error");
-                    return;
-                }
-                if (state.biddingTurn != teamId && state.highestBidder !== null) {
-                    showStatus(`It's not your turn to bid!`, "error");
-                    return;
-                }
-                state.currentBid = newBid;
-                state.highestBidder = teamId;
-                state.biddingTurn = teamId == 1 ? 2 : 1;
-                showStatus(`Team ${team.name} bids ${state.currentBid}!`, "normal");
-                renderAll();
-                sellPlayerBtn.disabled = false;
-                skipPlayerBtn.disabled = true;
-                startTimer();
-            }
-
-            function updateBidButtons() {
-                if (!state.auctionInProgress) {
-                    bidBtns.forEach(btn => btn.disabled = true);
-                    return;
-                }
-                bidBtns.forEach(btn => {
-                    const teamId = btn.dataset.team;
-                    const amount = parseInt(btn.dataset.amount, 10);
-                    const team = state.teams[teamId];
-                    const newBid = state.currentBid === 0 ? Math.max(basePrice, amount) : state.currentBid + amount;
-                    btn.disabled = (state.biddingTurn != teamId && state.highestBidder !== null) || team.budget < newBid;
-                });
-            }
-            
-            function sellPlayer() {
-                stopTimer();
-                if (!state.highestBidder) {
-                    showStatus("No bids were placed!", "error");
-                    return;
-                }
-                if (soundsReady) soldSound.triggerAttackRelease("G5", "8n", Tone.now() + 0.2);
-                launchConfetti();
-                const winningTeamId = state.highestBidder;
-                const winningTeam = state.teams[winningTeamId];
-                const finalPrice = state.currentBid;
-                winningTeam.budget -= finalPrice;
-                winningTeam.players.push({ name: state.currentPlayer.name, price: finalPrice, image: state.currentPlayer.image });
-                const soldMessage = `${state.currentPlayer.name}... sold to Team ${winningTeam.name}... for ${finalPrice}!`;
-                showStatus(`${state.currentPlayer.name} sold to Team ${winningTeam.name} for ${finalPrice}!`, "success", 5000);
-                announce(soldMessage);
-                resetAuctionRound();
-            }
-
-            function skipPlayer(isAutomatic = false) {
-                stopTimer();
-                const skippedPlayer = state.currentPlayer;
-                let message;
-                if (state.currentRound < 3) {
-                    state.rounds[state.currentRound + 1].push(skippedPlayer);
-                    message = isAutomatic ? `${skippedPlayer.name} is unsold, moves to Round ${state.currentRound + 1}.` : `${skippedPlayer.name} skipped, moves to Round ${state.currentRound + 1}.`;
-                    showStatus(message, "info", 5000);
-                } else {
-                    const team1PlayerCount = state.teams[1].players.length;
-                    const team2PlayerCount = state.teams[2].players.length;
-                    let assignedTeamId = (team1PlayerCount < team2PlayerCount) ? 1 : (team2PlayerCount < team1PlayerCount) ? 2 : (state.teams[1].budget >= state.teams[2].budget ? 1 : 2);
-                    const assignedTeam = state.teams[assignedTeamId];
-                    assignedTeam.budget -= basePrice;
-                    assignedTeam.players.push({ name: skippedPlayer.name, price: basePrice, image: skippedPlayer.image });
-                    message = `${skippedPlayer.name} auto-assigned to Team ${assignedTeam.name} for ${basePrice}.`;
-                    showStatus(message, "info", 5000);
-                    announce(message);
-                }
-                resetAuctionRound();
-            }
-
-            function resetAuctionRound() {
-                state.currentPlayer = null;
-                state.currentBid = 0;
-                state.highestBidder = null;
-                state.auctionInProgress = false;
-                skipPlayerBtn.disabled = true;
-                auctionControls.classList.remove('hidden');
-                auctionControls.classList.add('flex');
-                refereeControls.classList.add('hidden');
-                renderAll();
-            }
-            
-            function endAuction() {
-                stopTimer();
-                state.auctionInProgress = false;
-                updateBidButtons();
-                nextPlayerBtn.disabled = true;
-                sellPlayerBtn.disabled = true;
-                skipPlayerBtn.disabled = true;
-                const team1Spent = initialBudget - state.teams[1].budget;
-                const team2Spent = initialBudget - state.teams[2].budget;
-                let winnerMessage = `Auction Over! Team 1 spent ${team1Spent}. Team 2 spent ${team2Spent}.`;
-                showStatus(winnerMessage, "info", 10000);
-            }
-            
-            function updateTimerDisplay(time) {
-                const timeFraction = time / auctionTime;
-                const offset = CIRCLE_LENGTH - timeFraction * CIRCLE_LENGTH;
-                timerProgress.style.strokeDashoffset = offset;
-                timerText.textContent = time;
-                if (time <= 8) {
-                    if (soundsReady && time > 0) tickSound.triggerAttackRelease("C2", "8n");
-                    timerProgress.style.stroke = "#ef4444";
-                } else {
-                    timerProgress.style.stroke = "#4f46e5";
-                }
-            }
-
-            function handleTimerEnd() {
-                stopTimer();
-                showStatus("Time's up! Referee's decision.", "info");
-                auctionControls.classList.add('hidden');
-                refereeControls.classList.remove('hidden');
-                refereeControls.classList.add('flex');
-                confirmSaleBtn.textContent = state.highestBidder ? "Confirm Sale" : "Confirm Skip/Assign";
-                bidBtns.forEach(btn => btn.disabled = true);
-            }
-
-            function startTimer() {
-                stopTimer(); 
-                state.timeLeft = auctionTime;
-                updateTimerDisplay(state.timeLeft);
-                state.timerId = setInterval(() => {
-                    state.timeLeft--;
-                    updateTimerDisplay(state.timeLeft);
-                    if (state.timeLeft <= 0) handleTimerEnd();
-                }, 1000);
-            }
-
-            function stopTimer() { clearInterval(state.timerId); state.timerId = null; }
-
-            function showStatus(message, type = 'normal', duration = 3000) {
-                statusMessageEl.textContent = message;
-                statusMessageEl.className = 'status-message text-center text-lg font-medium mb-8 h-8';
-                switch (type) {
-                    case 'success': statusMessageEl.classList.add('text-green-400'); break;
-                    case 'error': statusMessageEl.classList.add('text-red-400'); break;
-                    case 'info': statusMessageEl.classList.add('text-blue-400'); break;
-                    default: statusMessageEl.classList.add('text-gray-300');
-                }
-                setTimeout(() => { if (statusMessageEl.textContent === message) statusMessageEl.textContent = ''; }, duration);
-            }
-            
-            function launchConfetti() {
-                const colors = ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4caf50', '#8bc34a', '#cddc39', '#ffeb3b', '#ffc107', '#ff9800', '#ff5722'];
-                for (let i = 0; i < 100; i++) {
-                    const confetti = document.createElement('div');
-                    confetti.className = 'confetti';
-                    confetti.style.left = `${Math.random() * 100}vw`;
-                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                    confetti.style.animationDelay = `${Math.random() * 2}s`;
-                    document.body.appendChild(confetti);
-                    setTimeout(() => confetti.remove(), 3000);
-                }
-            }
-
-            nextPlayerBtn.addEventListener('click', selectNextPlayer);
-            sellPlayerBtn.addEventListener('click', sellPlayer);
-            skipPlayerBtn.addEventListener('click', () => skipPlayer(false));
-            resetBtn.addEventListener('click', () => {
-                if (confirm("Are you sure you want to reset the entire auction?")) {
-                    initializeState();
-                    nextPlayerBtn.disabled = false;
-                    showStatus("Auction has been reset.", "info");
-                }
-            });
-            bidBtns.forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const teamId = e.target.dataset.team;
-                    const amount = parseInt(e.target.dataset.amount, 10);
-                    placeBid(teamId, amount);
-                });
-            });
-            confirmSaleBtn.addEventListener('click', () => {
-                if (state.highestBidder) sellPlayer();
-                else skipPlayer(true);
-            });
-            restartTimerBtn.addEventListener('click', () => {
-                auctionControls.classList.remove('hidden');
-                auctionControls.classList.add('flex');
-                refereeControls.classList.add('hidden');
-                updateBidButtons();
-                startTimer();
-            });
-
-            initializeState();
+            populateStaticContent();
         });
     </script>
 </body>
