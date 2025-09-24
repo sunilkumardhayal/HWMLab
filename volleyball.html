@@ -7,39 +7,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        .v-nav-link.active {
-            color: #4f46e5; /* indigo-600 */
-            border-color: #4f46e5;
-        }
-        #to-top-button {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            opacity: 0;
-            transform: translateY(100px);
-            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-            z-index: 100;
-        }
-        #to-top-button.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .fade-in-section {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .fade-in-section.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        #lightbox {
-            background-color: rgba(0, 0, 0, 0.9);
-            transition: opacity 0.3s ease-in-out;
-        }
+        body { font-family: 'Inter', sans-serif; }
+        .v-nav-link.active { color: #4f46e5; border-color: #4f46e5; }
+        #to-top-button { position: fixed; bottom: 2rem; right: 2rem; opacity: 0; transform: translateY(100px); transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; z-index: 100; }
+        #to-top-button.show { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 antialiased">
@@ -47,10 +18,7 @@
     <header id="header" class="bg-white/90 backdrop-blur-lg sticky top-0 z-50 border-b border-gray-200">
         <div class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-8">
-                    <a href="index.html" class="text-2xl font-bold text-gray-900">HWM Lab</a>
-                    <h1 class="text-2xl font-semibold text-gray-700 hidden md:flex items-center gap-x-2">🏐 Volleyball Hub</h1>
-                </div>
+                <div class="flex items-center space-x-8"><a href="index.html" class="text-2xl font-bold text-gray-900">HWM Lab</a><h1 class="text-2xl font-semibold text-gray-700 hidden md:flex items-center gap-x-2">🏐 Volleyball Hub</h1></div>
                 <div>
                     <nav id="volleyball-nav" class="hidden md:flex flex-wrap justify-end gap-x-6 gap-y-2 items-center">
                         <a href="#results" class="v-nav-link text-gray-600 hover:text-indigo-600 border-b-2 border-transparent pb-1">Results</a>
@@ -61,84 +29,33 @@
                         <a href="#gallery" class="v-nav-link text-gray-600 hover:text-indigo-600 border-b-2 border-transparent pb-1">Gallery</a>
                         <div class="relative group">
                             <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition duration-300 shadow">Main Menu</button>
-                            <div class="absolute hidden group-hover:block pt-2 right-0">
-                                <div class="bg-white text-left rounded-lg shadow-lg py-2 w-48">
-                                    <a href="index.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Home</a>
-                                    <a href="games.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Games</a>
-                                    <a href="research.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Research</a>
-                                    <a href="people.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">People</a>
-                                </div>
-                            </div>
+                            <div class="absolute hidden group-hover:block pt-2 right-0"><div class="bg-white text-left rounded-lg shadow-lg py-2 w-48"><a href="index.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Home</a><a href="games.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Games</a><a href="research.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Research</a><a href="people.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">People</a></div></div>
                         </div>
                     </nav>
-                    <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-600 hover:bg-gray-100 focus:outline-none" aria-label="Toggle mobile menu">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                    </button>
+                    <button id="mobile-menu-button" class="md:hidden p-2 rounded-md text-gray-600 hover:bg-gray-100 focus:outline-none" aria-label="Toggle mobile menu"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg></button>
                 </div>
             </div>
             <h1 class="text-2xl font-bold text-gray-900 text-center mt-4 md:hidden">🏐 Volleyball Hub</h1>
         </div>
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
-            <a href="#results" class="v-nav-link block py-2 text-gray-600 hover:text-indigo-600">Results</a>
-            <a href="#teams" class="v-nav-link block py-2 text-gray-600 hover:text-indigo-600">Teams</a>
-            <a href="#rules" class="v-nav-link block py-2 text-gray-600 hover:text-indigo-600">Rules</a>
-            <a href="#auction" class="v-nav-link block py-2 text-gray-600 hover:text-indigo-600">Auction</a>
-            <a href="#schedule" class="v-nav-link block py-2 text-gray-600 hover:text-indigo-600">Schedule</a>
-            <a href="#gallery" class="v-nav-link block py-2 text-gray-600 hover:text-indigo-600">Gallery</a>
-            <div class="border-t mt-2 pt-2">
-                <a href="index.html" class="block py-2 text-gray-600 hover:text-indigo-600">HWM Lab Home</a>
-                <a href="games.html" class="block py-2 text-gray-600 hover:text-indigo-600">All Games</a>
-            </div>
+            <a href="#results" class="v-nav-link block py-2 text-gray-600 hover:text-indigo-600">Results</a><a href="#teams" class="v-nav-link block py-2 text-gray-600 hover:text-indigo-600">Teams</a><a href="#rules" class="v-nav-link block py-2 text-gray-600 hover:text-indigo-600">Rules</a><a href="#auction" class="v-nav-link block py-2 text-gray-600 hover:text-indigo-600">Auction</a><a href="#schedule" class="v-nav-link block py-2 text-gray-600 hover:text-indigo-600">Schedule</a><a href="#gallery" class="v-nav-link block py-2 text-gray-600 hover:text-indigo-600">Gallery</a>
+            <div class="border-t mt-2 pt-2"><a href="index.html" class="block py-2 text-gray-600 hover:text-indigo-600">HWM Lab Home</a><a href="games.html" class="block py-2 text-gray-600 hover:text-indigo-600">All Games</a></div>
         </div>
     </header>
 
     <main>
-        <section id="results" class="py-20 bg-white fade-in-section">
-             <div class="container mx-auto px-6">
-                <div class="bg-white p-8 rounded-lg">
-                    <h3 class="text-3xl font-bold text-center mb-8">Match Results: Team Magnet vs Team SKY</h3>
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md text-center max-w-2xl mx-auto mb-10">
-                        <div class="flex justify-around items-center"><div class="text-2xl font-bold text-orange-500">Team Magnet</div><div class="text-5xl font-bold">4 - 1</div><div class="text-2xl font-bold text-cyan-500">Team SKY</div></div>
-                        <p class="mt-2 font-semibold text-green-600">🏆 Winner: <span class="text-orange-500">Team Magnet</span></p><p class="text-sm text-gray-500 mt-2">📅 August 23rd, 2025</p>
-                    </div>
-                    <div class="max-w-md mx-auto mb-12">
-                        <h4 class="text-xl font-semibold text-center mb-4">Game-by-Game Score</h4>
-                        <ul class="space-y-2 text-center"><li class="bg-gray-50 p-3 rounded-md">Game 1: <span class="font-bold text-orange-500">Team Magnet</span> won 25-13</li><li class="bg-gray-50 p-3 rounded-md">Game 2: <span class="font-bold text-cyan-500">Team SKY</span> won 25-23</li><li class="bg-gray-50 p-3 rounded-md">Game 3: <span class="font-bold text-orange-500">Team Magnet</span> won 25-18</li><li class="bg-gray-50 p-3 rounded-md">Game 4: <span class="font-bold text-orange-500">Team Magnet</span> won 25-16</li><li class="bg-gray-50 p-3 rounded-md">Game 5: <span class="font-bold text-orange-500">Team Magnet</span> won 25-9</li></ul>
-                    </div>
-                    <div class="text-center mb-12">
-                        <h4 class="text-xl font-semibold mb-4">🏆 Man of the Series 🏆</h4>
-                        <div class="inline-block bg-yellow-100 p-4 rounded-lg"><img src="https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/main/Profile_Pics/sushil.jpg" alt="Sushil" class="w-20 h-20 rounded-full mx-auto mb-2 border-4 border-yellow-400 object-cover"><p class="font-bold text-lg">Sushil</p><p class="text-orange-600 font-semibold">(Team Magnet)</p></div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <section id="results" class="py-20 bg-white">
+            </section>
 
-        <section id="teams" class="py-20 bg-gray-50 fade-in-section">
-             <div class="container mx-auto px-6">
+        <section id="teams" class="py-20 bg-gray-50">
+            <div class="container mx-auto px-6">
                 <div class="bg-white p-8 rounded-lg shadow-lg">
                     <h3 class="text-3xl font-bold text-center mb-8">Match Day Lineups</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="bg-gray-100 p-6 rounded-lg">
-                            <h4 class="text-2xl font-bold text-cyan-500 mb-6 text-center">Team SKY</h4>
-                            <ul class="space-y-4">
-                                <li class="flex items-center bg-white p-3 rounded-lg shadow-sm"><img src="https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/main/Profile_Pics/akash.jpg" alt="Akash" class="w-12 h-12 rounded-full mr-4 object-cover"><div><p class="font-bold text-gray-800">Akash</p><p class="text-sm text-cyan-500 font-semibold">(Captain)</p></div></li>
-                                <li class="flex items-center bg-white p-3 rounded-lg shadow-sm"><img src="https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/main/Profile_Pics/imt2.jpg" alt="Indra M. Tripathi" class="w-12 h-12 rounded-full mr-4 object-cover"><p class="font-bold text-gray-800">Indra M. Tripathi</p></li>
-                                <li class="flex items-center bg-white p-3 rounded-lg shadow-sm"><img src="https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/main/Profile_Pics/jitu.jpg" alt="Jitendra" class="w-12 h-12 rounded-full mr-4 object-cover"><p class="font-bold text-gray-800">Jitendra</p></li>
-                                <li class="flex items-center bg-white p-3 rounded-lg shadow-sm"><img src="https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/main/Profile_Pics/sunil.jpg" alt="Sunil Kumar" class="w-12 h-12 rounded-full mr-4 object-cover"><p class="font-bold text-gray-800">Sunil Kumar</p></li>
-                                <li class="flex items-center bg-white p-3 rounded-lg shadow-sm"><img src="https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/main/Profile_Pics/wajahat.jpg" alt="Dr. Wajahat Annayat" class="w-12 h-12 rounded-full mr-4 object-cover"><p class="font-bold text-gray-800">Dr. Wajahat Annayat</p></li>
-                            </ul>
-                        </div>
-                        <div class="bg-gray-100 p-6 rounded-lg">
-                            <h4 class="text-2xl font-bold text-orange-500 mb-6 text-center">Team Magnet</h4>
-                             <ul class="space-y-4">
-                                <li class="flex items-center bg-white p-3 rounded-lg shadow-sm"><img src="https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/main/Profile_Pics/bhanu.jpg" alt="Bhanu" class="w-12 h-12 rounded-full mr-4 object-cover"><div><p class="font-bold text-gray-800">Bhanu</p><p class="text-sm text-orange-500 font-semibold">(Captain)</p></div></li>
-                                <li class="flex items-center bg-white p-3 rounded-lg shadow-sm"><img src="https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/main/Profile_Pics/kapil.jpg" alt="Kapil" class="w-12 h-12 rounded-full mr-4 object-cover"><p class="font-bold text-gray-800">Kapil</p></li>
-                                <li class="flex items-center bg-white p-3 rounded-lg shadow-sm"><img src="https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/main/Profile_Pics/pradeep.jpg" alt="Pradeep" class="w-12 h-12 rounded-full mr-4 object-cover"><p class="font-bold text-gray-800">Pradeep</p></li>
-                                <li class="flex items-center bg-white p-3 rounded-lg shadow-sm"><img src="https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/main/Profile_Pics/rj.jpg" alt="Rajesh" class="w-12 h-12 rounded-full mr-4 object-cover"><p class="font-bold text-gray-800">Rajesh</p></li>
-                                <li class="flex items-center bg-white p-3 rounded-lg shadow-sm"><img src="https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/main/Profile_Pics/sum.jpg" alt="Sumit" class="w-12 h-12 rounded-full mr-4 object-cover"><p class="font-bold text-gray-800">Sumit</p></li>
-                                <li class="flex items-center bg-white p-3 rounded-lg shadow-sm"><img src="https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/main/Profile_Pics/sushil.jpg" alt="Sushil" class="w-12 h-12 rounded-full mr-4 object-cover"><p class="font-bold text-gray-800">Sushil</p></li>
-                            </ul>
-                        </div>
+                        <div id="team1-display" class="bg-gray-100 p-6 rounded-lg">
+                            </div>
+                        <div id="team2-display" class="bg-gray-100 p-6 rounded-lg">
+                            </div>
                     </div>
                     <div class="mt-12 pt-8 border-t border-gray-200 text-center">
                         <h4 class="text-xl font-semibold mb-4">Match Officials</h4>
@@ -152,60 +69,21 @@
             </div>
         </section>
 
-        <section id="rules" class="py-20 bg-white fade-in-section">
-             <div class="container mx-auto px-6">
-                <div class="bg-white p-8 rounded-lg">
-                    <h3 class="text-3xl font-bold text-center mb-8">Rules & Regulations</h3>
-                    <div class="max-w-4xl mx-auto text-gray-700 space-y-6">
-                        <div><h4 class="text-xl font-semibold mb-2">1. General Gameplay & Teams</h4><ul class="list-disc list-inside space-y-2 pl-4"><li><strong>Objective:</strong> The goal is to score points by sending the ball over the net so it lands within the opponent's court.</li><li><strong>Teams:</strong> Games are played between two teams. The number of players on the court will be decided per match.</li><li><strong>Scoring:</strong> We will use rally scoring. A point is awarded on every rally, regardless of which team served. Sets are typically played to 25 points, and a team must win by at least a two-point margin.</li></ul></div>
-                        <div><h4 class="text-xl font-semibold mb-2">2. Hitting & Attacks (Custom Rules)</h4><ul class="list-disc list-inside space-y-2 pl-4"><li><strong>Consecutive Hits:</strong> A single player is allowed to hit the ball twice in a row.</li><li><strong>Team Hits:</strong> There is no limit to the total number of hits a team can make before sending the ball over the net.</li><li><strong>Legal Contact:</strong> Contact with the ball must be a clean, brief hit. Holding, catching, lifting, or throwing the ball is not permitted and will result in a fault.</li></ul></div>
-                        <div><h4 class="text-xl font-semibold mb-2">3. Serving (Custom Rules)</h4><ul class="list-disc list-inside space-y-2 pl-4"><li><strong>Service Style:</strong> All serves must be performed underhand. Overhand or jump serves are not allowed.</li><li><strong>Service Location:</strong> The server is permitted to serve from inside the court. The serve must be executed from behind the 3-meter (10-foot) attack line.</li><li><strong>Valid Serve:</strong> The served ball must cross the net and travel over the opponent's 3-meter attack line to be considered a valid serve.</li><li><strong>Service Rotation:</strong> Service must be done by each player in the team in a rotational sequence.</li><li><strong>Continuous Serving:</strong> A player can continue to serve as long as their team keeps winning points. When the serving team loses a rally, the serve switches to the opposing team, and they must rotate to their next server.</li></ul></div>
-                        <div><h4 class="text-xl font-semibold mb-2">4. Fouls & Violations</h4><ul class="list-disc list-inside space-y-2 pl-4"><li><strong>Net Contact:</strong> Players are not allowed to touch the net during play. If a player touches the net, their team loses the point.</li><li><strong>Center Line:</strong> A player may step on the center line, but their entire foot cannot cross completely over the line into the opponent's court.</li><li><strong>Out of Bounds:</strong> A ball is considered 'out' if it lands completely outside the boundary lines, touches the ceiling, or hits the antennas on the net. A ball that lands on a boundary line is 'in'.</li></ul></div>
-                        <div><h4 class="text-xl font-semibold mb-2">5. Sportsmanship</h4><ul class="list-disc list-inside space-y-2 pl-4"><li>All players are expected to show good sportsmanship.</li><li>The referee's calls are final. Please respect their decisions.</li><li>Let's prioritize safety, fair play, and fun for everyone involved!</li></ul></div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <section id="rules" class="py-20 bg-white">
+            </section>
 
-        <section id="auction" class="py-20 bg-gray-50 fade-in-section">
-            <div class="container mx-auto px-6">
-                 <div class="bg-white p-8 rounded-lg shadow-lg">
-                    <h3 class="text-3xl font-bold text-center mb-8">Auction</h3>
-                    <div class="text-center mb-12">
-                        <a href="auction.html" class="bg-indigo-600 text-white px-8 py-3 rounded-lg hover:bg-indigo-700 transition text-lg font-semibold shadow-lg hover:shadow-indigo-500/50">Launch Live Auction Tool</a>
+        <section id="auction" class="py-20 bg-gray-50">
+             <div class="container mx-auto px-6">
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-3xl font-bold text-center mb-8">Player Auction</h3>
+                    <div class="text-center">
+                        <a href="auction.html" class="bg-indigo-600 text-white px-8 py-3 rounded-lg hover:bg-indigo-700 transition text-lg font-semibold shadow-lg hover:shadow-indigo-500/50">Launch Auction Tool</a>
                     </div>
                 </div>
             </div>
         </section>
         
-        <section id="schedule" class="py-20 bg-white fade-in-section">
-            <div class="container mx-auto px-6">
-                 <div class="bg-white p-8 rounded-lg shadow-lg text-center">
-                    <h3 class="text-3xl font-bold text-center mb-8">Schedule</h3>
-                    <div class="max-w-md mx-auto bg-gray-50 border-l-4 border-indigo-500 p-6 rounded-r-lg">
-                        <div class="flex items-center">
-                            <svg class="w-10 h-10 text-indigo-500 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                            <div>
-                                <p class="text-lg font-semibold text-gray-800 text-left">Next Match</p>
-                                <p class="text-gray-600 text-left">To Be Announced</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="gallery" class="py-20 bg-gray-50 fade-in-section">
-            <div class="container mx-auto px-6">
-                 <div class="bg-white p-8 rounded-lg shadow-lg">
-                    <h3 class="text-3xl font-bold text-center mb-8">Photo Gallery</h3>
-                    <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                        </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
+        </main>
 
     <footer class="bg-gray-800 text-gray-400 py-8">
         <div class="container mx-auto px-6 text-center">
@@ -217,127 +95,65 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
     </a>
 
-    <div id="lightbox" class="fixed inset-0 z-50 flex items-center justify-center hidden opacity-0">
-        <div class="absolute inset-0" id="lightbox-close-bg"></div>
-        <button id="lightbox-close" class="absolute top-4 right-4 text-white text-4xl">&times;</button>
-        <button id="lightbox-prev" class="absolute left-4 text-white text-4xl">&#8249;</button>
-        <button id="lightbox-next" class="absolute right-4 text-white text-4xl">&#8250;</button>
-        <img id="lightbox-img" src="" alt="Gallery image" class="max-w-[90vw] max-h-[85vh] rounded-lg">
-    </div>
-
     <script>
     document.addEventListener('DOMContentLoaded', () => {
-        // --- GALLERY & LIGHTBOX ---
-        const galleryGrid = document.getElementById('gallery-grid');
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-        const lightboxClose = document.getElementById('lightbox-close');
-        const lightboxCloseBg = document.getElementById('lightbox-close-bg');
-        const lightboxPrev = document.getElementById('lightbox-prev');
-        const lightboxNext = document.getElementById('lightbox-next');
-        
-        const IMG_BASE_URL = "https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/main/Volleyball_Gallery/";
-        const galleryImages = [
-            'IMG_6119.JPG', 'IMG_6120.JPG', 'IMG_6121.JPG', 'IMG_6122.JPG', 
-            'IMG_6123.JPG', 'IMG_6124.JPG', 'IMG_6125.JPG', 'IMG_6126.JPG',
-            'IMG_6127.JPG', 'IMG_6128.JPG', 'IMG_6130.JPG', 'IMG_6131.JPG',
-            'IMG_6133.JPG', 'IMG_6134.JPG', 'IMG_6161.JPG', 'IMG_6162.JPG',
-            'IMG_6163.JPG', 'IMG_6165.JPG'
-        ];
-        let currentImageIndex = 0;
+        // --- SCRIPT TO LOAD AND DISPLAY TEAMS FROM LOCAL STORAGE ---
+        function displayTeams() {
+            const team1Container = document.getElementById('team1-display');
+            const team2Container = document.getElementById('team2-display');
+            const savedTeams = JSON.parse(localStorage.getItem('volleyballTeams'));
 
-        // Populate Gallery
-        if (galleryGrid) {
-            galleryImages.forEach((imgName, index) => {
-                const imgContainer = document.createElement('div');
-                imgContainer.className = 'aspect-w-1 aspect-h-1 cursor-pointer overflow-hidden rounded-lg group';
-                imgContainer.innerHTML = `<img src="${IMG_BASE_URL}${imgName}" alt="Volleyball Match Image ${index + 1}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">`;
-                imgContainer.addEventListener('click', () => openLightbox(index));
-                galleryGrid.appendChild(imgContainer);
-            });
-        }
+            if (savedTeams) {
+                // TEAM 1
+                const team1 = savedTeams['1'];
+                const team1Color = 'cyan';
+                let team1HTML = `<h4 class="text-2xl font-bold text-${team1Color}-500 mb-6 text-center">Team ${team1.name}</h4><ul class="space-y-4">`;
+                team1HTML += `<li class="flex items-center bg-white p-3 rounded-lg shadow-sm"><img src="${team1.captain.image}" alt="${team1.captain.name}" class="w-12 h-12 rounded-full mr-4 object-cover"><div><p class="font-bold text-gray-800">${team1.captain.name}</p><p class="text-sm text-${team1Color}-500 font-semibold">(Captain)</p></div></li>`;
+                team1.players.forEach(player => {
+                    team1HTML += `<li class="flex items-center bg-white p-3 rounded-lg shadow-sm"><img src="${player.image}" alt="${player.name}" class="w-12 h-12 rounded-full mr-4 object-cover"><p class="font-bold text-gray-800">${player.name}</p></li>`;
+                });
+                team1HTML += `</ul>`;
+                team1Container.innerHTML = team1HTML;
 
-        function openLightbox(index) {
-            currentImageIndex = index;
-            lightboxImg.src = `${IMG_BASE_URL}${galleryImages[currentImageIndex]}`;
-            lightbox.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-            setTimeout(() => lightbox.classList.remove('opacity-0'), 10);
-        }
+                // TEAM 2
+                const team2 = savedTeams['2'];
+                const team2Color = 'orange';
+                let team2HTML = `<h4 class="text-2xl font-bold text-${team2Color}-500 mb-6 text-center">Team ${team2.name}</h4><ul class="space-y-4">`;
+                team2HTML += `<li class="flex items-center bg-white p-3 rounded-lg shadow-sm"><img src="${team2.captain.image}" alt="${team2.captain.name}" class="w-12 h-12 rounded-full mr-4 object-cover"><div><p class="font-bold text-gray-800">${team2.captain.name}</p><p class="text-sm text-${team2Color}-500 font-semibold">(Captain)</p></div></li>`;
+                team2.players.forEach(player => {
+                    team2HTML += `<li class="flex items-center bg-white p-3 rounded-lg shadow-sm"><img src="${player.image}" alt="${player.name}" class="w-12 h-12 rounded-full mr-4 object-cover"><p class="font-bold text-gray-800">${player.name}</p></li>`;
+                });
+                team2HTML += `</ul>`;
+                team2Container.innerHTML = team2HTML;
 
-        function closeLightbox() {
-            lightbox.classList.add('opacity-0');
-            document.body.style.overflow = '';
-            setTimeout(() => lightbox.classList.add('hidden'), 300);
+            } else {
+                const placeholderHTML = `<h4 class="text-xl font-bold text-gray-400 mb-4 text-center">No Team Data</h4><p class="text-center text-gray-500">Please run the auction first to create the teams. The final lineups will be displayed here automatically.</p>`;
+                team1Container.innerHTML = placeholderHTML;
+                team2Container.innerHTML = placeholderHTML;
+            }
         }
+        displayTeams(); // Run the function on page load
 
-        function showNextImage() {
-            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
-            lightboxImg.src = `${IMG_BASE_URL}${galleryImages[currentImageIndex]}`;
-        }
-        
-        function showPrevImage() {
-            currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
-            lightboxImg.src = `${IMG_BASE_URL}${galleryImages[currentImageIndex]}`;
-        }
-
-        if (lightbox) {
-            lightboxClose.addEventListener('click', closeLightbox);
-            lightboxCloseBg.addEventListener('click', closeLightbox);
-            lightboxNext.addEventListener('click', showNextImage);
-            lightboxPrev.addEventListener('click', showPrevImage);
-            document.addEventListener('keydown', (e) => {
-                if (!lightbox.classList.contains('hidden')) {
-                    if (e.key === 'Escape') closeLightbox();
-                    if (e.key === 'ArrowRight') showNextImage();
-                    if (e.key === 'ArrowLeft') showPrevImage();
-                }
-            });
-        }
-        
         // --- GENERAL PAGE SCRIPTS ---
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         const toTopButton = document.getElementById('to-top-button');
-        const sections = document.querySelectorAll('.fade-in-section');
         const navLinks = document.querySelectorAll('.v-nav-link');
 
-        // Mobile menu toggle
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Current Year for Footer
+        mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
         document.getElementById('current-year').textContent = new Date().getFullYear();
+        window.addEventListener('scroll', () => toTopButton.classList.toggle('show', window.scrollY > 300));
         
-        // Scroll-to-top button visibility
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                toTopButton.classList.add('show');
-            } else {
-                toTopButton.classList.remove('show');
-            }
-        });
-
-        // Active nav link highlighting & scroll animations
-        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.3 };
-        const sectionObserver = new IntersectionObserver((entries, observer) => {
+        const sectionObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Animation
-                    entry.target.classList.add('is-visible');
-                    // Nav link highlighting
                     const id = entry.target.getAttribute('id');
-                    navLinks.forEach(link => {
-                        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
-                    });
+                    navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${id}`));
                 }
             });
-        }, observerOptions);
+        }, { rootMargin: '0px', threshold: 0.4 });
 
-        sections.forEach(section => {
-            sectionObserver.observe(section);
-        });
+        document.querySelectorAll('main section').forEach(section => sectionObserver.observe(section));
     });
     </script>
 </body>
