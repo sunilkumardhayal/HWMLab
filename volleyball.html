@@ -116,7 +116,12 @@
                 <div class="bg-white p-8 rounded-lg">
                     <h3 class="text-3xl font-bold text-center mb-8">Rules & Regulations</h3>
                     <div class="max-w-4xl mx-auto text-gray-700 space-y-6">
-                        </div>
+                        <div><h4 class="text-xl font-semibold mb-2">1. General Gameplay & Teams</h4><ul class="list-disc list-inside space-y-2 pl-4"><li><strong>Objective:</strong> The goal is to score points by sending the ball over the net so it lands within the opponent's court.</li><li><strong>Teams:</strong> Games are played between two teams. The number of players on the court will be decided per match.</li><li><strong>Scoring:</strong> We will use rally scoring. A point is awarded on every rally, regardless of which team served. Sets are typically played to 25 points, and a team must win by at least a two-point margin.</li></ul></div>
+                        <div><h4 class="text-xl font-semibold mb-2">2. Hitting & Attacks (Custom Rules)</h4><ul class="list-disc list-inside space-y-2 pl-4"><li><strong>Consecutive Hits:</strong> A single player is allowed to hit the ball twice in a row.</li><li><strong>Team Hits:</strong> There is no limit to the total number of hits a team can make before sending the ball over the net.</li><li><strong>Legal Contact:</strong> Contact with the ball must be a clean, brief hit. Holding, catching, lifting, or throwing the ball is not permitted and will result in a fault.</li></ul></div>
+                        <div><h4 class="text-xl font-semibold mb-2">3. Serving (Custom Rules)</h4><ul class="list-disc list-inside space-y-2 pl-4"><li><strong>Service Style:</strong> All serves must be performed underhand. Overhand or jump serves are not allowed.</li><li><strong>Service Location:</strong> The server is permitted to serve from inside the court. The serve must be executed from behind the 3-meter (10-foot) attack line.</li><li><strong>Valid Serve:</strong> The served ball must cross the net and travel over the opponent's 3-meter attack line to be considered a valid serve.</li><li><strong>Service Rotation:</strong> Service must be done by each player in the team in a rotational sequence.</li><li><strong>Continuous Serving:</strong> A player can continue to serve as long as their team keeps winning points. When the serving team loses a rally, the serve switches to the opposing team, and they must rotate to their next server.</li></ul></div>
+                        <div><h4 class="text-xl font-semibold mb-2">4. Fouls & Violations</h4><ul class="list-disc list-inside space-y-2 pl-4"><li><strong>Net Contact:</strong> Players are not allowed to touch the net during play. If a player touches the net, their team loses the point.</li><li><strong>Center Line:</strong> A player may step on the center line, but their entire foot cannot cross completely over the line into the opponent's court.</li><li><strong>Out of Bounds:</strong> A ball is considered 'out' if it lands completely outside the boundary lines, touches the ceiling, or hits the antennas on the net. A ball that lands on a boundary line is 'in'.</li></ul></div>
+                        <div><h4 class="text-xl font-semibold mb-2">5. Sportsmanship</h4><ul class="list-disc list-inside space-y-2 pl-4"><li>All players are expected to show good sportsmanship.</li><li>The referee's calls are final. Please respect their decisions.</li><li>Let's prioritize safety, fair play, and fun for everyone involved!</li></ul></div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -210,7 +215,7 @@
             } else {
                 const placeholderHTML = `<div class="text-center text-gray-500"><h4 class="text-xl font-bold text-gray-400 mb-4">No Auction Data Found</h4><p>Complete an auction using the 'Launch Auction Tool' to see the latest team rosters here.</p></div>`;
                 team1Container.innerHTML = placeholderHTML;
-                team2Container.innerHTML = ''; // Keep second container empty for better layout
+                team2Container.innerHTML = '';
             }
         }
         displayLatestAuctionTeams();
@@ -219,10 +224,6 @@
         const galleryGrid = document.getElementById('gallery-grid');
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
-        const lightboxClose = document.getElementById('lightbox-close');
-        const lightboxCloseBg = document.getElementById('lightbox-close-bg');
-        const lightboxPrev = document.getElementById('lightbox-prev');
-        const lightboxNext = document.getElementById('lightbox-next');
         const IMG_BASE_URL = "https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/main/Volleyball_Gallery/";
         const galleryImages = ['IMG_6119.JPG', 'IMG_6120.JPG', 'IMG_6121.JPG', 'IMG_6122.JPG', 'IMG_6123.JPG', 'IMG_6124.JPG', 'IMG_6125.JPG', 'IMG_6126.JPG', 'IMG_6127.JPG', 'IMG_6128.JPG', 'IMG_6130.JPG', 'IMG_6131.JPG', 'IMG_6133.JPG', 'IMG_6134.JPG', 'IMG_6161.JPG', 'IMG_6162.JPG', 'IMG_6163.JPG', 'IMG_6165.JPG'];
         let currentImageIndex = 0;
@@ -249,10 +250,10 @@
         }
         function showNextImage() { currentImageIndex = (currentImageIndex + 1) % galleryImages.length; lightboxImg.src = `${IMG_BASE_URL}${galleryImages[currentImageIndex]}`; }
         function showPrevImage() { currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length; lightboxImg.src = `${IMG_BASE_URL}${galleryImages[currentImageIndex]}`; }
-        lightboxClose.addEventListener('click', closeLightbox);
-        lightboxCloseBg.addEventListener('click', closeLightbox);
-        lightboxNext.addEventListener('click', showNextImage);
-        lightboxPrev.addEventListener('click', showPrevImage);
+        document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+        document.getElementById('lightbox-close-bg').addEventListener('click', closeLightbox);
+        document.getElementById('lightbox-next').addEventListener('click', showNextImage);
+        document.getElementById('lightbox-prev').addEventListener('click', showPrevImage);
         document.addEventListener('keydown', (e) => { if (!lightbox.classList.contains('hidden')) { if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowRight') showNextImage(); if (e.key === 'ArrowLeft') showPrevImage(); } });
 
         // --- 3. GENERAL PAGE SCRIPTS ---
@@ -264,7 +265,6 @@
         mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
         document.getElementById('current-year').textContent = new Date().getFullYear();
         window.addEventListener('scroll', () => toTopButton.classList.toggle('show', window.scrollY > 300));
-
         const observerOptions = { root: null, rootMargin: '0px', threshold: 0.3 };
         const sectionObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -280,4 +280,3 @@
     </script>
 </body>
 </html>
-
