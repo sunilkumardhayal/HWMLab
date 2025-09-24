@@ -26,22 +26,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- MASTER DATA ---
     // CORRECTED URL PATH ON THIS LINE
-    const IMG_BASE_URL = "https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/main/Profile_Pics/";
+    const IMG_BASE_URL = "https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/Profile_Pics/";
     
     const allMembers = [
         { name: "Indra Mani Tripathi", image: IMG_BASE_URL + "imt2.jpg", status: "PhD Scholar", email: "indra.tripathi@iitgn.ac.in", phone: "+91 96542 65217", category: "PhD Students" },
         { name: "Sunil Kumar", image: IMG_BASE_URL + "sunil.jpg", status: "PhD Scholar", email: "sunil.k@iitgn.ac.in", phone: "+91 90016 46544", category: "PhD Students" },
         { name: "Kapil", image: IMG_BASE_URL + "kapil.jpg", status: "PhD Scholar", email: "kapil.rathod@iitgn.ac.in", phone: "+91 72858 70459", category: "PhD Students" },
         { name: "Sushil", image: IMG_BASE_URL + "sushil.jpg", status: "PhD Scholar", email: "sushil.jaiswal@iitgn.ac.in", phone: "+91 81125 75098", category: "PhD Students" },
-        { name: "Sumit", image: IMG_BASE_URL + "sum.jpg", status: "Project Assistant-1", email: "sumit@iitgn.ac.in", phone: "+91 81720 01881", category: "Project Staff", project: { name: "cNarmada", link: "https://sites.iitgn.ac.in/cnarmada/" } },
-        { name: "Wajahat Annayat", image: IMG_BASE_URL + "wajahat.jpg", status: "Project Engineer-1", email: "wajahat.annayat@iitgn.ac.in", phone: "+91 96825 34233", category: "Project Staff", project: { name: "cNarmada", link: "https://sites.iitgn.ac.in/cnarmada/" } },
         { name: "Snehal B. Rathod", image: IMG_BASE_URL + "snehal.jpg", status: "JRF", email: "rathodsnehal.b@iitgn.ac.in", phone: "+91 81605 49901", category: "Project Staff", project: { name: "cNarmada", link: "https://sites.iitgn.ac.in/cnarmada/" } },
         { name: "Akash", image: IMG_BASE_URL + "akash.jpg", status: "JRF", email: "akash.yadav@iitgn.ac.in", phone: "+91 96850 75978", category: "Project Staff", project: { name: "cNarmada", link: "https://sites.iitgn.ac.in/cnarmada/" } },
         { name: "Bhanu", image: IMG_BASE_URL + "bhanu.jpg", status: "JRF", email: "bhanu.parmar@iitgn.ac.in", phone: "+91 97257 29534", category: "Project Staff", project: { name: "cNarmada", link: "https://sites.iitgn.ac.in/cnarmada/" } },
+        { name: "Rajesh", image: IMG_BASE_URL + "rj.jpg", status: "Project Associate", email: "rajesh.k@iitgn.ac.in", phone: "+91 87418 84275", category: "Project Staff", project: { name: "cNarmada", link: "https://sites.iitgn.ac.in/cnarmada/" } },
+        { name: "Sumit", image: IMG_BASE_URL + "sum.jpg", status: "Project Assistant-1", email: "sumit@iitgn.ac.in", phone: "+91 81720 01881", category: "Project Staff", project: { name: "cNarmada", link: "https://sites.iitgn.ac.in/cnarmada/" } },
+        { name: "Wajahat Annayat", image: IMG_BASE_URL + "wajahat.jpg", status: "Project Engineer-1", email: "wajahat.annayat@iitgn.ac.in", phone: "+91 96825 34233", category: "Project Staff", project: { name: "cNarmada", link: "https://sites.iitgn.ac.in/cnarmada/" } },
+        { name: "Pradeep", image: IMG_BASE_URL + "pradeep.jpg", status: "Project Employee", phone: "+91 80534 02248", category: "Project Staff", project: { name: "cNarmada", link: "https://sites.iitgn.ac.in/cnarmada/" } },
         // NOTE: 'indra.jpg' for Indrajitsinh Bihola not found in repository. Using a placeholder.
         { name: "Indrajitsinh Bihola", image: IMG_BASE_URL + "sunil.jpg", status: "Trainee", email: "indrajitsinh.bihola@iitgn.ac.in", phone: "+91 91048 14088", category: "Project Staff", project: { name: "UBA", link: "https://initiatives.iitgn.ac.in/uba/" } },
-        { name: "Rajesh", image: IMG_BASE_URL + "rj.jpg", status: "Project Associate", email: "rajesh.k@iitgn.ac.in", phone: "+91 87418 84275", category: "Project Staff", project: { name: "cNarmada", link: "https://sites.iitgn.ac.in/cnarmada/" } },
-        { name: "Pradeep", image: IMG_BASE_URL + "pradeep.jpg", status: "Project Employee", phone: "+91 80534 02248", category: "Project Staff", project: { name: "cNarmada", link: "https://sites.iitgn.ac.in/cnarmada/" } },
         { name: "Jitendra", image: IMG_BASE_URL + "jitu.jpg", status: "M.Tech Alumni", email: "jitendra.poddar@iitgn.ac.in", phone: "+91 79800 11828", category: "Alumni" }
     ];
     
