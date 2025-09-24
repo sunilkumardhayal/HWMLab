@@ -107,15 +107,12 @@
 <body class="p-4 sm:p-6 md:p-8">
     <div class="container mx-auto max-w-7xl">
         <a href="games.html" class="mb-8 inline-block bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-600">&larr; Back to Games Hub</a>
-        <!-- Header Section -->
         <header class="text-center mb-8">
             <h1 class="text-4xl md:text-5xl font-bold text-white tracking-tight">🏐 HWM Lab Live Auction 🏐</h1>
             <p class="text-lg text-gray-400 mt-2">Live from AB6/329, HWM Lab</p>
         </header>
 
-        <!-- Main Auction Interface -->
         <main id="app">
-            <!-- Top Row: Auctioneer and Controls -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                 <div class="md:col-span-1 p-4 rounded-lg team-card flex flex-col items-center justify-center">
                     <img id="refereeImage" src="https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/snehal.jpg" alt="Referee" class="w-20 h-20 rounded-full mb-2 object-cover border-2 border-pink-400">
@@ -132,15 +129,13 @@
                 </div>
             </div>
 
-            <!-- Auction Arena -->
             <div id="auction-arena" class="auction-card rounded-lg p-6 mb-8 text-center hidden">
                 <div class="flex justify-between items-center mb-4">
                     <h2 class="text-2xl font-bold text-yellow-300">🔥 ON THE BLOCK 🔥</h2>
                     <h3 class="text-xl font-semibold">Round: <span id="currentRoundDisplay">1</span></h3>
                 </div>
                 <div id="currentPlayer" class="mb-4">
-                    <!-- Current player details will be injected here -->
-                </div>
+                    </div>
                 <div class="timer-container" id="timer-container">
                     <svg class="timer-svg" viewBox="0 0 36 36">
                         <path class="timer-circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"></path>
@@ -167,12 +162,9 @@
                 </div>
             </div>
             
-            <!-- Status Message -->
             <div id="statusMessage" class="text-center text-lg font-medium text-green-400 mb-8 h-8"></div>
 
-            <!-- Teams Section -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-                <!-- Team 1 -->
                 <div id="team1" class="team-card p-6 rounded-lg">
                     <div class="flex items-center gap-4 mb-4">
                         <img id="captain1Image" src="https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/akash.jpg" alt="Captain 1" class="w-16 h-16 rounded-full object-cover border-2 border-cyan-400">
@@ -189,11 +181,9 @@
                     </div>
                     <h3 class="font-semibold mb-2">Players:</h3>
                     <ul id="team1Players" class="space-y-2">
-                        <!-- Players will be added here -->
-                    </ul>
+                        </ul>
                 </div>
 
-                <!-- Team 2 -->
                 <div id="team2" class="team-card p-6 rounded-lg">
                     <div class="flex items-center gap-4 mb-4">
                         <img id="captain2Image" src="https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sus.jpg" alt="Captain 2" class="w-16 h-16 rounded-full object-cover border-2 border-orange-400">
@@ -210,12 +200,10 @@
                     </div>
                     <h3 class="font-semibold mb-2">Players:</h3>
                     <ul id="team2Players" class="space-y-2">
-                        <!-- Players will be added here -->
-                    </ul>
+                        </ul>
                 </div>
             </div>
 
-            <!-- Available Players Section -->
             <div>
                 <h2 class="text-2xl font-bold text-center mb-4">Player Pools</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -251,7 +239,8 @@
                 { name: "Rajesh", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/rj.jpg" },
                 { name: "Pradeep", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/pradeep.jpg" },
                 { name: "Jitendra", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/jitu.jpg" },
-                { name: "Indrajeet", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/indra.jpg" }
+                { name: "Indrajeet", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/indra.jpg" },
+                { name: "Dr. Wajahat Annayat", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/wajahat.jpg", description: "Key Player (Centre)" }
             ];
             const initialBudget = 5000;
             const basePrice = 100;
@@ -409,7 +398,9 @@
                     currentRoundDisplay.textContent = state.currentRound;
                     currentPlayerContainer.innerHTML = `
                         <img src="${state.currentPlayer.image}" alt="${state.currentPlayer.name}" class="w-24 h-24 rounded-full mx-auto mb-2 object-cover border-4 border-indigo-500">
-                        <p class="text-4xl font-extrabold text-white">${state.currentPlayer.name}</p>`;
+                        <p class="text-4xl font-extrabold text-white">${state.currentPlayer.name}</p>
+                        ${state.currentPlayer.description ? `<p class="text-lg text-yellow-400 font-semibold mt-1">${state.currentPlayer.description}</p>` : ''}
+                    `;
                     currentBidEl.textContent = state.currentBid === 0 ? `Base Price: ${basePrice}` : `Current Bid: ${state.currentBid}`;
                     updateTimerDisplay(auctionTime);
                 } else {
@@ -662,66 +653,3 @@
                     case 'error': statusMessageEl.classList.add('text-red-400'); break;
                     case 'info': statusMessageEl.classList.add('text-blue-400'); break;
                     default: statusMessageEl.classList.add('text-gray-300');
-                }
-                setTimeout(() => {
-                    if (statusMessageEl.textContent === message) {
-                       statusMessageEl.textContent = '';
-                    }
-                }, duration);
-            }
-            
-            function launchConfetti() {
-                const colors = ['#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5', '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4caf50', '#8bc34a', '#cddc39', '#ffeb3b', '#ffc107', '#ff9800', '#ff5722'];
-                for (let i = 0; i < 100; i++) {
-                    const confetti = document.createElement('div');
-                    confetti.className = 'confetti';
-                    confetti.style.left = `${Math.random() * 100}vw`;
-                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                    confetti.style.animationDelay = `${Math.random() * 2}s`;
-                    document.body.appendChild(confetti);
-                    setTimeout(() => confetti.remove(), 3000);
-                }
-            }
-
-            // --- EVENT LISTENERS ---
-            nextPlayerBtn.addEventListener('click', selectNextPlayer);
-            sellPlayerBtn.addEventListener('click', sellPlayer);
-            skipPlayerBtn.addEventListener('click', () => skipPlayer(false));
-            resetBtn.addEventListener('click', () => {
-                if (confirm("Are you sure you want to reset the entire auction?")) {
-                    initializeState();
-                    nextPlayerBtn.disabled = false;
-                    showStatus("Auction has been reset.", "info");
-                }
-            });
-
-            bidBtns.forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const teamId = e.target.dataset.team;
-                    const amount = parseInt(e.target.dataset.amount, 10);
-                    placeBid(teamId, amount);
-                });
-            });
-
-            confirmSaleBtn.addEventListener('click', () => {
-                if (state.highestBidder) {
-                    sellPlayer();
-                } else {
-                    skipPlayer(true);
-                }
-            });
-
-            restartTimerBtn.addEventListener('click', () => {
-                auctionControls.classList.remove('hidden');
-                auctionControls.classList.add('flex');
-                refereeControls.classList.add('hidden');
-                updateBidButtons();
-                startTimer();
-            });
-
-            // --- INITIALIZE THE APP ---
-            initializeState();
-        });
-    </script>
-</body>
-</html>
