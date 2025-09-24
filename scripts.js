@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // --- MOBILE MENU ---
+    // --- GENERAL UI ---
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
     if (mobileMenuButton) {
@@ -13,8 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
         currentYearEl.textContent = new Date().getFullYear();
     }
 
-
-    // --- BACK TO TOP BUTTON ---
     const toTopButton = document.getElementById('to-top-button');
     if(toTopButton) {
         window.onscroll = function() {
@@ -26,46 +24,25 @@ document.addEventListener('DOMContentLoaded', () => {
         };
     }
 
-    // --- DATA ---
+    // --- MASTER DATA ---
+    const IMG_BASE_URL = "https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/main/Profile_Pics/";
+    
     const allMembers = [
-        { name: "Indra Mani Tripathi", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/imt2.jpg", status: "PhD Student", email: "indra.tripathi@iitgn.ac.in", phone: "+91 96542 65217", category: "PhD Students" },
-        { name: "Sunil Kumar", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sunil.jpg", status: "PhD Student", email: "sunil.k@iitgn.ac.in", phone: "+91 90016 46544", category: "PhD Students" },
-        { name: "Kapil Rathod", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/kapil.jpg", status: "PhD Student", email: "kapil.rathod@iitgn.ac.in", phone: "+91 72858 70459", category: "PhD Students" },
-        { name: "Sushil Kumar Jaiswal", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sus.jpg", status: "PhD Student", email: "sushil.jaiswal@iitgn.ac.in", phone: "+91 81125 75098", category: "PhD Students" },
-        { name: "Snehal B. Rathod", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/snehal.jpg", status: "JRF", email: "rathodsnehal.b@iitgn.ac.in", phone: "+91 81605 49901", category: "Project Staff", project: { name: "cNarmada", link: "https://sites.iitgn.ac.in/cnarmada/" } },
-        { name: "Akash Yadav", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/akash.jpg", status: "JRF", email: "akash.yadav@iitgn.ac.in", phone: "+91 96850 75978", category: "Project Staff", project: { name: "cNarmada", link: "https://sites.iitgn.ac.in/cnarmada/" } },
-        { name: "Bhanu Parmar", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/bhanu.jpg", status: "JRF", email: "bhanu.parmar@iitgn.ac.in", phone: "+91 97257 29534", category: "Project Staff", project: { name: "cNarmada", link: "https://sites.iitgn.ac.in/cnarmada/" } },
-        { name: "Indrajitsinh Bihola", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/indra.jpg", status: "Trainee", email: "indrajitsinh.bihola@iitgn.ac.in", phone: "+91 91048 14088", category: "Project Staff", project: { name: "UBA", link: "https://initiatives.iitgn.ac.in/uba/" } },
-        { name: "Rajesh", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/rj.jpg", status: "Project Associate", email: "rajesh.k@iitgn.ac.in", phone: "+91 87418 84275", category: "Project Staff", project: { name: "cNarmada", link: "https://sites.iitgn.ac.in/cnarmada/" } },
-        { name: "Sumit", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sum.jpg", status: "Project Employee", phone: "+91 81720 01881", category: "Project Staff", project: { name: "cNarmada", link: "https://sites.iitgn.ac.in/cnarmada/" } },
-        { name: "Pardeep Sangwan", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/pradeep.jpg", status: "Project Employee", phone: "+91 80534 02248", category: "Project Staff", project: { name: "cNarmada", link: "https://sites.iitgn.ac.in/cnarmada/" } },
-        { name: "Jitendra Poddar", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/jitu.jpg", status: "M.Tech Alumni", email: "jitendra.poddar@iitgn.ac.in", phone: "+91 79800 11828", category: "Alumni" }
+        { name: "Indra Mani Tripathi", image: IMG_BASE_URL + "imt2.jpg", status: "PhD Scholar", email: "indra.tripathi@iitgn.ac.in", phone: "+91 96542 65217", category: "PhD Students" },
+        { name: "Sunil Kumar", image: IMG_BASE_URL + "sunil.jpg", status: "PhD Scholar", email: "sunil.k@iitgn.ac.in", phone: "+91 90016 46544", category: "PhD Students" },
+        { name: "Kapil", image: IMG_BASE_URL + "kapil.jpg", status: "PhD Scholar", email: "kapil.rathod@iitgn.ac.in", phone: "+91 72858 70459", category: "PhD Students" },
+        { name: "Sushil", image: IMG_BASE_URL + "sushil.jpg", status: "PhD Scholar", email: "sushil.jaiswal@iitgn.ac.in", phone: "+91 81125 75098", category: "PhD Students" },
+        { name: "Sumit", image: IMG_BASE_URL + "sum.jpg", status: "PhD Scholar", email: "sumit@iitgn.ac.in", phone: "+91 81720 01881", category: "PhD Students" },
+        { name: "Dr. Wajahat Annayat", image: IMG_BASE_URL + "wajahat.jpg", status: "Postdoctoral Fellow", email: "wajahat.annayat@iitgn.ac.in", phone: "+91 12345 67890", category: "Postdoc" },
+        { name: "Snehal B. Rathod", image: IMG_BASE_URL + "snehal.jpg", status: "JRF", email: "rathodsnehal.b@iitgn.ac.in", phone: "+91 81605 49901", category: "Project Staff", project: { name: "cNarmada", link: "https://sites.iitgn.ac.in/cnarmada/" } },
+        { name: "Akash", image: IMG_BASE_URL + "akash.jpg", status: "JRF", email: "akash.yadav@iitgn.ac.in", phone: "+91 96850 75978", category: "Project Staff", project: { name: "cNarmada", link: "https://sites.iitgn.ac.in/cnarmada/" } },
+        { name: "Bhanu", image: IMG_BASE_URL + "bhanu.jpg", status: "JRF", email: "bhanu.parmar@iitgn.ac.in", phone: "+91 97257 29534", category: "Project Staff", project: { name: "cNarmada", link: "https://sites.iitgn.ac.in/cnarmada/" } },
+        // NOTE: 'indra.jpg' for Indrajitsinh Bihola not found in repository. Using a placeholder.
+        { name: "Indrajitsinh Bihola", image: IMG_BASE_URL + "sunil.jpg", status: "Trainee", email: "indrajitsinh.bihola@iitgn.ac.in", phone: "+91 91048 14088", category: "Project Staff", project: { name: "UBA", link: "https://initiatives.iitgn.ac.in/uba/" } },
+        { name: "Rajesh", image: IMG_BASE_URL + "rj.jpg", status: "Project Associate", email: "rajesh.k@iitgn.ac.in", phone: "+91 87418 84275", category: "Project Staff", project: { name: "cNarmada", link: "https://sites.iitgn.ac.in/cnarmada/" } },
+        { name: "Pradeep", image: IMG_BASE_URL + "pradeep.jpg", status: "Project Employee", phone: "+91 80534 02248", category: "Project Staff", project: { name: "cNarmada", link: "https://sites.iitgn.ac.in/cnarmada/" } },
+        { name: "Jitendra", image: IMG_BASE_URL + "jitu.jpg", status: "M.Tech Alumni", email: "jitendra.poddar@iitgn.ac.in", phone: "+91 79800 11828", category: "Alumni" }
     ];
-
-    const teamMagnetLineup = {
-        name: "Magnet",
-        captain: { name: "Sushil Kumar Jaiswal", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sus.jpg", position: "Right-Side Hitter" },
-        starters: [
-            { name: "Sunil Kumar", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sunil.jpg", position: "Left-Side Hitter" },
-            { name: "Indra M. Tripathi", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/imt2.jpg", position: "Center" },
-            { name: "Rajesh", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/rj.jpg", position: "Middle Blocker" }
-        ],
-        reserves: [ { name: "Jitendra Poddar", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/jitu.jpg", position: "Reserve" } ]
-    };
-
-    const teamSkyLineup = {
-        name: "SKY",
-        captain: { name: "Akash Yadav", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/akash.jpg", position: "Side Hitter (Attacker)" },
-        starters: [
-            { name: "Pardeep Sangwan", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/pradeep.jpg", position: "Side Hitter (Attacker)" },
-            { name: "Sumit", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sum.jpg", position: "Middle Blocker (Net)" },
-            { name: "Kapil Rathod", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/kapil.jpg", position: "Center" }
-        ],
-        reserves: [
-            { name: "Bhanu Parmar", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/bhanu.jpg", position: "Reserve" },
-            { name: "Indrajitsinh Bihola", image: "https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/indra.jpg", position: "Reserve" }
-        ]
-    };
     
     // --- PEOPLE PAGE LOGIC ---
     const peopleGrid = document.getElementById('people-grid');
@@ -74,52 +51,79 @@ document.addEventListener('DOMContentLoaded', () => {
             (acc[member.category] = acc[member.category] || []).push(member);
             return acc;
         }, {});
-        const categoryOrder = ["PhD Students", "Project Staff", "Alumni"];
-        peopleGrid.innerHTML = categoryOrder.map(category => `
-            <div class="col-span-full"><h3 class="text-2xl font-bold mb-6 border-b pb-2 border-gray-300">${category}</h3></div>
-            ${groupedMembers[category] ? groupedMembers[category].map(person => `
-                <div class="bg-white p-4 rounded-lg shadow-md text-center flex flex-col items-center">
-                    <img src="${person.image}" alt="${person.name}" class="w-24 h-24 rounded-full mb-4 object-cover border-2 border-gray-200">
-                    <span class="font-semibold">${person.name}</span>
-                    <span class="block text-sm text-gray-500 mb-2">
-                        ${person.status}
-                        ${person.project ? `, <a href="${person.project.link}" target="_blank" rel="noopener noreferrer" class="font-semibold text-indigo-600 hover:underline">${person.project.name}</a>` : ''}
-                    </span>
-                    ${person.email ? `<a href="mailto:${person.email}" class="text-xs text-indigo-500 hover:underline">${person.email}</a>` : ''}
-                    ${person.phone ? `<a href="tel:${person.phone}" class="text-xs text-indigo-500 hover:underline mt-1">${person.phone}</a>` : ''}
-                </div>`).join('') : ''}
-        `).join('');
+        const categoryOrder = ["Postdoc", "PhD Students", "Project Staff", "Alumni"];
+        peopleGrid.innerHTML = categoryOrder.map(category => {
+            if (!groupedMembers[category]) return '';
+            return `
+                <div class="col-span-full"><h3 class="text-2xl font-bold mb-6 border-b pb-2 border-gray-300">${category}</h3></div>
+                ${groupedMembers[category].map(person => `
+                    <div class="bg-white p-4 rounded-lg shadow-md text-center flex flex-col items-center transition-transform transform hover:-translate-y-2">
+                        <img src="${person.image}" alt="${person.name}" class="w-24 h-24 rounded-full mb-4 object-cover border-2 border-gray-200">
+                        <span class="font-semibold">${person.name}</span>
+                        <span class="block text-sm text-gray-500 mb-2">
+                            ${person.status}
+                            ${person.project ? `, <a href="${person.project.link}" target="_blank" rel="noopener noreferrer" class="font-semibold text-indigo-600 hover:underline">${person.project.name}</a>` : ''}
+                        </span>
+                        ${person.email ? `<a href="mailto:${person.email}" class="text-xs text-indigo-500 hover:underline">${person.email}</a>` : ''}
+                        ${person.phone ? `<a href="tel:${person.phone}" class="text-xs text-indigo-500 hover:underline mt-1">${person.phone}</a>` : ''}
+                    </div>`).join('')}
+            `;
+        }).join('');
     }
 
     // --- VOLLEYBALL PAGE LOGIC ---
     const v_team1ResultEl = document.getElementById('v-team1Result');
     const v_team2ResultEl = document.getElementById('v-team2Result');
     if (v_team1ResultEl && v_team2ResultEl) {
-        v_team1ResultEl.innerHTML = `<h3 class="text-xl font-bold text-cyan-500 mb-4">Team: ${teamSkyLineup.name}</h3><h4 class="font-semibold mb-2">Starting Lineup</h4><ul class="space-y-2 text-sm mb-4"><li class="flex items-center gap-2 py-1"><img src="${teamSkyLineup.captain.image}" alt="${teamSkyLineup.captain.name}" class="w-8 h-8 rounded-full object-cover"><span>${teamSkyLineup.captain.name} <span class="text-cyan-500 font-semibold">(Captain)</span><br><span class="text-xs text-gray-500">${teamSkyLineup.captain.position}</span></span></li>${teamSkyLineup.starters.map(p => `<li class="flex items-center gap-2 py-1"><img src="${p.image}" alt="${p.name}" class="w-8 h-8 rounded-full object-cover"><span>${p.name}<br><span class="text-xs text-gray-500">${p.position}</span></span></li>`).join('')}</ul><h4 class="font-semibold mb-2">Reserves</h4><ul class="space-y-2 text-sm">${teamSkyLineup.reserves.map(p => `<li class="flex items-center gap-2 py-1"><img src="${p.image}" alt="${p.name}" class="w-8 h-8 rounded-full object-cover"><span>${p.name}<br><span class="text-xs text-gray-500">${p.position}</span></span></li>`).join('')}</ul>`;
-        v_team2ResultEl.innerHTML = `<h3 class="text-xl font-bold text-orange-500 mb-4">Team: ${teamMagnetLineup.name}</h3><h4 class="font-semibold mb-2">Starting Lineup</h4><ul class="space-y-2 text-sm mb-4"><li class="flex items-center gap-2 py-1"><img src="${teamMagnetLineup.captain.image}" alt="${teamMagnetLineup.captain.name}" class="w-8 h-8 rounded-full object-cover"><span>${teamMagnetLineup.captain.name} <span class="text-orange-500 font-semibold">(Captain)</span><br><span class="text-xs text-gray-500">${teamMagnetLineup.captain.position}</span></span></li>${teamMagnetLineup.starters.map(p => `<li class="flex items-center gap-2 py-1"><img src="${p.image}" alt="${p.name}" class="w-8 h-8 rounded-full object-cover"><span>${p.name}<br><span class="text-xs text-gray-500">${p.position}</span></span></li>`).join('')}</ul><h4 class="font-semibold mb-2">Reserves</h4><ul class="space-y-2 text-sm">${teamMagnetLineup.reserves.map(p => `<li class="flex items-center gap-2 py-1"><img src="${p.image}" alt="${p.name}" class="w-8 h-8 rounded-full object-cover"><span>${p.name}<br><span class="text-xs text-gray-500">${p.position}</span></span></li>`).join('')}</ul>`;
+        const savedTeams = JSON.parse(localStorage.getItem('volleyballTeams'));
+        if (savedTeams) {
+            // If teams are saved from auction, display them
+            displayAuctionTeams(savedTeams);
+        } else {
+            // Otherwise, display default teams
+            displayDefaultTeams();
+        }
     }
 
-    // --- CRICKET PAGE LOGIC ---
-    const cricketPlayerList = document.getElementById('cricket-player-list');
-    if (cricketPlayerList) {
-        const players = allMembers.filter(m => m.role !== 'Referee');
-        cricketPlayerList.innerHTML = players.map(person => `
-            <div class="text-center">
-                <img src="${person.image}" alt="${person.name}" class="w-24 h-24 rounded-full mb-2 object-cover border-2 border-gray-200 mx-auto">
-                <span class="font-semibold">${person.name}</span>
-            </div>
-        `).join('');
+    function displayAuctionTeams(teams) {
+        const team1 = teams['1'];
+        const team2 = teams['2'];
+        
+        const createTeamHTML = (team, color) => {
+            let html = `<h4 class="text-2xl font-bold text-${color}-500 mb-6 text-center">Team ${team.name}</h4><ul class="space-y-4">`;
+            html += `<li class="flex items-center bg-white p-3 rounded-lg shadow-sm"><img src="${team.captain.image}" alt="${team.captain.name}" class="w-12 h-12 rounded-full mr-4 object-cover"><div><p class="font-bold text-gray-800">${team.captain.name}</p><p class="text-sm text-${color}-500 font-semibold">(Captain)</p></div></li>`;
+            team.players.forEach(p => {
+                html += `<li class="flex items-center bg-white p-3 rounded-lg shadow-sm"><img src="${p.image}" alt="${p.name}" class="w-12 h-12 rounded-full mr-4 object-cover"><p class="font-bold text-gray-800">${p.name}</p></li>`;
+            });
+            html += `</ul>`;
+            return html;
+        };
+
+        v_team1ResultEl.innerHTML = createTeamHTML(team1, 'cyan');
+        v_team2ResultEl.innerHTML = createTeamHTML(team2, 'orange');
     }
 
-    // --- BADMINTON PAGE LOGIC ---
-    const badmintonPlayerList = document.getElementById('badminton-player-list');
-    if (badmintonPlayerList) {
-        const players = allMembers.filter(m => m.role !== 'Referee');
-        badmintonPlayerList.innerHTML = players.map(person => `
-            <div class="text-center">
-                <img src="${person.image}" alt="${person.name}" class="w-24 h-24 rounded-full mb-2 object-cover border-2 border-gray-200 mx-auto">
-                <span class="font-semibold">${person.name}</span>
-            </div>
-        `).join('');
+    function displayDefaultTeams() {
+        // These are the example teams if no auction has been run
+        const defaultTeam1 = { name: "SKY", captain: { name: "Akash", image: IMG_BASE_URL + "akash.jpg" }, players: [{ name: "Pradeep", image: IMG_BASE_URL + "pradeep.jpg" }, { name: "Sumit", image: IMG_BASE_URL + "sum.jpg" }] };
+        const defaultTeam2 = { name: "Magnet", captain: { name: "Sushil", image: IMG_BASE_URL + "sushil.jpg" }, players: [{ name: "Sunil Kumar", image: IMG_BASE_URL + "sunil.jpg" }, { name: "Indra M. Tripathi", image: IMG_BASE_URL + "imt2.jpg" }] };
+        displayAuctionTeams({ '1': defaultTeam1, '2': defaultTeam2 });
     }
+
+    // --- OTHER SPORTS PAGES LOGIC (Cricket, Badminton, etc.) ---
+    function populateSportsPage(elementId) {
+        const playerListEl = document.getElementById(elementId);
+        if (playerListEl) {
+            // Filter out the referee, Snehal
+            const players = allMembers.filter(m => m.name !== 'Snehal B. Rathod');
+            playerListEl.innerHTML = players.map(person => `
+                <div class="text-center">
+                    <img src="${person.image}" alt="${person.name}" class="w-24 h-24 rounded-full mb-2 object-cover border-2 border-gray-200 mx-auto">
+                    <span class="font-semibold">${person.name}</span>
+                </div>
+            `).join('');
+        }
+    }
+    populateSportsPage('cricket-player-list');
+    populateSportsPage('badminton-player-list');
 });
