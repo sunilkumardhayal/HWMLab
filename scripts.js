@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- MASTER DATA ---
-    const IMG_BASE_URL = "https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/main/Profile_Pics/";
+    const IMG_BASE_URL = "https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/Profile_Pics/";
     
     const allMembers = [
         { name: "Indra Mani Tripathi", image: IMG_BASE_URL + "imt2.jpg", status: "PhD Scholar", email: "indra.tripathi@iitgn.ac.in", phone: "+91 96542 65217", category: "PhD Students" },
