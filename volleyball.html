@@ -11,6 +11,9 @@
         .v-nav-link.active { color: #4f46e5; border-color: #4f46e5; }
         #to-top-button { position: fixed; bottom: 2rem; right: 2rem; opacity: 0; transform: translateY(100px); transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out; z-index: 100; }
         #to-top-button.show { opacity: 1; transform: translateY(0); }
+        .fade-in-section { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .fade-in-section.is-visible { opacity: 1; transform: translateY(0); }
+        #lightbox { background-color: rgba(0, 0, 0, 0.9); transition: opacity 0.3s ease-in-out; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 antialiased">
@@ -23,6 +26,7 @@
                     <nav id="volleyball-nav" class="hidden md:flex flex-wrap justify-end gap-x-6 gap-y-2 items-center">
                         <a href="#results" class="v-nav-link text-gray-600 hover:text-indigo-600 border-b-2 border-transparent pb-1">Results</a>
                         <a href="#teams" class="v-nav-link text-gray-600 hover:text-indigo-600 border-b-2 border-transparent pb-1">Teams</a>
+                        <a href="#auction-results" class="v-nav-link text-gray-600 hover:text-indigo-600 border-b-2 border-transparent pb-1">Auction Rosters</a>
                         <a href="#rules" class="v-nav-link text-gray-600 hover:text-indigo-600 border-b-2 border-transparent pb-1">Rules</a>
                         <a href="#auction" class="v-nav-link text-gray-600 hover:text-indigo-600 border-b-2 border-transparent pb-1">Auction</a>
                         <a href="#schedule" class="v-nav-link text-gray-600 hover:text-indigo-600 border-b-2 border-transparent pb-1">Schedule</a>
@@ -38,43 +42,88 @@
             <h1 class="text-2xl font-bold text-gray-900 text-center mt-4 md:hidden">🏐 Volleyball Hub</h1>
         </div>
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
-            <a href="#results" class="v-nav-link block py-2 text-gray-600 hover:text-indigo-600">Results</a><a href="#teams" class="v-nav-link block py-2 text-gray-600 hover:text-indigo-600">Teams</a><a href="#rules" class="v-nav-link block py-2 text-gray-600 hover:text-indigo-600">Rules</a><a href="#auction" class="v-nav-link block py-2 text-gray-600 hover:text-indigo-600">Auction</a><a href="#schedule" class="v-nav-link block py-2 text-gray-600 hover:text-indigo-600">Schedule</a><a href="#gallery" class="v-nav-link block py-2 text-gray-600 hover:text-indigo-600">Gallery</a>
+            <a href="#results" class="v-nav-link block py-2 text-gray-600 hover:text-indigo-600">Results</a><a href="#teams" class="v-nav-link block py-2 text-gray-600 hover:text-indigo-600">Teams</a><a href="#auction-results" class="v-nav-link block py-2 text-gray-600 hover:text-indigo-600">Auction Rosters</a><a href="#rules" class="v-nav-link block py-2 text-gray-600 hover:text-indigo-600">Rules</a><a href="#auction" class="v-nav-link block py-2 text-gray-600 hover:text-indigo-600">Auction</a><a href="#schedule" class="v-nav-link block py-2 text-gray-600 hover:text-indigo-600">Schedule</a><a href="#gallery" class="v-nav-link block py-2 text-gray-600 hover:text-indigo-600">Gallery</a>
             <div class="border-t mt-2 pt-2"><a href="index.html" class="block py-2 text-gray-600 hover:text-indigo-600">HWM Lab Home</a><a href="games.html" class="block py-2 text-gray-600 hover:text-indigo-600">All Games</a></div>
         </div>
     </header>
 
     <main>
-        <section id="results" class="py-20 bg-white">
-            </section>
+        <section id="results" class="py-20 bg-white fade-in-section">
+            <div class="container mx-auto px-6">
+                <div class="bg-white p-8 rounded-lg">
+                    <h3 class="text-3xl font-bold text-center mb-8">Match Results: Team Magnet vs Team SKY</h3>
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-md text-center max-w-2xl mx-auto mb-10">
+                        <div class="flex justify-around items-center"><div class="text-2xl font-bold text-orange-500">Team Magnet</div><div class="text-5xl font-bold">4 - 1</div><div class="text-2xl font-bold text-cyan-500">Team SKY</div></div>
+                        <p class="mt-2 font-semibold text-green-600">🏆 Winner: <span class="text-orange-500">Team Magnet</span></p><p class="text-sm text-gray-500 mt-2">📅 August 23rd, 2025</p>
+                    </div>
+                    <div class="max-w-md mx-auto mb-12">
+                        <h4 class="text-xl font-semibold text-center mb-4">Game-by-Game Score</h4>
+                        <ul class="space-y-2 text-center"><li class="bg-gray-50 p-3 rounded-md">Game 1: <span class="font-bold text-orange-500">Team Magnet</span> won 25-13</li><li class="bg-gray-50 p-3 rounded-md">Game 2: <span class="font-bold text-cyan-500">Team SKY</span> won 25-23</li><li class="bg-gray-50 p-3 rounded-md">Game 3: <span class="font-bold text-orange-500">Team Magnet</span> won 25-18</li><li class="bg-gray-50 p-3 rounded-md">Game 4: <span class="font-bold text-orange-500">Team Magnet</span> won 25-16</li><li class="bg-gray-50 p-3 rounded-md">Game 5: <span class="font-bold text-orange-500">Team Magnet</span> won 25-9</li></ul>
+                    </div>
+                    <div class="text-center mb-12">
+                        <h4 class="text-xl font-semibold mb-4">🏆 Man of the Series 🏆</h4>
+                        <div class="inline-block bg-yellow-100 p-4 rounded-lg"><img src="https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/main/Profile_Pics/sushil.jpg" alt="Sushil" class="w-20 h-20 rounded-full mx-auto mb-2 border-4 border-yellow-400 object-cover"><p class="font-bold text-lg">Sushil</p><p class="text-orange-600 font-semibold">(Team Magnet)</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <section id="teams" class="py-20 bg-gray-50">
+        <section id="teams" class="py-20 bg-gray-50 fade-in-section">
             <div class="container mx-auto px-6">
                 <div class="bg-white p-8 rounded-lg shadow-lg">
-                    <h3 class="text-3xl font-bold text-center mb-8">Match Day Lineups</h3>
+                    <h3 class="text-3xl font-bold text-center mb-8">Historic Match Day Lineups (Aug 23, 2025)</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div id="team1-display" class="bg-gray-100 p-6 rounded-lg">
-                            </div>
-                        <div id="team2-display" class="bg-gray-100 p-6 rounded-lg">
-                            </div>
-                    </div>
-                    <div class="mt-12 pt-8 border-t border-gray-200 text-center">
-                        <h4 class="text-xl font-semibold mb-4">Match Officials</h4>
-                        <div class="inline-block bg-gray-100 p-4 rounded-lg">
-                            <img src="https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/main/Profile_Pics/snehal.jpg" alt="Snehal B. Rathod" class="w-16 h-16 rounded-full mx-auto mb-2 border-2 border-gray-300 object-cover">
-                            <p class="font-semibold">Snehal B. Rathod</p>
-                            <p class="text-sm text-gray-500">(Auctioneer & Referee)</p>
+                        <div class="bg-gray-100 p-6 rounded-lg">
+                            <h4 class="text-2xl font-bold text-cyan-500 mb-6 text-center">Team SKY</h4>
+                            <ul class="space-y-4">
+                                <li class="flex items-center bg-white p-3 rounded-lg shadow-sm"><img src="https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/main/Profile_Pics/akash.jpg" alt="Akash" class="w-12 h-12 rounded-full mr-4 object-cover"><div><p class="font-bold text-gray-800">Akash</p><p class="text-sm text-cyan-500 font-semibold">(Captain)</p></div></li>
+                                <li class="flex items-center bg-white p-3 rounded-lg shadow-sm"><img src="https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/main/Profile_Pics/imt2.jpg" alt="Indra M. Tripathi" class="w-12 h-12 rounded-full mr-4 object-cover"><p class="font-bold text-gray-800">Indra M. Tripathi</p></li>
+                                <li class="flex items-center bg-white p-3 rounded-lg shadow-sm"><img src="https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/main/Profile_Pics/jitu.jpg" alt="Jitendra" class="w-12 h-12 rounded-full mr-4 object-cover"><p class="font-bold text-gray-800">Jitendra</p></li>
+                                <li class="flex items-center bg-white p-3 rounded-lg shadow-sm"><img src="https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/main/Profile_Pics/sunil.jpg" alt="Sunil Kumar" class="w-12 h-12 rounded-full mr-4 object-cover"><p class="font-bold text-gray-800">Sunil Kumar</p></li>
+                                <li class="flex items-center bg-white p-3 rounded-lg shadow-sm"><img src="https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/main/Profile_Pics/wajahat.jpg" alt="Dr. Wajahat Annayat" class="w-12 h-12 rounded-full mr-4 object-cover"><p class="font-bold text-gray-800">Dr. Wajahat Annayat</p></li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-100 p-6 rounded-lg">
+                            <h4 class="text-2xl font-bold text-orange-500 mb-6 text-center">Team Magnet</h4>
+                             <ul class="space-y-4">
+                                <li class="flex items-center bg-white p-3 rounded-lg shadow-sm"><img src="https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/main/Profile_Pics/bhanu.jpg" alt="Bhanu" class="w-12 h-12 rounded-full mr-4 object-cover"><div><p class="font-bold text-gray-800">Bhanu</p><p class="text-sm text-orange-500 font-semibold">(Captain)</p></div></li>
+                                <li class="flex items-center bg-white p-3 rounded-lg shadow-sm"><img src="https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/main/Profile_Pics/kapil.jpg" alt="Kapil" class="w-12 h-12 rounded-full mr-4 object-cover"><p class="font-bold text-gray-800">Kapil</p></li>
+                                <li class="flex items-center bg-white p-3 rounded-lg shadow-sm"><img src="https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/main/Profile_Pics/pradeep.jpg" alt="Pradeep" class="w-12 h-12 rounded-full mr-4 object-cover"><p class="font-bold text-gray-800">Pradeep</p></li>
+                                <li class="flex items-center bg-white p-3 rounded-lg shadow-sm"><img src="https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/main/Profile_Pics/rj.jpg" alt="Rajesh" class="w-12 h-12 rounded-full mr-4 object-cover"><p class="font-bold text-gray-800">Rajesh</p></li>
+                                <li class="flex items-center bg-white p-3 rounded-lg shadow-sm"><img src="https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/main/Profile_Pics/sum.jpg" alt="Sumit" class="w-12 h-12 rounded-full mr-4 object-cover"><p class="font-bold text-gray-800">Sumit</p></li>
+                                <li class="flex items-center bg-white p-3 rounded-lg shadow-sm"><img src="https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/main/Profile_Pics/sushil.jpg" alt="Sushil" class="w-12 h-12 rounded-full mr-4 object-cover"><p class="font-bold text-gray-800">Sushil</p></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="rules" class="py-20 bg-white">
-            </section>
-
-        <section id="auction" class="py-20 bg-gray-50">
-             <div class="container mx-auto px-6">
+        <section id="auction-results" class="py-20 bg-white fade-in-section">
+            <div class="container mx-auto px-6">
                 <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-3xl font-bold text-center mb-8">Latest Auction Rosters</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div id="team1-display" class="bg-gray-100 p-6 rounded-lg min-h-[200px]"></div>
+                        <div id="team2-display" class="bg-gray-100 p-6 rounded-lg min-h-[200px]"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="rules" class="py-20 bg-gray-50 fade-in-section">
+             <div class="container mx-auto px-6">
+                <div class="bg-white p-8 rounded-lg">
+                    <h3 class="text-3xl font-bold text-center mb-8">Rules & Regulations</h3>
+                    <div class="max-w-4xl mx-auto text-gray-700 space-y-6">
+                        </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="auction" class="py-20 bg-white fade-in-section">
+            <div class="container mx-auto px-6">
+                 <div class="bg-white p-8 rounded-lg shadow-lg">
                     <h3 class="text-3xl font-bold text-center mb-8">Player Auction</h3>
                     <div class="text-center">
                         <a href="auction.html" class="bg-indigo-600 text-white px-8 py-3 rounded-lg hover:bg-indigo-700 transition text-lg font-semibold shadow-lg hover:shadow-indigo-500/50">Launch Auction Tool</a>
@@ -83,7 +132,33 @@
             </div>
         </section>
         
-        </main>
+        <section id="schedule" class="py-20 bg-gray-50 fade-in-section">
+            <div class="container mx-auto px-6">
+                 <div class="bg-white p-8 rounded-lg shadow-lg text-center">
+                    <h3 class="text-3xl font-bold text-center mb-8">Schedule</h3>
+                    <div class="max-w-md mx-auto bg-gray-50 border-l-4 border-indigo-500 p-6 rounded-r-lg">
+                        <div class="flex items-center">
+                            <svg class="w-10 h-10 text-indigo-500 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            <div>
+                                <p class="text-lg font-semibold text-gray-800 text-left">Next Match</p>
+                                <p class="text-gray-600 text-left">To Be Announced</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="py-20 bg-white fade-in-section">
+            <div class="container mx-auto px-6">
+                 <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-3xl font-bold text-center mb-8">Photo Gallery</h3>
+                    <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                        </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <footer class="bg-gray-800 text-gray-400 py-8">
         <div class="container mx-auto px-6 text-center">
@@ -95,16 +170,24 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
     </a>
 
+    <div id="lightbox" class="fixed inset-0 z-50 flex items-center justify-center hidden opacity-0">
+        <div class="absolute inset-0" id="lightbox-close-bg"></div>
+        <button id="lightbox-close" class="absolute top-4 right-4 text-white text-4xl">&times;</button>
+        <button id="lightbox-prev" class="absolute left-4 text-white text-4xl">&#8249;</button>
+        <button id="lightbox-next" class="absolute right-4 text-white text-4xl">&#8250;</button>
+        <img id="lightbox-img" src="" alt="Gallery image" class="max-w-[90vw] max-h-[85vh] rounded-lg">
+    </div>
+
     <script>
     document.addEventListener('DOMContentLoaded', () => {
-        // --- SCRIPT TO LOAD AND DISPLAY TEAMS FROM LOCAL STORAGE ---
-        function displayTeams() {
+        // --- 1. SCRIPT TO LOAD LATEST AUCTION TEAMS ---
+        function displayLatestAuctionTeams() {
             const team1Container = document.getElementById('team1-display');
             const team2Container = document.getElementById('team2-display');
             const savedTeams = JSON.parse(localStorage.getItem('volleyballTeams'));
 
             if (savedTeams) {
-                // TEAM 1
+                // Team 1
                 const team1 = savedTeams['1'];
                 const team1Color = 'cyan';
                 let team1HTML = `<h4 class="text-2xl font-bold text-${team1Color}-500 mb-6 text-center">Team ${team1.name}</h4><ul class="space-y-4">`;
@@ -112,10 +195,9 @@
                 team1.players.forEach(player => {
                     team1HTML += `<li class="flex items-center bg-white p-3 rounded-lg shadow-sm"><img src="${player.image}" alt="${player.name}" class="w-12 h-12 rounded-full mr-4 object-cover"><p class="font-bold text-gray-800">${player.name}</p></li>`;
                 });
-                team1HTML += `</ul>`;
-                team1Container.innerHTML = team1HTML;
+                team1Container.innerHTML = team1HTML + '</ul>';
 
-                // TEAM 2
+                // Team 2
                 const team2 = savedTeams['2'];
                 const team2Color = 'orange';
                 let team2HTML = `<h4 class="text-2xl font-bold text-${team2Color}-500 mb-6 text-center">Team ${team2.name}</h4><ul class="space-y-4">`;
@@ -123,38 +205,79 @@
                 team2.players.forEach(player => {
                     team2HTML += `<li class="flex items-center bg-white p-3 rounded-lg shadow-sm"><img src="${player.image}" alt="${player.name}" class="w-12 h-12 rounded-full mr-4 object-cover"><p class="font-bold text-gray-800">${player.name}</p></li>`;
                 });
-                team2HTML += `</ul>`;
-                team2Container.innerHTML = team2HTML;
+                team2Container.innerHTML = team2HTML + '</ul>';
 
             } else {
-                const placeholderHTML = `<h4 class="text-xl font-bold text-gray-400 mb-4 text-center">No Team Data</h4><p class="text-center text-gray-500">Please run the auction first to create the teams. The final lineups will be displayed here automatically.</p>`;
+                const placeholderHTML = `<div class="text-center text-gray-500"><h4 class="text-xl font-bold text-gray-400 mb-4">No Auction Data Found</h4><p>Complete an auction using the 'Launch Auction Tool' to see the latest team rosters here.</p></div>`;
                 team1Container.innerHTML = placeholderHTML;
-                team2Container.innerHTML = placeholderHTML;
+                team2Container.innerHTML = ''; // Keep second container empty for better layout
             }
         }
-        displayTeams(); // Run the function on page load
+        displayLatestAuctionTeams();
 
-        // --- GENERAL PAGE SCRIPTS ---
+        // --- 2. GALLERY & LIGHTBOX SCRIPT ---
+        const galleryGrid = document.getElementById('gallery-grid');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxClose = document.getElementById('lightbox-close');
+        const lightboxCloseBg = document.getElementById('lightbox-close-bg');
+        const lightboxPrev = document.getElementById('lightbox-prev');
+        const lightboxNext = document.getElementById('lightbox-next');
+        const IMG_BASE_URL = "https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/main/Volleyball_Gallery/";
+        const galleryImages = ['IMG_6119.JPG', 'IMG_6120.JPG', 'IMG_6121.JPG', 'IMG_6122.JPG', 'IMG_6123.JPG', 'IMG_6124.JPG', 'IMG_6125.JPG', 'IMG_6126.JPG', 'IMG_6127.JPG', 'IMG_6128.JPG', 'IMG_6130.JPG', 'IMG_6131.JPG', 'IMG_6133.JPG', 'IMG_6134.JPG', 'IMG_6161.JPG', 'IMG_6162.JPG', 'IMG_6163.JPG', 'IMG_6165.JPG'];
+        let currentImageIndex = 0;
+
+        galleryImages.forEach((imgName, index) => {
+            const imgContainer = document.createElement('div');
+            imgContainer.className = 'aspect-w-1 aspect-h-1 cursor-pointer overflow-hidden rounded-lg group';
+            imgContainer.innerHTML = `<img src="${IMG_BASE_URL}${imgName}" alt="Volleyball Match Image ${index + 1}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">`;
+            imgContainer.addEventListener('click', () => openLightbox(index));
+            galleryGrid.appendChild(imgContainer);
+        });
+
+        function openLightbox(index) {
+            currentImageIndex = index;
+            lightboxImg.src = `${IMG_BASE_URL}${galleryImages[currentImageIndex]}`;
+            lightbox.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => lightbox.classList.remove('opacity-0'), 10);
+        }
+        function closeLightbox() {
+            lightbox.classList.add('opacity-0');
+            document.body.style.overflow = '';
+            setTimeout(() => lightbox.classList.add('hidden'), 300);
+        }
+        function showNextImage() { currentImageIndex = (currentImageIndex + 1) % galleryImages.length; lightboxImg.src = `${IMG_BASE_URL}${galleryImages[currentImageIndex]}`; }
+        function showPrevImage() { currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length; lightboxImg.src = `${IMG_BASE_URL}${galleryImages[currentImageIndex]}`; }
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxCloseBg.addEventListener('click', closeLightbox);
+        lightboxNext.addEventListener('click', showNextImage);
+        lightboxPrev.addEventListener('click', showPrevImage);
+        document.addEventListener('keydown', (e) => { if (!lightbox.classList.contains('hidden')) { if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowRight') showNextImage(); if (e.key === 'ArrowLeft') showPrevImage(); } });
+
+        // --- 3. GENERAL PAGE SCRIPTS ---
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         const toTopButton = document.getElementById('to-top-button');
+        const sections = document.querySelectorAll('main section');
         const navLinks = document.querySelectorAll('.v-nav-link');
-
         mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
         document.getElementById('current-year').textContent = new Date().getFullYear();
         window.addEventListener('scroll', () => toTopButton.classList.toggle('show', window.scrollY > 300));
-        
+
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.3 };
         const sectionObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
+                entry.target.classList.toggle('is-visible', entry.isIntersecting);
                 if (entry.isIntersecting) {
                     const id = entry.target.getAttribute('id');
                     navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${id}`));
                 }
             });
-        }, { rootMargin: '0px', threshold: 0.4 });
-
-        document.querySelectorAll('main section').forEach(section => sectionObserver.observe(section));
+        }, observerOptions);
+        sections.forEach(section => sectionObserver.observe(section));
     });
     </script>
 </body>
 </html>
+
