@@ -155,7 +155,7 @@
             <div class="container mx-auto px-6">
                  <div class="bg-white p-8 rounded-lg shadow-lg">
                     <h3 class="text-3xl font-bold text-center mb-8">Photo Gallery</h3>
-                    <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4">
                         </div>
                 </div>
             </div>
@@ -189,24 +189,18 @@
             const savedTeams = JSON.parse(localStorage.getItem('volleyballTeams'));
 
             if (savedTeams) {
-                // Team 1
                 const team1 = savedTeams['1'];
                 const team1Color = 'cyan';
                 let team1HTML = `<h4 class="text-2xl font-bold text-${team1Color}-500 mb-6 text-center">Team ${team1.name}</h4><ul class="space-y-4">`;
                 team1HTML += `<li class="flex items-center bg-white p-3 rounded-lg shadow-sm"><img src="${team1.captain.image}" alt="${team1.captain.name}" class="w-12 h-12 rounded-full mr-4 object-cover"><div><p class="font-bold text-gray-800">${team1.captain.name}</p><p class="text-sm text-${team1Color}-500 font-semibold">(Captain)</p></div></li>`;
-                team1.players.forEach(player => {
-                    team1HTML += `<li class="flex items-center bg-white p-3 rounded-lg shadow-sm"><img src="${player.image}" alt="${player.name}" class="w-12 h-12 rounded-full mr-4 object-cover"><p class="font-bold text-gray-800">${player.name}</p></li>`;
-                });
+                team1.players.forEach(player => { team1HTML += `<li class="flex items-center bg-white p-3 rounded-lg shadow-sm"><img src="${player.image}" alt="${player.name}" class="w-12 h-12 rounded-full mr-4 object-cover"><p class="font-bold text-gray-800">${player.name}</p></li>`; });
                 team1Container.innerHTML = team1HTML + '</ul>';
 
-                // Team 2
                 const team2 = savedTeams['2'];
                 const team2Color = 'orange';
                 let team2HTML = `<h4 class="text-2xl font-bold text-${team2Color}-500 mb-6 text-center">Team ${team2.name}</h4><ul class="space-y-4">`;
                 team2HTML += `<li class="flex items-center bg-white p-3 rounded-lg shadow-sm"><img src="${team2.captain.image}" alt="${team2.captain.name}" class="w-12 h-12 rounded-full mr-4 object-cover"><div><p class="font-bold text-gray-800">${team2.captain.name}</p><p class="text-sm text-${team2Color}-500 font-semibold">(Captain)</p></div></li>`;
-                team2.players.forEach(player => {
-                    team2HTML += `<li class="flex items-center bg-white p-3 rounded-lg shadow-sm"><img src="${player.image}" alt="${player.name}" class="w-12 h-12 rounded-full mr-4 object-cover"><p class="font-bold text-gray-800">${player.name}</p></li>`;
-                });
+                team2.players.forEach(player => { team2HTML += `<li class="flex items-center bg-white p-3 rounded-lg shadow-sm"><img src="${player.image}" alt="${player.name}" class="w-12 h-12 rounded-full mr-4 object-cover"><p class="font-bold text-gray-800">${player.name}</p></li>`; });
                 team2Container.innerHTML = team2HTML + '</ul>';
 
             } else {
@@ -227,7 +221,8 @@
 
         galleryImages.forEach((imgName, index) => {
             const imgContainer = document.createElement('div');
-            imgContainer.className = 'aspect-w-1 aspect-h-1 cursor-pointer overflow-hidden rounded-lg group';
+            // **FIXED**: Changed from 'aspect-w-1 aspect-h-1' to 'aspect-square'
+            imgContainer.className = 'aspect-square cursor-pointer overflow-hidden rounded-lg group';
             imgContainer.innerHTML = `<img src="${IMG_BASE_URL}${imgName}" alt="Volleyball Match Image ${index + 1}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy">`;
             imgContainer.addEventListener('click', () => openLightbox(index));
             galleryGrid.appendChild(imgContainer);
@@ -265,7 +260,7 @@
         const observerOptions = { root: null, rootMargin: '0px', threshold: 0.3 };
         const sectionObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                entry.target.classList.toggle('is-visible', entry.is-visible);
+                entry.target.classList.toggle('is-visible', entry.isIntersecting);
                 if (entry.isIntersecting) {
                     const id = entry.target.getAttribute('id');
                     navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${id}`));
