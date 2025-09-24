@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: "Sunil Kumar", image: IMG_BASE_URL + "sunil.jpg", status: "PhD Scholar", email: "sunil.k@iitgn.ac.in", phone: "+91 90016 46544", category: "PhD Students" },
         { name: "Kapil", image: IMG_BASE_URL + "kapil.jpg", status: "PhD Scholar", email: "kapil.rathod@iitgn.ac.in", phone: "+91 72858 70459", category: "PhD Students" },
         { name: "Sushil", image: IMG_BASE_URL + "sushil.jpg", status: "PhD Scholar", email: "sushil.jaiswal@iitgn.ac.in", phone: "+91 81125 75098", category: "PhD Students" },
-        { name: "Sumit", image: IMG_BASE_URL + "sum.jpg", status: "PhD Scholar", email: "sumit@iitgn.ac.in", phone: "+91 81720 01881", category: "PhD Students" },
+        { name: "Sumit", image: IMG_BASE_URL + "sum.jpg", status: "Project Assistant-1", email: "sumit@iitgn.ac.in", phone: "+91 81720 01881", category: "Project Staff", project: { name: "cNarmada", link: "https://sites.iitgn.ac.in/cnarmada/" } },
         { name: "Wajahat Annayat", image: IMG_BASE_URL + "wajahat.jpg", status: "Project Engineer-1", email: "wajahat.annayat@iitgn.ac.in", phone: "+91 96825 34233", category: "Project Staff", project: { name: "cNarmada", link: "https://sites.iitgn.ac.in/cnarmada/" } },
         { name: "Snehal B. Rathod", image: IMG_BASE_URL + "snehal.jpg", status: "JRF", email: "rathodsnehal.b@iitgn.ac.in", phone: "+91 81605 49901", category: "Project Staff", project: { name: "cNarmada", link: "https://sites.iitgn.ac.in/cnarmada/" } },
         { name: "Akash", image: IMG_BASE_URL + "akash.jpg", status: "JRF", email: "akash.yadav@iitgn.ac.in", phone: "+91 96850 75978", category: "Project Staff", project: { name: "cNarmada", link: "https://sites.iitgn.ac.in/cnarmada/" } },
