@@ -33,11 +33,10 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: "Kapil", image: IMG_BASE_URL + "kapil.jpg", status: "PhD Scholar", email: "kapil.rathod@iitgn.ac.in", phone: "+91 72858 70459", category: "PhD Students" },
         { name: "Sushil", image: IMG_BASE_URL + "sushil.jpg", status: "PhD Scholar", email: "sushil.jaiswal@iitgn.ac.in", phone: "+91 81125 75098", category: "PhD Students" },
         { name: "Sumit", image: IMG_BASE_URL + "sum.jpg", status: "PhD Scholar", email: "sumit@iitgn.ac.in", phone: "+91 81720 01881", category: "PhD Students" },
-        { name: "Dr. Wajahat Annayat", image: IMG_BASE_URL + "wajahat.jpg", status: "Postdoctoral Fellow", email: "wajahat.annayat@iitgn.ac.in", phone: "+91 12345 67890", category: "Postdoc" },
+        { name: "Wajahat Annayat", image: IMG_BASE_URL + "wajahat.jpg", status: "Project Engineer-1", email: "wajahat.annayat@iitgn.ac.in", phone: "+91 96825 34233", category: "Project Staff", project: { name: "cNarmada", link: "https://sites.iitgn.ac.in/cnarmada/" } },
         { name: "Snehal B. Rathod", image: IMG_BASE_URL + "snehal.jpg", status: "JRF", email: "rathodsnehal.b@iitgn.ac.in", phone: "+91 81605 49901", category: "Project Staff", project: { name: "cNarmada", link: "https://sites.iitgn.ac.in/cnarmada/" } },
         { name: "Akash", image: IMG_BASE_URL + "akash.jpg", status: "JRF", email: "akash.yadav@iitgn.ac.in", phone: "+91 96850 75978", category: "Project Staff", project: { name: "cNarmada", link: "https://sites.iitgn.ac.in/cnarmada/" } },
         { name: "Bhanu", image: IMG_BASE_URL + "bhanu.jpg", status: "JRF", email: "bhanu.parmar@iitgn.ac.in", phone: "+91 97257 29534", category: "Project Staff", project: { name: "cNarmada", link: "https://sites.iitgn.ac.in/cnarmada/" } },
-        // NOTE: 'indra.jpg' for Indrajitsinh Bihola not found in repository. Using a placeholder.
         { name: "Indrajitsinh Bihola", image: IMG_BASE_URL + "sunil.jpg", status: "Trainee", email: "indrajitsinh.bihola@iitgn.ac.in", phone: "+91 91048 14088", category: "Project Staff", project: { name: "UBA", link: "https://initiatives.iitgn.ac.in/uba/" } },
         { name: "Rajesh", image: IMG_BASE_URL + "rj.jpg", status: "Project Associate", email: "rajesh.k@iitgn.ac.in", phone: "+91 87418 84275", category: "Project Staff", project: { name: "cNarmada", link: "https://sites.iitgn.ac.in/cnarmada/" } },
         { name: "Pradeep", image: IMG_BASE_URL + "pradeep.jpg", status: "Project Employee", phone: "+91 80534 02248", category: "Project Staff", project: { name: "cNarmada", link: "https://sites.iitgn.ac.in/cnarmada/" } },
@@ -51,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
             (acc[member.category] = acc[member.category] || []).push(member);
             return acc;
         }, {});
-        const categoryOrder = ["Postdoc", "PhD Students", "Project Staff", "Alumni"];
+        const categoryOrder = ["PhD Students", "Project Staff", "Alumni"];
         peopleGrid.innerHTML = categoryOrder.map(category => {
             if (!groupedMembers[category]) return '';
             return `
@@ -77,10 +76,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (v_team1ResultEl && v_team2ResultEl) {
         const savedTeams = JSON.parse(localStorage.getItem('volleyballTeams'));
         if (savedTeams) {
-            // If teams are saved from auction, display them
             displayAuctionTeams(savedTeams);
         } else {
-            // Otherwise, display default teams
             displayDefaultTeams();
         }
     }
@@ -104,17 +101,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function displayDefaultTeams() {
-        // These are the example teams if no auction has been run
         const defaultTeam1 = { name: "SKY", captain: { name: "Akash", image: IMG_BASE_URL + "akash.jpg" }, players: [{ name: "Pradeep", image: IMG_BASE_URL + "pradeep.jpg" }, { name: "Sumit", image: IMG_BASE_URL + "sum.jpg" }] };
         const defaultTeam2 = { name: "Magnet", captain: { name: "Sushil", image: IMG_BASE_URL + "sushil.jpg" }, players: [{ name: "Sunil Kumar", image: IMG_BASE_URL + "sunil.jpg" }, { name: "Indra M. Tripathi", image: IMG_BASE_URL + "imt2.jpg" }] };
         displayAuctionTeams({ '1': defaultTeam1, '2': defaultTeam2 });
     }
 
-    // --- OTHER SPORTS PAGES LOGIC (Cricket, Badminton, etc.) ---
+    // --- OTHER SPORTS PAGES LOGIC ---
     function populateSportsPage(elementId) {
         const playerListEl = document.getElementById(elementId);
         if (playerListEl) {
-            // Filter out the referee, Snehal
             const players = allMembers.filter(m => m.name !== 'Snehal B. Rathod');
             playerListEl.innerHTML = players.map(person => `
                 <div class="text-center">
