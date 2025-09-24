@@ -10,17 +10,14 @@
 </head>
 <body class="bg-gray-50 text-gray-800 antialiased">
 
-    <!-- Header & Navigation -->
     <header id="header" class="bg-white/90 backdrop-blur-lg sticky top-0 z-50 border-b border-gray-200">
         <div class="container mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
-                <!-- Left Side -->
                 <div class="flex items-center space-x-8">
                     <a href="index.html" class="text-2xl font-bold text-gray-900">HWM Lab</a>
                     <h1 class="text-2xl font-semibold text-gray-700 hidden md:flex items-center gap-x-2">🏐 Volleyball Hub</h1>
                 </div>
 
-                <!-- Right Side -->
                 <div>
                     <nav id="volleyball-nav" class="hidden md:flex flex-wrap justify-end gap-x-6 gap-y-2 items-center">
                         <a href="#results" class="v-nav-link text-gray-600 hover:text-indigo-600 border-b-2 border-transparent pb-1">Results</a>
@@ -46,10 +43,8 @@
                     </button>
                 </div>
             </div>
-             <!-- Mobile Title -->
              <h1 class="text-2xl font-bold text-gray-900 text-center mt-4 md:hidden">🏐 Volleyball Hub</h1>
         </div>
-        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
             <a href="#results" class="v-nav-link block py-2 text-gray-600 hover:text-indigo-600">Results</a>
             <a href="#teams" class="v-nav-link block py-2 text-gray-600 hover:text-indigo-600">Teams</a>
@@ -65,7 +60,6 @@
     </header>
 
     <main>
-        <!-- Match Results Section -->
         <section id="results" class="py-20 bg-white">
             <div class="container mx-auto px-6">
                 <div class="bg-white p-8 rounded-lg">
@@ -80,13 +74,12 @@
                     </div>
                     <div class="text-center mb-12">
                         <h4 class="text-xl font-semibold mb-4">🏆 Man of the Series 🏆</h4>
-                        <div class="inline-block bg-yellow-100 p-4 rounded-lg"><img src="https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/sus.jpg" alt="Sushil Kumar Jaiswal" class="w-20 h-20 rounded-full mx-auto mb-2 border-4 border-yellow-400"><p class="font-bold text-lg">Sushil Kumar Jaiswal</p><p class="text-orange-600 font-semibold">(Team Magnet)</p></div>
+                        <div class="inline-block bg-yellow-100 p-4 rounded-lg"><img src="https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/main/Profile_Pics/sushil.jpg" alt="Sushil Kumar Jaiswal" class="w-20 h-20 rounded-full mx-auto mb-2 border-4 border-yellow-400 object-cover"><p class="font-bold text-lg">Sushil Kumar Jaiswal</p><p class="text-orange-600 font-semibold">(Team Magnet)</p></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Teams Section -->
         <section id="teams" class="py-20 bg-gray-50">
             <div class="container mx-auto px-6">
                 <div class="bg-white p-8 rounded-lg shadow-lg">
@@ -95,7 +88,7 @@
                     <div class="mt-12 pt-8 border-t border-gray-200 text-center">
                         <h4 class="text-xl font-semibold mb-4">Match Officials</h4>
                         <div class="inline-block bg-gray-100 p-4 rounded-lg">
-                            <img src="https://raw.githubusercontent.com/sunilkumardhayal/HWM_Volleyball/main/snehal.jpg" alt="Snehal B. Rathod" class="w-16 h-16 rounded-full mx-auto mb-2 border-2 border-gray-300">
+                            <img src="https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/main/Profile_Pics/snehal.jpg" alt="Snehal B. Rathod" class="w-16 h-16 rounded-full mx-auto mb-2 border-2 border-gray-300 object-cover">
                             <p class="font-semibold">Snehal B. Rathod</p>
                             <p class="text-sm text-gray-500">(Auctioneer & Referee)</p>
                         </div>
@@ -104,67 +97,10 @@
             </div>
         </section>
 
-        <!-- Rules Section -->
         <section id="rules" class="py-20 bg-white">
             <div class="container mx-auto px-6">
                  <div class="bg-white p-8 rounded-lg">
                     <h3 class="text-3xl font-bold text-center mb-8">Rules & Regulations</h3>
                     <div class="max-w-4xl mx-auto text-gray-700 space-y-6">
                         <div><h4 class="text-xl font-semibold mb-2">1. General Gameplay & Teams</h4><ul class="list-disc list-inside space-y-2 pl-4"><li><strong>Objective:</strong> The goal is to score points by sending the ball over the net so it lands within the opponent's court.</li><li><strong>Teams:</strong> Games are played between two teams. The number of players on the court will be decided per match.</li><li><strong>Scoring:</strong> We will use rally scoring. A point is awarded on every rally, regardless of which team served. Sets are typically played to 25 points, and a team must win by at least a two-point margin.</li></ul></div>
-                        <div><h4 class="text-xl font-semibold mb-2">2. Hitting & Attacks (Custom Rules)</h4><ul class="list-disc list-inside space-y-2 pl-4"><li><strong>Consecutive Hits:</strong> A single player is allowed to hit the ball twice in a row.</li><li><strong>Team Hits:</strong> There is no limit to the total number of hits a team can make before sending the ball over the net.</li><li><strong>Legal Contact:</strong> Contact with the ball must be a clean, brief hit. Holding, catching, lifting, or throwing the ball is not permitted and will result in a fault.</li></ul></div>
-                        <div><h4 class="text-xl font-semibold mb-2">3. Serving (Custom Rules)</h4><ul class="list-disc list-inside space-y-2 pl-4"><li><strong>Service Style:</strong> All serves must be performed underhand. Overhand or jump serves are not allowed.</li><li><strong>Service Location:</strong> The server is permitted to serve from inside the court. The serve must be executed from behind the 3-meter (10-foot) attack line.</li><li><strong>Valid Serve:</strong> The served ball must cross the net and travel over the opponent's 3-meter attack line to be considered a valid serve.</li><li><strong>Service Rotation:</strong> Service must be done by each player in the team in a rotational sequence.</li><li><strong>Continuous Serving:</strong> A player can continue to serve as long as their team keeps winning points. When the serving team loses a rally, the serve switches to the opposing team, and they must rotate to their next server.</li></ul></div>
-                        <div><h4 class="text-xl font-semibold mb-2">4. Fouls & Violations</h4><ul class="list-disc list-inside space-y-2 pl-4"><li><strong>Net Contact:</strong> Players are not allowed to touch the net during play. If a player touches the net, their team loses the point.</li><li><strong>Center Line:</strong> A player may step on the center line, but their entire foot cannot cross completely over the line into the opponent's court.</li><li><strong>Out of Bounds:</strong> A ball is considered 'out' if it lands completely outside the boundary lines, touches the ceiling, or hits the antennas on the net. A ball that lands on a boundary line is 'in'.</li></ul></div>
-                        <div><h4 class="text-xl font-semibold mb-2">5. Sportsmanship</h4><ul class="list-disc list-inside space-y-2 pl-4"><li>All players are expected to show good sportsmanship.</li><li>The referee's calls are final. Please respect their decisions.</li><li>Let's prioritize safety, fair play, and fun for everyone involved!</li></ul></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Auction Section -->
-        <section id="auction" class="py-20 bg-gray-50">
-            <div class="container mx-auto px-6">
-                 <div class="bg-white p-8 rounded-lg shadow-lg">
-                    <h3 class="text-3xl font-bold text-center mb-8">Auction</h3>
-                    <div class="text-center mb-12">
-                        <a href="auction.html" class="bg-indigo-600 text-white px-8 py-3 rounded-lg hover:bg-indigo-700 transition text-lg font-semibold">Launch New Auction Tool</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Schedule Section -->
-        <section id="schedule" class="py-20 bg-white">
-            <div class="container mx-auto px-6">
-                 <div class="bg-white p-8 rounded-lg shadow-lg text-center">
-                    <h3 class="text-3xl font-bold text-center mb-8">Schedule</h3>
-                    <p class="text-gray-500">No upcoming matches scheduled.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Gallery Section -->
-        <section id="gallery" class="py-20 bg-gray-50">
-            <div class="container mx-auto px-6">
-                 <div class="bg-white p-8 rounded-lg shadow-lg text-center">
-                    <h3 class="text-3xl font-bold text-center mb-8">Gallery</h3>
-                    <p class="text-gray-500">Photo and video gallery coming soon!</p>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer Section -->
-    <footer class="bg-gray-800 text-gray-400 py-8">
-        <div class="container mx-auto px-6 text-center">
-            <p>&copy; <span id="current-year"></span> HWM Lab, IIT Gandhinagar. All rights reserved.</p>
-        </div>
-    </footer>
-    
-    <a href="#header" id="to-top-button" class="bg-indigo-600 text-white p-3 rounded-full shadow-lg hover:bg-indigo-700" aria-label="Go to top">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
-    </a>
-
-    <script src="scripts.js"></script>
-</body>
-</html>
+                        <div><h4 class="text-xl font-semibold mb-2">2. Hitting & Attacks (Custom Rules)</h4><ul class="list-disc list-inside space-y-2 pl-4"><li><strong>Consecutive Hits:</strong> A single player is allowed to hit the ball twice in a row.</li><li><strong>Team Hits:</strong> There is no limit to the total number of hits a team can make before sending
