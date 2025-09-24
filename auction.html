@@ -470,4 +470,174 @@
             function placeBid(teamId, amount) {
                 if (soundsReady) bidSound.triggerAttackRelease("C5", "8n");
                 const team = state.teams[teamId];
-                const newBid = state.currentBid === 0 ? Math.max(basePrice, amount)
+                const newBid = state.currentBid === 0 ? Math.max(basePrice, amount) : state.currentBid + amount;
+                if (team.budget < newBid) {
+                    showStatus(`Team ${team.name} has insufficient funds!`, "error");
+                    return;
+                }
+                if (state.biddingTurn != teamId && state.highestBidder !== null) {
+                    showStatus(`It's not your turn to bid!`, "error");
+                    return;
+                }
+                state.currentBid = newBid;
+                state.highestBidder = teamId;
+                state.biddingTurn = teamId == 1 ? 2 : 1;
+                showStatus(`Team ${team.name} bids ${state.currentBid}!`, "normal");
+                renderAll();
+                sellPlayerBtn.disabled = false;
+                skipPlayerBtn.disabled = true;
+                startTimer();
+            }
+            
+            function updateBidButtons() {
+                if (!state.auctionInProgress) {
+                    bidBtns.forEach(btn => btn.disabled = true);
+                    return;
+                }
+                bidBtns.forEach(btn => {
+                    const teamId = btn.dataset.team;
+                    const amount = parseInt(btn.dataset.amount, 10);
+                    const team = state.teams[teamId];
+                    const newBid = state.currentBid === 0 ? Math.max(basePrice, amount) : state.currentBid + amount;
+                    btn.disabled = (state.biddingTurn != teamId && state.highestBidder !== null) || team.budget < newBid;
+                });
+            }
+            
+            function sellPlayer() {
+                stopTimer();
+                if (!state.highestBidder) {
+                    showStatus("No bids placed!", "error");
+                    return;
+                }
+                if (soundsReady) soldSound.triggerAttackRelease("G5", "8n", Tone.now() + 0.2);
+                launchConfetti();
+                const winningTeam = state.teams[state.highestBidder];
+                const finalPrice = state.currentBid;
+                winningTeam.budget -= finalPrice;
+                winningTeam.players.push({ name: state.currentPlayer.name, price: finalPrice, image: state.currentPlayer.image });
+                const soldMessage = `${state.currentPlayer.name} sold to Team ${winningTeam.name} for ${finalPrice}!`;
+                showStatus(soldMessage, "success", 5000);
+                announce(soldMessage);
+                resetAuctionRound();
+            }
+
+            function skipPlayer(isAutomatic = false) {
+                stopTimer();
+                const skippedPlayer = state.currentPlayer;
+                let message;
+                if (state.currentRound < 3) {
+                    state.rounds[state.currentRound + 1].push(skippedPlayer);
+                    message = `${skippedPlayer.name} was skipped and moves to Round ${state.currentRound + 1}.`;
+                    showStatus(message, "info", 5000);
+                } else {
+                    const t1Count = state.teams[1].players.length;
+                    const t2Count = state.teams[2].players.length;
+                    let assignedTeamId = (t1Count < t2Count) ? 1 : (t2Count < t1Count) ? 2 : (state.teams[1].budget >= state.teams[2].budget ? 1 : 2);
+                    const assignedTeam = state.teams[assignedTeamId];
+                    assignedTeam.budget -= basePrice;
+                    assignedTeam.players.push({ name: skippedPlayer.name, price: basePrice, image: skippedPlayer.image });
+                    message = `${skippedPlayer.name} was auto-assigned to Team ${assignedTeam.name} for ${basePrice}.`;
+                    showStatus(message, "info", 5000);
+                    announce(message);
+                }
+                resetAuctionRound();
+            }
+
+            function resetAuctionRound() {
+                state.currentPlayer = null;
+                state.currentBid = 0;
+                state.highestBidder = null;
+                state.auctionInProgress = false;
+                skipPlayerBtn.disabled = true;
+                auctionControls.classList.remove('hidden');
+                auctionControls.classList.add('flex');
+                refereeControls.classList.add('hidden');
+                renderAll();
+            }
+            
+            function endAuction() {
+                stopTimer();
+                state.auctionInProgress = false;
+                updateBidButtons();
+                nextPlayerBtn.disabled = true;
+                sellPlayerBtn.disabled = true;
+                skipPlayerBtn.disabled = true;
+                const team1Spent = initialBudget - state.teams[1].budget;
+                const team2Spent = initialBudget - state.teams[2].budget;
+                let winnerMessage = `Auction Over! Team SKY spent ${team1Spent}. Team Magnet spent ${team2Spent}.`;
+                showStatus(winnerMessage, "info", 10000);
+            }
+            
+            // --- TIMER & UTILITIES ---
+            function updateTimerDisplay(time) {
+                timerProgress.style.strokeDashoffset = CIRCLE_LENGTH - (time / auctionTime) * CIRCLE_LENGTH;
+                timerText.textContent = time;
+                if (time <= 8) {
+                    if (soundsReady && time > 0) tickSound.triggerAttackRelease("C2", "8n");
+                    timerProgress.style.stroke = "#ef4444"; // Red
+                } else {
+                    timerProgress.style.stroke = "#4f46e5"; // Indigo
+                }
+            }
+            function handleTimerEnd() {
+                stopTimer();
+                showStatus("Time's up! Referee's decision.", "info");
+                auctionControls.classList.add('hidden');
+                refereeControls.classList.remove('hidden');
+                refereeControls.classList.add('flex');
+                confirmSaleBtn.textContent = state.highestBidder ? "Confirm Sale" : "Confirm Skip/Assign";
+                bidBtns.forEach(btn => btn.disabled = true);
+            }
+            function startTimer() {
+                stopTimer(); 
+                state.timeLeft = auctionTime;
+                updateTimerDisplay(state.timeLeft);
+                state.timerId = setInterval(() => {
+                    state.timeLeft--;
+                    updateTimerDisplay(state.timeLeft);
+                    if (state.timeLeft <= 0) handleTimerEnd();
+                }, 1000);
+            }
+            function stopTimer() { clearInterval(state.timerId); state.timerId = null; }
+            function showStatus(message, type = 'normal', duration = 3000) {
+                statusMessageEl.textContent = message;
+                statusMessageEl.className = 'status-message text-center text-lg font-medium mb-8 h-8';
+                const colorClass = { success: 'text-green-400', error: 'text-red-400', info: 'text-blue-400' }[type] || 'text-gray-300';
+                statusMessageEl.classList.add(colorClass);
+                setTimeout(() => { if (statusMessageEl.textContent === message) statusMessageEl.textContent = ''; }, duration);
+            }
+            function launchConfetti() {
+                for (let i = 0; i < 100; i++) {
+                    const c = document.createElement('div');
+                    c.className = 'confetti';
+                    c.style.left = `${Math.random() * 100}vw`;
+                    c.style.backgroundColor = `hsl(${Math.random() * 360}, 90%, 60%)`;
+                    c.style.animationDelay = `${Math.random() * 2}s`;
+                    document.body.appendChild(c);
+                    setTimeout(() => c.remove(), 3000);
+                }
+            }
+
+            // --- EVENT LISTENERS ---
+            nextPlayerBtn.addEventListener('click', selectNextPlayer);
+            sellPlayerBtn.addEventListener('click', sellPlayer);
+            skipPlayerBtn.addEventListener('click', () => skipPlayer(false));
+            resetBtn.addEventListener('click', () => { if (confirm("Reset auction?")) window.location.reload(); });
+            bidBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => placeBid(e.target.dataset.team, parseInt(e.target.dataset.amount, 10)));
+            });
+            confirmSaleBtn.addEventListener('click', () => state.highestBidder ? sellPlayer() : skipPlayer(true));
+            restartTimerBtn.addEventListener('click', () => {
+                auctionControls.classList.remove('hidden');
+                auctionControls.classList.add('flex');
+                refereeControls.classList.add('hidden');
+                updateBidButtons();
+                startTimer();
+            });
+
+            // --- INITIALIZE THE APP ---
+            populateCaptainSelectors();
+        });
+    </script>
+</body>
+</html>
