@@ -7,47 +7,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #111827;
-            color: #f3f4f6;
-            overflow-x: hidden;
-        }
-        .team-card, .player-card, .auction-card, .player-pool-card, .setup-card {
-            background-color: #1f2937;
-            border: 1px solid #374151;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, border-color 0.3s ease-in-out;
-        }
-        .team-card:hover, .player-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-        }
-        .btn { transition: background-color 0.2s, transform 0.2s; }
-        .btn:hover { transform: scale(1.05); }
-        .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: scale(1); }
-        select { background-color: #374151; border-color: #4b5563; }
-        .status-message { animation: fadeIn 0.5s ease-in-out; }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .timer-container { position: relative; width: 100px; height: 100px; margin: 1rem auto; }
-        .timer-svg { transform: scaleX(-1) rotate(-90deg); width: 100%; height: 100%; }
-        .timer-circle-bg { fill: none; stroke: #374151; stroke-width: 8; }
-        .timer-circle-progress { fill: none; stroke: #4f46e5; stroke-width: 8; stroke-linecap: round; transition: stroke-dashoffset 1s linear, stroke 0.5s; }
-        .timer-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2rem; font-weight: bold; }
-        .highest-bidder-glow { border-color: #f59e0b; box-shadow: 0 0 15px rgba(245, 158, 11, 0.5); }
-        .confetti { position: absolute; width: 10px; height: 10px; background-color: #f00; opacity: 0; animation: confetti-fall 3s ease-out forwards; }
-        @keyframes confetti-fall {
-            0% { opacity: 1; transform: translateY(0) rotateZ(0); }
-            100% { opacity: 0; transform: translateY(100vh) rotateZ(720deg); }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body class="p-4 sm:p-6 md:p-8">
-    <div class="container mx-auto max-w-7xl">
+<body class="auction-page bg-gray-900 text-gray-200">
+    <div class="container mx-auto max-w-7xl p-4 sm:p-6 md:p-8">
         <a href="volleyball.html" class="mb-8 inline-block bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-600">&larr; Back to Volleyball Hub</a>
         <header class="text-center mb-8">
             <h1 class="text-4xl md:text-5xl font-bold text-white tracking-tight">🏐 HWM Lab Live Auction 🏐</h1>
@@ -61,7 +24,7 @@
                     <h3 class="text-2xl font-bold text-cyan-400 mb-4">Team: SKY</h3>
                     <img id="captain1-preview" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Captain 1 Preview" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover bg-gray-700 border-2 border-cyan-400">
                     <label for="captain1-select" class="block mb-2 font-semibold">Select Captain</label>
-                    <select id="captain1-select" class="w-full max-w-xs mx-auto p-2 rounded text-white">
+                    <select id="captain1-select" class="w-full max-w-xs mx-auto p-2 rounded text-white bg-gray-700 border-gray-600">
                         <option value="">-- Select a player --</option>
                     </select>
                 </div>
@@ -69,7 +32,7 @@
                     <h3 class="text-2xl font-bold text-orange-400 mb-4">Team: Magnet</h3>
                     <img id="captain2-preview" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Captain 2 Preview" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover bg-gray-700 border-2 border-orange-400">
                     <label for="captain2-select" class="block mb-2 font-semibold">Select Captain</label>
-                    <select id="captain2-select" class="w-full max-w-xs mx-auto p-2 rounded text-white">
+                    <select id="captain2-select" class="w-full max-w-xs mx-auto p-2 rounded text-white bg-gray-700 border-gray-600">
                         <option value="">-- Select a player --</option>
                     </select>
                 </div>
@@ -81,27 +44,21 @@
 
         <main id="app" class="hidden">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                <div class="md:col-span-1 p-4 rounded-lg team-card flex flex-col items-center justify-center">
-                    <img id="refereeImage" src="https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/main/Profile_Pics/snehal.jpg" alt="Referee" class="w-20 h-20 rounded-full mb-2 object-cover border-2 border-pink-400">
+                <div class="md:col-span-1 p-4 rounded-lg info-card flex flex-col items-center justify-center">
+                    <img id="refereeImage" src="https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/main/Profile_Pics/snehal.webp" alt="Referee" class="w-20 h-20 rounded-full mb-2 object-cover border-2 border-pink-400">
                     <h3 class="text-xl font-semibold text-gray-300">Auctioneer & Referee</h3>
                     <p class="text-2xl font-bold text-pink-400 mt-1">🧑‍⚖️ Snehal</p>
                 </div>
-                <div class="md:col-span-2 p-4 rounded-lg team-card flex flex-col sm:flex-row items-center justify-around gap-4">
+                <div class="md:col-span-2 p-4 rounded-lg info-card flex flex-col sm:flex-row items-center justify-around gap-4">
                     <button id="nextPlayerBtn" class="btn w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg">Start Auction / Next Player</button>
                     <button id="resetBtn" class="btn w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg">Reset Auction</button>
                 </div>
             </div>
 
             <div id="auction-arena" class="auction-card rounded-lg p-6 mb-8 text-center hidden">
-                <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-2xl font-bold text-yellow-300">🔥 ON THE BLOCK 🔥</h2>
-                    <h3 class="text-xl font-semibold">Round: <span id="currentRoundDisplay">1</span></h3>
-                </div>
+                <div class="flex justify-between items-center mb-4"><h2 class="text-2xl font-bold text-yellow-300">🔥 ON THE BLOCK 🔥</h2><h3 class="text-xl font-semibold">Round: <span id="currentRoundDisplay">1</span></h3></div>
                 <div id="currentPlayer" class="mb-4"></div>
-                <div class="timer-container" id="timer-container">
-                    <svg class="timer-svg" viewBox="0 0 36 36"><path class="timer-circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"></path><path id="timer-progress" class="timer-circle-progress" stroke-dasharray="100, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"></path></svg>
-                    <span id="timer-text" class="timer-text">10</span>
-                </div>
+                <div class="timer-container" id="timer-container"><svg class="timer-svg" viewBox="0 0 36 36"><path class="timer-circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"></path><path id="timer-progress" class="timer-circle-progress" stroke-dasharray="100, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"></path></svg><span id="timer-text" class="timer-text">10</span></div>
                 <div class="text-4xl font-bold mb-4" id="currentBid">Base Price: 100</div>
                 <div id="auction-controls" class="flex flex-col sm:flex-row justify-center items-center gap-4">
                     <button id="sellPlayerBtn" class="btn bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg" disabled>SOLD!</button>
@@ -128,7 +85,6 @@
                     <h3 class="font-semibold mb-2">Players:</h3>
                     <ul id="team1Players" class="space-y-2"></ul>
                 </div>
-
                 <div id="team2" class="team-card p-6 rounded-lg">
                     <div id="team2-header" class="flex items-center gap-4 mb-4"></div>
                     <div class="mb-4"><p class="font-semibold">Budget: <span id="team2Budget" class="text-yellow-400">5000</span></p></div>
@@ -155,286 +111,292 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const IMG_BASE_URL = "https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/main/Profile_Pics/";
-            const masterPlayerList = [
-                { name: "Akash", image: IMG_BASE_URL + "akash.jpg" }, { name: "Bhanu", image: IMG_BASE_URL + "bhanu.jpg" },
-                { name: "Indra M. Tripathi", image: IMG_BASE_URL + "imt2.jpg" }, { name: "Jitendra", image: IMG_BASE_URL + "jitu.jpg" },
-                { name: "Kapil", image: IMG_BASE_URL + "kapil.jpg" }, { name: "Pradeep", image: IMG_BASE_URL + "pradeep.jpg" },
-                { name: "Rajesh", image: IMG_BASE_URL + "rj.jpg" }, { name: "Sumit", image: IMG_BASE_URL + "sum.jpg" },
-                { name: "Sunil Kumar", image: IMG_BASE_URL + "sunil.jpg" }, { name: "Sushil", image: IMG_BASE_URL + "sushil.jpg" },
-                { name: "Dr. Wajahat Annayat", image: IMG_BASE_URL + "wajahat.jpg", description: "Key Player (Centre)" }
-            ];
-            const initialBudget = 5000;
-            const basePrice = 100;
-            const auctionTime = 10;
-            let state = {};
-            let speechVoice = null;
+    document.addEventListener('DOMContentLoaded', () => {
+        const IMG_BASE_URL = "https://raw.githubusercontent.com/sunilkumardhayal/HWMLab/main/Profile_Pics/";
+        
+        // Corrected all image extensions to .webp
+        const masterPlayerList = [
+            { name: "Akash", image: IMG_BASE_URL + "akash.webp" },
+            { name: "Bhanu", image: IMG_BASE_URL + "bhanu.webp" },
+            { name: "Indra M. Tripathi", image: IMG_BASE_URL + "imt2.webp" },
+            { name: "Jitendra", image: IMG_BASE_URL + "jitu.webp" },
+            { name: "Kapil", image: IMG_BASE_URL + "kapil.webp" },
+            { name: "Pradeep", image: IMG_BASE_URL + "pradeep.webp" },
+            { name: "Rajesh", image: IMG_BASE_URL + "rj.webp" },
+            { name: "Sumit", image: IMG_BASE_URL + "sum.webp" },
+            { name: "Sunil Kumar", image: IMG_BASE_URL + "sunil.webp" },
+            { name: "Sushil", image: IMG_BASE_URL + "sushil.webp" },
+            { name: "Dr. Wajahat Annayat", image: IMG_BASE_URL + "wajahat.webp", description: "Key Player (Centre)" }
+        ];
 
-            const captainSelectionEl = document.getElementById('captain-selection');
-            const mainAppEl = document.getElementById('app');
-            const captain1Select = document.getElementById('captain1-select');
-            const captain2Select = document.getElementById('captain2-select');
-            const captain1Preview = document.getElementById('captain1-preview');
-            const captain2Preview = document.getElementById('captain2-preview');
-            const startAuctionBtn = document.getElementById('start-auction-btn');
-            const roundPools = { 1: document.getElementById('round1Players'), 2: document.getElementById('round2Players'), 3: document.getElementById('round3Players') };
-            const team1El = document.getElementById('team1');
-            const team2El = document.getElementById('team2');
-            const team1HeaderEl = document.getElementById('team1-header');
-            const team2HeaderEl = document.getElementById('team2-header');
-            const team1BudgetEl = document.getElementById('team1Budget');
-            const team2BudgetEl = document.getElementById('team2Budget');
-            const team1PlayersEl = document.getElementById('team1Players');
-            const team2PlayersEl = document.getElementById('team2Players');
-            const currentPlayerContainer = document.getElementById('currentPlayer');
-            const currentBidEl = document.getElementById('currentBid');
-            const nextPlayerBtn = document.getElementById('nextPlayerBtn');
-            const sellPlayerBtn = document.getElementById('sellPlayerBtn');
-            const skipPlayerBtn = document.getElementById('skipPlayerBtn');
-            const resetBtn = document.getElementById('resetBtn');
-            const bidBtns = document.querySelectorAll('.bid-btn');
-            const statusMessageEl = document.getElementById('statusMessage');
-            const auctionArena = document.getElementById('auction-arena');
-            const timerProgress = document.getElementById('timer-progress');
-            const timerText = document.getElementById('timer-text');
-            const currentRoundDisplay = document.getElementById('currentRoundDisplay');
-            const auctionControls = document.getElementById('auction-controls');
-            const refereeControls = document.getElementById('referee-controls');
-            const confirmSaleBtn = document.getElementById('confirmSaleBtn');
-            const restartTimerBtn = document.getElementById('restartTimerBtn');
-            const CIRCLE_LENGTH = 100;
+        const initialBudget = 5000;
+        const basePrice = 100;
+        const auctionTime = 10;
+        let state = {};
+        let speechVoice = null;
 
-            let soundsReady = false;
-            const bidSound = new Tone.Synth({ oscillator: { type: "sine" }, envelope: { attack: 0.005, decay: 0.1, sustain: 0.3, release: 1 } }).toDestination();
-            const soldSound = new Tone.Synth({ oscillator: { type: "triangle" }, envelope: { attack: 0.005, decay: 0.2, sustain: 0.5, release: 1 } }).toDestination();
-            const tickSound = new Tone.MembraneSynth().toDestination();
+        const captainSelectionEl = document.getElementById('captain-selection');
+        const mainAppEl = document.getElementById('app');
+        const captain1Select = document.getElementById('captain1-select');
+        const captain2Select = document.getElementById('captain2-select');
+        const captain1Preview = document.getElementById('captain1-preview');
+        const captain2Preview = document.getElementById('captain2-preview');
+        const startAuctionBtn = document.getElementById('start-auction-btn');
+        const roundPools = { 1: document.getElementById('round1Players'), 2: document.getElementById('round2Players'), 3: document.getElementById('round3Players') };
+        const team1El = document.getElementById('team1');
+        const team2El = document.getElementById('team2');
+        const team1HeaderEl = document.getElementById('team1-header');
+        const team2HeaderEl = document.getElementById('team2-header');
+        const team1BudgetEl = document.getElementById('team1Budget');
+        const team2BudgetEl = document.getElementById('team2Budget');
+        const team1PlayersEl = document.getElementById('team1Players');
+        const team2PlayersEl = document.getElementById('team2Players');
+        const currentPlayerContainer = document.getElementById('currentPlayer');
+        const currentBidEl = document.getElementById('currentBid');
+        const nextPlayerBtn = document.getElementById('nextPlayerBtn');
+        const sellPlayerBtn = document.getElementById('sellPlayerBtn');
+        const skipPlayerBtn = document.getElementById('skipPlayerBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        const bidBtns = document.querySelectorAll('.bid-btn');
+        const statusMessageEl = document.getElementById('statusMessage');
+        const auctionArena = document.getElementById('auction-arena');
+        const timerProgress = document.getElementById('timer-progress');
+        const timerText = document.getElementById('timer-text');
+        const currentRoundDisplay = document.getElementById('currentRoundDisplay');
+        const auctionControls = document.getElementById('auction-controls');
+        const refereeControls = document.getElementById('referee-controls');
+        const confirmSaleBtn = document.getElementById('confirmSaleBtn');
+        const restartTimerBtn = document.getElementById('restartTimerBtn');
+        const CIRCLE_LENGTH = 100;
+        let soundsReady = false;
+        const bidSound = new Tone.Synth({ oscillator: { type: "sine" }, envelope: { attack: 0.005, decay: 0.1, sustain: 0.3, release: 1 } }).toDestination();
+        const soldSound = new Tone.Synth({ oscillator: { type: "triangle" }, envelope: { attack: 0.005, decay: 0.2, sustain: 0.5, release: 1 } }).toDestination();
+        const tickSound = new Tone.MembraneSynth().toDestination();
 
-            document.body.addEventListener('click', async () => { if (!soundsReady) { await Tone.start(); soundsReady = true; } }, { once: true });
-            function loadVoices() { const voices = speechSynthesis.getVoices(); speechVoice = voices.find(v => v.name.includes('Female') && v.lang.includes('en')) || voices[0]; }
-            speechSynthesis.onvoiceschanged = loadVoices;
-            loadVoices();
+        document.body.addEventListener('click', async () => { if (!soundsReady) { await Tone.start(); soundsReady = true; } }, { once: true });
+        function loadVoices() { const voices = speechSynthesis.getVoices(); speechVoice = voices.find(v => v.name.includes('Female') && v.lang.includes('en')) || voices[0]; }
+        speechSynthesis.onvoiceschanged = loadVoices;
+        loadVoices();
 
-            function populateCaptainSelectors() {
-                masterPlayerList.sort((a, b) => a.name.localeCompare(b.name)).forEach(player => {
-                    [captain1Select, captain2Select].forEach(sel => sel.add(new Option(player.name, player.name)));
+        function populateCaptainSelectors() {
+            masterPlayerList.sort((a, b) => a.name.localeCompare(b.name)).forEach(player => {
+                [captain1Select, captain2Select].forEach(sel => sel.add(new Option(player.name, player.name)));
+            });
+        }
+
+        function updateCaptainSelectors() {
+            const selected1 = captain1Select.value;
+            const selected2 = captain2Select.value;
+            Array.from(captain1Select.options).forEach(opt => opt.disabled = (opt.value === selected2 && selected2 !== ""));
+            Array.from(captain2Select.options).forEach(opt => opt.disabled = (opt.value === selected1 && selected1 !== ""));
+            const captain1 = masterPlayerList.find(p => p.name === selected1);
+            captain1Preview.src = captain1 ? captain1.image : 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
+            const captain2 = masterPlayerList.find(p => p.name === selected2);
+            captain2Preview.src = captain2 ? captain2.image : 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
+            startAuctionBtn.disabled = !(selected1 && selected2 && selected1 !== selected2);
+        }
+        
+        captain1Select.addEventListener('change', updateCaptainSelectors);
+        captain2Select.addEventListener('change', updateCaptainSelectors);
+
+        startAuctionBtn.addEventListener('click', () => {
+            const captain1Name = captain1Select.value;
+            const captain2Name = captain2Select.value;
+            const captain1 = masterPlayerList.find(p => p.name === captain1Name);
+            const captain2 = masterPlayerList.find(p => p.name === captain2Name);
+            const auctionablePlayers = masterPlayerList.filter(p => p.name !== captain1Name && p.name !== captain2Name);
+            captainSelectionEl.classList.add('hidden');
+            mainAppEl.classList.remove('hidden');
+            initializeState(auctionablePlayers, captain1, captain2);
+        });
+
+        function initializeState(auctionPlayers, captain1, captain2) {
+            stopTimer();
+            state = {
+                rounds: { 1: JSON.parse(JSON.stringify(auctionPlayers)), 2: [], 3: [] }, currentRound: 1,
+                teams: {
+                    1: { name: "SKY", budget: initialBudget, players: [], captain: captain1 },
+                    2: { name: "Magnet", budget: initialBudget, players: [], captain: captain2 }
+                },
+                currentPlayer: null, currentBid: 0, highestBidder: null, auctionInProgress: false,
+                biddingTurn: Math.ceil(Math.random() * 2), timerId: null, timeLeft: auctionTime
+            };
+            renderAll();
+        }
+
+        function renderAll() { renderPlayerPools(); renderTeams(); renderAuctionArena(); updateBidButtons(); }
+
+        function renderPlayerPools() {
+            for (const round in roundPools) {
+                roundPools[round].innerHTML = '';
+                state.rounds[round].forEach(player => {
+                    const el = document.createElement('div');
+                    el.className = 'player-card p-2 rounded-lg text-center text-sm flex flex-col items-center';
+                    el.innerHTML = `<img src="${player.image}" alt="${player.name}" class="w-16 h-16 rounded-full mb-1 object-cover border-2 border-gray-600"><span class="font-semibold text-xs">${player.name}</span>`;
+                    roundPools[round].appendChild(el);
                 });
             }
+        }
 
-            function updateCaptainSelectors() {
-                const selected1 = captain1Select.value;
-                const selected2 = captain2Select.value;
-                Array.from(captain1Select.options).forEach(opt => opt.disabled = (opt.value === selected2 && selected2 !== ""));
-                Array.from(captain2Select.options).forEach(opt => opt.disabled = (opt.value === selected1 && selected1 !== ""));
-                const captain1 = masterPlayerList.find(p => p.name === selected1);
-                captain1Preview.src = captain1 ? captain1.image : 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
-                const captain2 = masterPlayerList.find(p => p.name === selected2);
-                captain2Preview.src = captain2 ? captain2.image : 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=';
-                startAuctionBtn.disabled = !(selected1 && selected2 && selected1 !== selected2);
+        function renderTeams() {
+            for (let i = 1; i <= 2; i++) {
+                const cap = state.teams[i].captain;
+                const headerEl = i === 1 ? team1HeaderEl : team2HeaderEl;
+                const budgetEl = i === 1 ? team1BudgetEl : team2BudgetEl;
+                const playersEl = i === 1 ? team1PlayersEl : team2PlayersEl;
+                const teamColor = i === 1 ? 'cyan' : 'orange';
+                headerEl.innerHTML = `<img src="${cap.image}" alt="${cap.name}" class="w-16 h-16 rounded-full object-cover border-2 border-${teamColor}-400"><h2 class="text-2xl font-bold text-${teamColor}-400">Team: ${state.teams[i].name}</h2>`;
+                budgetEl.textContent = state.teams[i].budget;
+                const capHTML = `<li class="flex items-center gap-2 py-1"><img src="${cap.image}" alt="${cap.name}" class="w-8 h-8 rounded-full object-cover border-2 border-${teamColor}-400"><span>${cap.name} <span class="text-${teamColor}-400 font-semibold">(Captain)</span></span></li>`;
+                const playersHTML = state.teams[i].players.map(p => `<li class="flex items-center gap-2 py-1"><img src="${p.image}" alt="${p.name}" class="w-8 h-8 rounded-full object-cover border-2 border-gray-600"><span>${p.name} <span class="text-gray-400">(${p.price})</span></span></li>`).join('');
+                playersEl.innerHTML = capHTML + playersHTML;
             }
-            
-            captain1Select.addEventListener('change', updateCaptainSelectors);
-            captain2Select.addEventListener('change', updateCaptainSelectors);
+            team1El.classList.toggle('highest-bidder-glow', state.highestBidder === 1);
+            team2El.classList.toggle('highest-bidder-glow', state.highestBidder === 2);
+        }
 
-            startAuctionBtn.addEventListener('click', () => {
-                const captain1Name = captain1Select.value;
-                const captain2Name = captain2Select.value;
-                const captain1 = masterPlayerList.find(p => p.name === captain1Name);
-                const captain2 = masterPlayerList.find(p => p.name === captain2Name);
-                const auctionablePlayers = masterPlayerList.filter(p => p.name !== captain1Name && p.name !== captain2Name);
-                captainSelectionEl.classList.add('hidden');
-                mainAppEl.classList.remove('hidden');
-                initializeState(auctionablePlayers, captain1, captain2);
-            });
+        function renderAuctionArena() {
+            if (state.currentPlayer) {
+                auctionArena.classList.remove('hidden');
+                currentRoundDisplay.textContent = state.currentRound;
+                currentPlayerContainer.innerHTML = `<img src="${state.currentPlayer.image}" alt="${state.currentPlayer.name}" class="w-24 h-24 rounded-full mx-auto mb-2 object-cover border-4 border-indigo-500"><p class="text-4xl font-extrabold text-white">${state.currentPlayer.name}</p>${state.currentPlayer.description ? `<p class="text-lg text-yellow-400 font-semibold mt-1">${state.currentPlayer.description}</p>` : ''}`;
+                currentBidEl.textContent = state.currentBid === 0 ? `Base Price: ${basePrice}` : `Current Bid: ${state.currentBid}`;
+                updateTimerDisplay(auctionTime);
+            } else { auctionArena.classList.add('hidden'); }
+        }
 
-            function initializeState(auctionPlayers, captain1, captain2) {
-                stopTimer();
-                state = {
-                    rounds: { 1: JSON.parse(JSON.stringify(auctionPlayers)), 2: [], 3: [] }, currentRound: 1,
-                    teams: {
-                        1: { name: "SKY", budget: initialBudget, players: [], captain: captain1 },
-                        2: { name: "Magnet", budget: initialBudget, players: [], captain: captain2 }
-                    },
-                    currentPlayer: null, currentBid: 0, highestBidder: null, auctionInProgress: false,
-                    biddingTurn: Math.ceil(Math.random() * 2), timerId: null, timeLeft: auctionTime
-                };
-                renderAll();
-            }
+        function announce(text) { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text); if (speechVoice) u.voice = speechVoice; u.rate = 0.8; u.pitch = 1.1; speechSynthesis.speak(u); }
 
-            function renderAll() { renderPlayerPools(); renderTeams(); renderAuctionArena(); updateBidButtons(); }
+        function selectNextPlayer() {
+            while (state.rounds[state.currentRound].length === 0 && state.currentRound < 3) { state.currentRound++; showStatus(`Starting Round ${state.currentRound}!`, "info"); }
+            const pool = state.rounds[state.currentRound];
+            if (pool.length === 0) { endAuction(); return; }
+            state.currentPlayer = pool.splice(Math.floor(Math.random() * pool.length), 1)[0];
+            state.currentBid = 0; state.highestBidder = null; state.auctionInProgress = true;
+            announce(`The next player is... ${state.currentPlayer.name.replace(/ /g, '... ')}`);
+            showStatus(`${state.currentPlayer.name} is now up for auction!`, "normal");
+            renderAll();
+            sellPlayerBtn.disabled = true; skipPlayerBtn.disabled = false;
+            startTimer();
+        }
 
-            function renderPlayerPools() {
-                for (const round in roundPools) {
-                    roundPools[round].innerHTML = '';
-                    state.rounds[round].forEach(player => {
-                        const el = document.createElement('div');
-                        el.className = 'player-card p-2 rounded-lg text-center text-sm flex flex-col items-center';
-                        el.innerHTML = `<img src="${player.image}" alt="${player.name}" class="w-16 h-16 rounded-full mb-1 object-cover border-2 border-gray-600"><span class="font-semibold text-xs">${player.name}</span>`;
-                        roundPools[round].appendChild(el);
-                    });
-                }
-            }
-
-            function renderTeams() {
-                for (let i = 1; i <= 2; i++) {
-                    const cap = state.teams[i].captain;
-                    const headerEl = i === 1 ? team1HeaderEl : team2HeaderEl;
-                    const budgetEl = i === 1 ? team1BudgetEl : team2BudgetEl;
-                    const playersEl = i === 1 ? team1PlayersEl : team2PlayersEl;
-                    const teamColor = i === 1 ? 'cyan' : 'orange';
-                    headerEl.innerHTML = `<img src="${cap.image}" alt="${cap.name}" class="w-16 h-16 rounded-full object-cover border-2 border-${teamColor}-400"><h2 class="text-2xl font-bold text-${teamColor}-400">Team: ${state.teams[i].name}</h2>`;
-                    budgetEl.textContent = state.teams[i].budget;
-                    const capHTML = `<li class="flex items-center gap-2 py-1"><img src="${cap.image}" alt="${cap.name}" class="w-8 h-8 rounded-full object-cover border-2 border-${teamColor}-400"><span>${cap.name} <span class="text-${teamColor}-400 font-semibold">(Captain)</span></span></li>`;
-                    const playersHTML = state.teams[i].players.map(p => `<li class="flex items-center gap-2 py-1"><img src="${p.image}" alt="${p.name}" class="w-8 h-8 rounded-full object-cover border-2 border-gray-600"><span>${p.name} <span class="text-gray-400">(${p.price})</span></span></li>`).join('');
-                    playersEl.innerHTML = capHTML + playersHTML;
-                }
-                team1El.classList.toggle('highest-bidder-glow', state.highestBidder === 1);
-                team2El.classList.toggle('highest-bidder-glow', state.highestBidder === 2);
-            }
-
-            function renderAuctionArena() {
-                if (state.currentPlayer) {
-                    auctionArena.classList.remove('hidden');
-                    currentRoundDisplay.textContent = state.currentRound;
-                    currentPlayerContainer.innerHTML = `<img src="${state.currentPlayer.image}" alt="${state.currentPlayer.name}" class="w-24 h-24 rounded-full mx-auto mb-2 object-cover border-4 border-indigo-500"><p class="text-4xl font-extrabold text-white">${state.currentPlayer.name}</p>${state.currentPlayer.description ? `<p class="text-lg text-yellow-400 font-semibold mt-1">${state.currentPlayer.description}</p>` : ''}`;
-                    currentBidEl.textContent = state.currentBid === 0 ? `Base Price: ${basePrice}` : `Current Bid: ${state.currentBid}`;
-                    updateTimerDisplay(auctionTime);
-                } else { auctionArena.classList.add('hidden'); }
-            }
-
-            function announce(text) { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text); if (speechVoice) u.voice = speechVoice; u.rate = 0.8; u.pitch = 1.1; speechSynthesis.speak(u); }
-
-            function selectNextPlayer() {
-                while (state.rounds[state.currentRound].length === 0 && state.currentRound < 3) { state.currentRound++; showStatus(`Starting Round ${state.currentRound}!`, "info"); }
-                const pool = state.rounds[state.currentRound];
-                if (pool.length === 0) { endAuction(); return; }
-                state.currentPlayer = pool.splice(Math.floor(Math.random() * pool.length), 1)[0];
-                state.currentBid = 0; state.highestBidder = null; state.auctionInProgress = true;
-                announce(`The next player is... ${state.currentPlayer.name.replace(/ /g, '... ')}`);
-                showStatus(`${state.currentPlayer.name} is now up for auction!`, "normal");
-                renderAll();
-                sellPlayerBtn.disabled = true; skipPlayerBtn.disabled = false;
-                startTimer();
-            }
-
-            function placeBid(teamId, amount) {
-                if (soundsReady) bidSound.triggerAttackRelease("C5", "8n");
+        function placeBid(teamId, amount) {
+            if (soundsReady) bidSound.triggerAttackRelease("C5", "8n");
+            const team = state.teams[teamId];
+            const newBid = state.currentBid === 0 ? Math.max(basePrice, amount) : state.currentBid + amount;
+            if (team.budget < newBid) { showStatus(`Team ${team.name} has insufficient funds!`, "error"); return; }
+            if (state.biddingTurn != teamId && state.highestBidder !== null) { showStatus(`It's not your turn to bid!`, "error"); return; }
+            state.currentBid = newBid; state.highestBidder = teamId; state.biddingTurn = teamId == 1 ? 2 : 1;
+            showStatus(`Team ${team.name} bids ${state.currentBid}!`, "normal");
+            renderAll();
+            sellPlayerBtn.disabled = false; skipPlayerBtn.disabled = true;
+            startTimer();
+        }
+        
+        function updateBidButtons() {
+            if (!state.auctionInProgress) { bidBtns.forEach(btn => btn.disabled = true); return; }
+            bidBtns.forEach(btn => {
+                const teamId = btn.dataset.team;
+                const amount = parseInt(btn.dataset.amount, 10);
                 const team = state.teams[teamId];
                 const newBid = state.currentBid === 0 ? Math.max(basePrice, amount) : state.currentBid + amount;
-                if (team.budget < newBid) { showStatus(`Team ${team.name} has insufficient funds!`, "error"); return; }
-                if (state.biddingTurn != teamId && state.highestBidder !== null) { showStatus(`It's not your turn to bid!`, "error"); return; }
-                state.currentBid = newBid; state.highestBidder = teamId; state.biddingTurn = teamId == 1 ? 2 : 1;
-                showStatus(`Team ${team.name} bids ${state.currentBid}!`, "normal");
-                renderAll();
-                sellPlayerBtn.disabled = false; skipPlayerBtn.disabled = true;
-                startTimer();
-            }
-            
-            function updateBidButtons() {
-                if (!state.auctionInProgress) { bidBtns.forEach(btn => btn.disabled = true); return; }
-                bidBtns.forEach(btn => {
-                    const teamId = btn.dataset.team;
-                    const amount = parseInt(btn.dataset.amount, 10);
-                    const team = state.teams[teamId];
-                    const newBid = state.currentBid === 0 ? Math.max(basePrice, amount) : state.currentBid + amount;
-                    btn.disabled = (state.biddingTurn != teamId && state.highestBidder !== null) || team.budget < newBid;
-                });
-            }
-            
-            function sellPlayer() {
-                stopTimer();
-                if (!state.highestBidder) { showStatus("No bids placed!", "error"); return; }
-                if (soundsReady) soldSound.triggerAttackRelease("G5", "8n", Tone.now() + 0.2);
-                launchConfetti();
-                const team = state.teams[state.highestBidder];
-                team.budget -= state.currentBid;
-                team.players.push({ name: state.currentPlayer.name, price: state.currentBid, image: state.currentPlayer.image });
-                const msg = `${state.currentPlayer.name} sold to Team ${team.name} for ${state.currentBid}!`;
-                showStatus(msg, "success", 5000); announce(msg);
-                resetAuctionRound();
-            }
-
-            function skipPlayer(isAuto = false) {
-                stopTimer();
-                const player = state.currentPlayer;
-                if (state.currentRound < 3) {
-                    state.rounds[state.currentRound + 1].push(player);
-                    showStatus(`${player.name} was skipped and moves to Round ${state.currentRound + 1}.`, "info", 5000);
-                } else {
-                    const t1c = state.teams[1].players.length, t2c = state.teams[2].players.length;
-                    let id = (t1c < t2c) ? 1 : (t2c < t1c) ? 2 : (state.teams[1].budget >= state.teams[2].budget ? 1 : 2);
-                    const team = state.teams[id];
-                    team.budget -= basePrice;
-                    team.players.push({ name: player.name, price: basePrice, image: player.image });
-                    const msg = `${player.name} was auto-assigned to Team ${team.name} for ${basePrice}.`;
-                    showStatus(msg, "info", 5000); announce(msg);
-                }
-                resetAuctionRound();
-            }
-
-            function resetAuctionRound() {
-                state.currentPlayer = null; state.currentBid = 0; state.highestBidder = null; state.auctionInProgress = false;
-                skipPlayerBtn.disabled = true;
-                auctionControls.classList.remove('hidden'); auctionControls.classList.add('flex');
-                refereeControls.classList.add('hidden');
-                renderAll();
-            }
-            
-            function endAuction() {
-                stopTimer();
-                state.auctionInProgress = false;
-                updateBidButtons();
-                nextPlayerBtn.disabled = true; sellPlayerBtn.disabled = true; skipPlayerBtn.disabled = true;
-                const t1s = initialBudget - state.teams[1].budget;
-                const t2s = initialBudget - state.teams[2].budget;
-                let msg = `Auction Over! Team SKY spent ${t1s}. Team Magnet spent ${t2s}. Teams are now saved.`;
-                showStatus(msg, "info", 10000);
-                // *** THIS IS THE NEW, IMPORTANT PART ***
-                localStorage.setItem('volleyballTeams', JSON.stringify(state.teams));
-            }
-            
-            function updateTimerDisplay(time) {
-                timerProgress.style.strokeDashoffset = CIRCLE_LENGTH - (time / auctionTime) * CIRCLE_LENGTH;
-                timerText.textContent = time;
-                timerProgress.style.stroke = time <= 8 ? "#ef4444" : "#4f46e5";
-                if (soundsReady && time <= 8 && time > 0) tickSound.triggerAttackRelease("C2", "8n");
-            }
-            function handleTimerEnd() {
-                stopTimer();
-                showStatus("Time's up! Referee's decision.", "info");
-                auctionControls.classList.add('hidden');
-                refereeControls.classList.remove('hidden'); refereeControls.classList.add('flex');
-                confirmSaleBtn.textContent = state.highestBidder ? "Confirm Sale" : "Confirm Skip/Assign";
-                bidBtns.forEach(btn => btn.disabled = true);
-            }
-            function startTimer() {
-                stopTimer(); state.timeLeft = auctionTime; updateTimerDisplay(state.timeLeft);
-                state.timerId = setInterval(() => { state.timeLeft--; updateTimerDisplay(state.timeLeft); if (state.timeLeft <= 0) handleTimerEnd(); }, 1000);
-            }
-            function stopTimer() { clearInterval(state.timerId); state.timerId = null; }
-            function showStatus(message, type = 'normal', duration = 3000) {
-                statusMessageEl.textContent = message;
-                statusMessageEl.className = 'status-message text-center text-lg font-medium mb-8 h-8';
-                const colorClass = { success: 'text-green-400', error: 'text-red-400', info: 'text-blue-400' }[type] || 'text-gray-300';
-                statusMessageEl.classList.add(colorClass);
-                setTimeout(() => { if (statusMessageEl.textContent === message) statusMessageEl.textContent = ''; }, duration);
-            }
-            function launchConfetti() { for (let i = 0; i < 100; i++) { const c = document.createElement('div'); c.className = 'confetti'; c.style.left = `${Math.random() * 100}vw`; c.style.backgroundColor = `hsl(${Math.random() * 360}, 90%, 60%)`; c.style.animationDelay = `${Math.random() * 2}s`; document.body.appendChild(c); setTimeout(() => c.remove(), 3000); } }
-
-            nextPlayerBtn.addEventListener('click', selectNextPlayer);
-            sellPlayerBtn.addEventListener('click', sellPlayer);
-            skipPlayerBtn.addEventListener('click', () => skipPlayer(false));
-            resetBtn.addEventListener('click', () => { if (confirm("Reset auction?")) window.location.reload(); });
-            bidBtns.forEach(btn => btn.addEventListener('click', (e) => placeBid(e.target.dataset.team, parseInt(e.target.dataset.amount, 10))));
-            confirmSaleBtn.addEventListener('click', () => state.highestBidder ? sellPlayer() : skipPlayer(true));
-            restartTimerBtn.addEventListener('click', () => {
-                auctionControls.classList.remove('hidden'); auctionControls.classList.add('flex');
-                refereeControls.classList.add('hidden');
-                updateBidButtons(); startTimer();
+                btn.disabled = (state.biddingTurn != teamId && state.highestBidder !== null) || team.budget < newBid;
             });
+        }
+        
+        function sellPlayer() {
+            stopTimer();
+            if (!state.highestBidder) { showStatus("No bids placed!", "error"); return; }
+            if (soundsReady) soldSound.triggerAttackRelease("G5", "8n", Tone.now() + 0.2);
+            launchConfetti();
+            const team = state.teams[state.highestBidder];
+            team.budget -= state.currentBid;
+            team.players.push({ name: state.currentPlayer.name, price: state.currentBid, image: state.currentPlayer.image });
+            const msg = `${state.currentPlayer.name} sold to Team ${team.name} for ${state.currentBid}!`;
+            showStatus(msg, "success", 5000); announce(msg);
+            resetAuctionRound();
+        }
 
-            populateCaptainSelectors();
+        function skipPlayer(isAuto = false) {
+            stopTimer();
+            const player = state.currentPlayer;
+            if (state.currentRound < 3) {
+                state.rounds[state.currentRound + 1].push(player);
+                showStatus(`${player.name} was skipped and moves to Round ${state.currentRound + 1}.`, "info", 5000);
+            } else {
+                const t1c = state.teams[1].players.length, t2c = state.teams[2].players.length;
+                let id = (t1c < t2c) ? 1 : (t2c < t1c) ? 2 : (state.teams[1].budget >= state.teams[2].budget ? 1 : 2);
+                const team = state.teams[id];
+                team.budget -= basePrice;
+                team.players.push({ name: player.name, price: basePrice, image: player.image });
+                const msg = `${player.name} was auto-assigned to Team ${team.name} for ${basePrice}.`;
+                showStatus(msg, "info", 5000); announce(msg);
+            }
+            resetAuctionRound();
+        }
+
+        function resetAuctionRound() {
+            state.currentPlayer = null; state.currentBid = 0; state.highestBidder = null; state.auctionInProgress = false;
+            skipPlayerBtn.disabled = true;
+            auctionControls.classList.remove('hidden'); auctionControls.classList.add('flex');
+            refereeControls.classList.add('hidden');
+            renderAll();
+        }
+        
+        function endAuction() {
+            stopTimer();
+            state.auctionInProgress = false;
+            updateBidButtons();
+            nextPlayerBtn.disabled = true; sellPlayerBtn.disabled = true; skipPlayerBtn.disabled = true;
+            const t1s = initialBudget - state.teams[1].budget;
+            const t2s = initialBudget - state.teams[2].budget;
+            let msg = `Auction Over! Team SKY spent ${t1s}. Team Magnet spent ${t2s}. Teams are now saved.`;
+            showStatus(msg, "info", 10000);
+            localStorage.setItem('volleyballTeams', JSON.stringify(state.teams));
+        }
+        
+        function updateTimerDisplay(time) {
+            timerProgress.style.strokeDashoffset = CIRCLE_LENGTH - (time / auctionTime) * CIRCLE_LENGTH;
+            timerText.textContent = time;
+            timerProgress.style.stroke = time <= 8 ? "#ef4444" : "#4f46e5";
+            if (soundsReady && time <= 8 && time > 0) tickSound.triggerAttackRelease("C2", "8n");
+        }
+        function handleTimerEnd() {
+            stopTimer();
+            showStatus("Time's up! Referee's decision.", "info");
+            auctionControls.classList.add('hidden');
+            refereeControls.classList.remove('hidden'); refereeControls.classList.add('flex');
+            confirmSaleBtn.textContent = state.highestBidder ? "Confirm Sale" : "Confirm Skip/Assign";
+            bidBtns.forEach(btn => btn.disabled = true);
+        }
+        function startTimer() {
+            stopTimer(); state.timeLeft = auctionTime; updateTimerDisplay(state.timeLeft);
+            state.timerId = setInterval(() => { state.timeLeft--; updateTimerDisplay(state.timeLeft); if (state.timeLeft <= 0) handleTimerEnd(); }, 1000);
+        }
+        function stopTimer() { clearInterval(state.timerId); state.timerId = null; }
+        function showStatus(message, type = 'normal', duration = 3000) {
+            statusMessageEl.textContent = message;
+            statusMessageEl.className = 'status-message text-center text-lg font-medium mb-8 h-8';
+            const colorClass = { success: 'text-green-400', error: 'text-red-400', info: 'text-blue-400' }[type] || 'text-gray-300';
+            statusMessageEl.classList.add(colorClass);
+            setTimeout(() => { if (statusMessageEl.textContent === message) statusMessageEl.textContent = ''; }, duration);
+        }
+        function launchConfetti() { for (let i = 0; i < 100; i++) { const c = document.createElement('div'); c.className = 'confetti'; c.style.left = `${Math.random() * 100}vw`; c.style.backgroundColor = `hsl(${Math.random() * 360}, 90%, 60%)`; c.style.animationDelay = `${Math.random() * 2}s`; document.body.appendChild(c); setTimeout(() => c.remove(), 3000); } }
+
+        nextPlayerBtn.addEventListener('click', selectNextPlayer);
+        sellPlayerBtn.addEventListener('click', sellPlayer);
+        skipPlayerBtn.addEventListener('click', () => skipPlayer(false));
+        resetBtn.addEventListener('click', () => { if (confirm("Reset auction?")) window.location.reload(); });
+        bidBtns.forEach(btn => btn.addEventListener('click', (e) => placeBid(e.target.dataset.team, parseInt(e.target.dataset.amount, 10))));
+        confirmSaleBtn.addEventListener('click', () => state.highestBidder ? sellPlayer() : skipPlayer(true));
+        restartTimerBtn.addEventListener('click', () => {
+            auctionControls.classList.remove('hidden'); auctionControls.classList.add('flex');
+            refereeControls.classList.add('hidden');
+            updateBidButtons(); startTimer();
         });
+
+        populateCaptainSelectors();
+    });
     </script>
 </body>
 </html>
