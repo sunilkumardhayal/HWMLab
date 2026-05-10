@@ -4,27 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="description" content="Sunil Kumar is a PhD research scholar at IIT Gandhinagar working on hydraulics, CFD, vortex drop shafts, river basin planning, and urban water systems.">
-    <meta name="keywords" content="Sunil Kumar, IIT Gandhinagar, Civil Engineering, Hydraulics, CFD, FLOW-3D HYDRO, Vortex Drop Shafts, Water Management">
+    <meta name="description" content="Sunil Kumar is a hydraulics and CFD researcher at IIT Gandhinagar working on vortex drop shafts, river basin planning, geospatial water-risk mapping, and decision-ready water infrastructure research.">
+    <meta name="keywords" content="Sunil Kumar, IIT Gandhinagar, Civil Engineering, Hydraulics, CFD, FLOW-3D HYDRO, Vortex Drop Shafts, Water Infrastructure, River Basin Planning, GLOF Mapping">
     <meta name="author" content="Sunil Kumar">
     
-    <meta property="og:title" content="Sunil Kumar - Hydraulics and CFD Research Portfolio">
-    <meta property="og:description" content="Research portfolio covering CFD hydraulics, vortex drop shafts, river basin planning, urban water systems, and geospatial hazard assessment.">
-    <meta property="og:image" content="https://sunilkumardhayal.github.io/profile.webp">
-    <meta property="og:url" content="https://sunilkumardhayal.github.io/">
+    <meta property="og:title" content="Sunil Kumar - Hydraulics, CFD & Water Infrastructure Research">
+    <meta property="og:description" content="Decision-ready hydraulics, CFD, river basin planning, and geospatial water-risk research from IIT Gandhinagar.">
+    <meta property="og:image" content="https://sunilkumardhayal.github.io/HWMLab/profile.webp">
+    <meta property="og:url" content="https://sunilkumardhayal.github.io/HWMLab/">
     <meta property="og:type" content="profile">
     <meta property="og:site_name" content="Sunil Kumar Portfolio">
     <meta property="og:locale" content="en_US">
 
-    <title>Sunil Kumar - Hydraulics and CFD Research Portfolio</title>
+    <title>Sunil Kumar - Hydraulics, CFD & Water Infrastructure Research</title>
     <link rel="icon" href="profile.webp" type="image/webp">
     <link rel="stylesheet" href="css/tailwind-build.css">
-    <link rel="canonical" href="https://sunilkumardhayal.github.io/">
+    <link rel="canonical" href="https://sunilkumardhayal.github.io/HWMLab/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@Sunil_Dhaayal">
-<meta name="twitter:title" content="Sunil Kumar - Hydraulics and CFD Research Portfolio">
-<meta name="twitter:description" content="CFD hydraulics, vortex drop shafts, river basin planning, urban water systems, and geospatial hazard assessment.">
-<meta name="twitter:image" content="https://sunilkumardhayal.github.io/profile.webp">
+<meta name="twitter:title" content="Sunil Kumar - Hydraulics, CFD & Water Infrastructure Research">
+<meta name="twitter:description" content="Decision-ready CFD hydraulics, vortex drop shafts, river basin planning, and geospatial water-risk research.">
+<meta name="twitter:image" content="https://sunilkumardhayal.github.io/HWMLab/profile.webp">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -65,21 +65,348 @@
         body {
             font-family: 'Inter', sans-serif;
         }
-        .hero-bg {
-            background-color: #0f172a;
+        :root {
+            --ink: #0b1220;
+            --muted: #475569;
+            --line: #dbe4ef;
+            --blue: #1d4ed8;
+            --cyan: #0e7490;
+            --green: #047857;
+            --gold: #b7791f;
+            --paper: #f8fafc;
+        }
+        body {
+            background: #f8fafc;
+        }
+        .premium-hero {
+            position: relative;
+            overflow: hidden;
+            color: var(--ink);
+            background:
+                linear-gradient(135deg, rgba(248, 250, 252, 0.98), rgba(237, 247, 251, 0.96) 52%, rgba(250, 246, 236, 0.98)),
+                linear-gradient(180deg, #ffffff, #f8fafc);
+        }
+        .premium-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
             background-image:
-                linear-gradient(135deg, rgba(15, 23, 42, 0.98), rgba(30, 41, 59, 0.96) 58%, rgba(15, 76, 92, 0.9)),
-                linear-gradient(180deg, rgba(15, 23, 42, 0.25), rgba(15, 23, 42, 0.72));
-            background-size: cover;
+                linear-gradient(rgba(15, 23, 42, 0.055) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(15, 23, 42, 0.055) 1px, transparent 1px);
+            background-size: 44px 44px;
+            mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.03) 72%);
         }
-        .hero-image-grid {
-            grid-template-columns: 1.1fr 0.9fr;
-            grid-template-rows: 11rem 11rem;
+        .hero-shell {
+            position: relative;
+            display: grid;
+            grid-template-columns: minmax(0, 1.02fr) minmax(360px, 0.98fr);
+            gap: 44px;
+            align-items: center;
+            padding: 72px 0 48px;
         }
-        @media (max-width: 640px) {
-            .hero-image-grid {
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: 8rem 8rem;
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 18px;
+            color: var(--cyan);
+            font-weight: 800;
+            letter-spacing: 0;
+        }
+        .hero-eyebrow::before {
+            content: "";
+            width: 34px;
+            height: 2px;
+            background: var(--cyan);
+        }
+        .hero-title {
+            font-size: clamp(3rem, 6vw, 5.75rem);
+            line-height: 0.96;
+            font-weight: 900;
+            letter-spacing: 0;
+            margin: 0;
+        }
+        .hero-role {
+            margin-top: 14px;
+            color: #334155;
+            font-weight: 700;
+            font-size: clamp(1.05rem, 2vw, 1.35rem);
+        }
+        .hero-lede {
+            margin-top: 22px;
+            max-width: 680px;
+            color: #1e293b;
+            font-size: clamp(1.08rem, 2vw, 1.28rem);
+            line-height: 1.65;
+        }
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 30px;
+        }
+        .premium-button,
+        .premium-button-secondary {
+            display: inline-flex;
+            min-height: 48px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            padding: 0 18px;
+            font-weight: 800;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        }
+        .premium-button {
+            background: var(--blue);
+            color: #ffffff;
+            box-shadow: 0 16px 30px rgba(29, 78, 216, 0.22);
+        }
+        .premium-button-secondary {
+            border: 1px solid #b7c5d8;
+            background: rgba(255, 255, 255, 0.74);
+            color: var(--ink);
+        }
+        .premium-button:hover,
+        .premium-button-secondary:hover {
+            transform: translateY(-2px);
+        }
+        .hero-proof-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 34px;
+            max-width: 760px;
+        }
+        .hero-proof {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.78);
+            padding: 15px;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.07);
+        }
+        .hero-proof strong {
+            display: block;
+            color: var(--ink);
+            font-size: 1rem;
+        }
+        .hero-proof span {
+            display: block;
+            margin-top: 4px;
+            color: var(--muted);
+            font-size: 0.86rem;
+            line-height: 1.35;
+        }
+        .hero-visual {
+            display: grid;
+            grid-template-columns: 1.08fr 0.92fr;
+            gap: 14px;
+            align-items: stretch;
+        }
+        .portrait-card,
+        .evidence-card {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(15, 23, 42, 0.12);
+            border-radius: 8px;
+            background: #ffffff;
+            box-shadow: 0 22px 55px rgba(15, 23, 42, 0.16);
+        }
+        .portrait-card {
+            min-height: 454px;
+        }
+        .evidence-card {
+            min-height: 220px;
+        }
+        .portrait-card img,
+        .evidence-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .evidence-stack {
+            display: grid;
+            gap: 14px;
+        }
+        .visual-caption {
+            position: absolute;
+            inset-inline: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0), rgba(15, 23, 42, 0.88));
+            color: #ffffff;
+            padding: 40px 16px 14px;
+            font-weight: 800;
+        }
+        .visual-caption span {
+            display: block;
+            margin-top: 3px;
+            color: #dbeafe;
+            font-size: 0.86rem;
+            font-weight: 600;
+        }
+        .partner-strip {
+            border-top: 1px solid rgba(15, 23, 42, 0.08);
+            border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+            background: #0f172a;
+            color: #ffffff;
+        }
+        .partner-strip-inner {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 28px;
+            align-items: center;
+            padding: 22px 0;
+        }
+        .partner-strip strong {
+            color: #67e8f9;
+        }
+        .partner-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+        .partner-tags span {
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 999px;
+            padding: 8px 12px;
+            color: #e2e8f0;
+            background: rgba(255, 255, 255, 0.06);
+            font-size: 0.92rem;
+        }
+        .collab-section {
+            background: #ffffff;
+            border-bottom: 1px solid var(--line);
+        }
+        .section-kicker {
+            color: var(--cyan);
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+        .section-heading {
+            color: var(--ink);
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1.08;
+            font-weight: 900;
+            margin: 0;
+            letter-spacing: 0;
+        }
+        .section-intro {
+            color: var(--muted);
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+        .collab-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 18px;
+            margin-top: 34px;
+        }
+        .collab-card {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: #ffffff;
+            padding: 24px;
+            box-shadow: 0 16px 34px rgba(15, 23, 42, 0.08);
+        }
+        .collab-card .card-mark {
+            display: inline-flex;
+            width: 34px;
+            height: 34px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            background: #e0f2fe;
+            color: #075985;
+            font-weight: 900;
+            margin-bottom: 16px;
+        }
+        .collab-card h3 {
+            color: var(--ink);
+            font-size: 1.08rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+        }
+        .collab-card p {
+            color: var(--muted);
+            line-height: 1.62;
+        }
+        .contact-premium {
+            color: var(--ink);
+            background:
+                linear-gradient(135deg, #f8fafc, #edf7f9 48%, #faf6ec);
+        }
+        .contact-panel {
+            display: grid;
+            grid-template-columns: minmax(0, 0.95fr) minmax(340px, 1.05fr);
+            gap: 34px;
+            align-items: start;
+        }
+        .contact-card {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.86);
+            padding: 30px;
+            box-shadow: 0 18px 42px rgba(15, 23, 42, 0.1);
+        }
+        .contact-card input,
+        .contact-card textarea {
+            background: #ffffff;
+            color: var(--ink);
+        }
+        .contact-list {
+            display: grid;
+            gap: 14px;
+            margin-top: 28px;
+        }
+        .contact-list a,
+        .contact-list span {
+            color: #1e293b;
+            overflow-wrap: anywhere;
+        }
+        .contact-list strong {
+            display: block;
+            color: var(--cyan);
+            font-size: 0.85rem;
+            margin-bottom: 2px;
+        }
+        @media (max-width: 1024px) {
+            .hero-shell,
+            .contact-panel {
+                grid-template-columns: 1fr;
+            }
+            .hero-visual {
+                max-width: 720px;
+            }
+            .collab-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+        @media (max-width: 720px) {
+            .hero-shell {
+                padding: 48px 0 34px;
+                gap: 30px;
+            }
+            .hero-actions {
+                display: grid;
+            }
+            .hero-proof-grid,
+            .collab-grid,
+            .partner-strip-inner {
+                grid-template-columns: 1fr;
+            }
+            .partner-tags {
+                justify-content: flex-start;
+            }
+            .hero-visual {
+                grid-template-columns: 1fr;
+            }
+            .portrait-card,
+            .evidence-card {
+                min-height: 280px;
+            }
+            .evidence-stack {
+                grid-template-columns: 1fr;
             }
         }
         /* Styles for the Back to Top button */
@@ -146,55 +473,63 @@
     </header>
 
     <main>
-        <section id="home" class="hero-bg text-white py-12 md:py-16 lg:py-20">
+        <section id="home" class="premium-hero">
             <div class="container mx-auto px-6">
-                <div class="grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-14 items-center">
-                    <div class="text-center lg:text-left">
-                        <p class="text-base md:text-lg font-semibold text-cyan-100 mb-3">PhD Scholar in Hydraulics, IIT Gandhinagar</p>
-                        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-5">Sunil Kumar</h1>
-                        <p class="text-lg md:text-xl text-slate-100 leading-relaxed max-w-3xl mx-auto lg:mx-0 mb-6">
-                            Translating hydraulic research into design insight for safer drainage structures, river systems, and urban water infrastructure.
+                <div class="hero-shell">
+                    <div>
+                        <p class="hero-eyebrow">Hydraulics, CFD, and water-risk systems</p>
+                        <h1 class="hero-title">Sunil Kumar</h1>
+                        <p class="hero-role">PhD Research Scholar, Civil Engineering, IIT Gandhinagar</p>
+                        <p class="hero-lede">
+                            I turn complex hydraulic, geospatial, and computational evidence into clear engineering insight for safer drainage structures, river basins, urban water systems, and water-risk decisions.
                         </p>
-                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl mx-auto lg:mx-0 mb-8">
-                            <div class="border border-white/10 bg-slate-950/35 px-3 py-3 rounded-lg">
-                                <p class="text-base font-semibold">CFD</p>
-                                <p class="text-sm text-slate-200">Hydraulics</p>
-                            </div>
-                            <div class="border border-white/10 bg-slate-950/35 px-3 py-3 rounded-lg">
-                                <p class="text-base font-semibold">Vortex</p>
-                                <p class="text-sm text-slate-200">Drop shafts</p>
-                            </div>
-                            <div class="border border-white/10 bg-slate-950/35 px-3 py-3 rounded-lg">
-                                <p class="text-base font-semibold">GIS</p>
-                                <p class="text-sm text-slate-200">River basins</p>
-                            </div>
-                            <div class="border border-white/10 bg-slate-950/35 px-3 py-3 rounded-lg">
-                                <p class="text-base font-semibold">WSUD</p>
-                                <p class="text-sm text-slate-200">Urban water</p>
-                            </div>
+                        <div class="hero-actions">
+                            <a href="#contact" class="premium-button">Discuss Collaboration</a>
+                            <a href="#projects" class="premium-button-secondary">View Case Studies</a>
+                            <a href="Sunil_CV.pdf" target="_blank" class="premium-button-secondary">Download CV</a>
                         </div>
-                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3">
-                            <a href="#projects" class="w-full sm:w-auto bg-cyan-400 text-slate-950 px-8 py-3 rounded-lg text-base font-semibold hover:bg-cyan-300 transition duration-300 shadow-lg">View Research</a>
-                            <a href="Sunil_CV.pdf" target="_blank" class="w-full sm:w-auto border border-white/25 bg-slate-950/30 text-white px-8 py-3 rounded-lg text-base font-semibold hover:bg-white hover:text-slate-950 transition duration-300 shadow-lg">Download CV</a>
-                            <a href="#contact" class="w-full sm:w-auto border border-white/25 bg-slate-950/30 text-white px-8 py-3 rounded-lg text-base font-semibold hover:bg-white hover:text-slate-950 transition duration-300 shadow-lg">Collaborate</a>
+                        <div class="hero-proof-grid" aria-label="Research credibility highlights">
+                            <div class="hero-proof">
+                                <strong>CFD hydraulics</strong>
+                                <span>FLOW-3D HYDRO for vortex drop shafts, intakes, and free-surface flow.</span>
+                            </div>
+                            <div class="hero-proof">
+                                <strong>Water systems</strong>
+                                <span>River-basin planning, WSUD, stormwater, and wastewater analysis.</span>
+                            </div>
+                            <div class="hero-proof">
+                                <strong>Geo-risk mapping</strong>
+                                <span>Remote sensing, GIS, and ML for GLOF and flood-hazard evidence.</span>
+                            </div>
+                            <div class="hero-proof">
+                                <strong>Research record</strong>
+                                <span>Published review; 8 years GATE qualified across disciplines.</span>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="max-w-xl mx-auto lg:mx-0 w-full">
-                        <div class="grid hero-image-grid gap-3">
-                            <figure class="row-span-2 relative overflow-hidden rounded-lg border border-white/10 bg-slate-950/30 shadow-2xl">
-                                <img src="profile.webp" alt="Headshot of Sunil Kumar, a civil engineering researcher" class="h-full w-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/420x520/0F172A/FFFFFF?text=Sunil+Kumar';" decoding="async" fetchpriority="high">
-                                <figcaption class="absolute inset-x-0 bottom-0 bg-slate-950/75 px-4 py-3 text-sm text-slate-100">
-                                    Civil Engineering, IIT Gandhinagar
+                    <div class="hero-visual" aria-label="Selected visual evidence from research portfolio">
+                        <figure class="portrait-card">
+                            <img src="profile.webp" alt="Headshot of Sunil Kumar, a civil engineering hydraulics researcher" onerror="this.onerror=null;this.src='https://placehold.co/460x560/F8FAFC/0B1220?text=Sunil+Kumar';" decoding="async" fetchpriority="high">
+                            <figcaption class="visual-caption">
+                                Civil Engineering, IIT Gandhinagar
+                                <span>Hydraulics, CFD, water infrastructure research</span>
+                            </figcaption>
+                        </figure>
+                        <div class="evidence-stack">
+                            <figure class="evidence-card">
+                                <img src="assets/optimized/chichlik-project-collage.webp" alt="CFD visual evidence for Chichlik pumped storage hydraulic assessment" onerror="this.onerror=null;this.src='https://placehold.co/360x220/E0F2FE/0B1220?text=CFD+Hydraulics';" decoding="async" loading="lazy" fetchpriority="low">
+                                <figcaption class="visual-caption">
+                                    Pumped-storage CFD
+                                    <span>Velocity, pressure, free surface, anti-vortex design</span>
                                 </figcaption>
                             </figure>
-                            <figure class="relative overflow-hidden rounded-lg border border-white/10 bg-slate-950/30 shadow-xl">
-                                <img src="assets/optimized/chichlik-project-collage.webp" alt="CFD visualization and project collage for vortex drop shaft research" class="h-full w-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/320x176/1E40AF/FFFFFF?text=CFD+Hydraulics';" decoding="async" loading="lazy" fetchpriority="low">
-                                <figcaption class="absolute inset-x-0 bottom-0 bg-slate-950/70 px-3 py-2 text-xs font-semibold text-slate-100">Vortex drop shaft CFD</figcaption>
-                            </figure>
-                            <figure class="relative overflow-hidden rounded-lg border border-white/10 bg-slate-950/30 shadow-xl">
-                                <img src="assets/optimized/cnarmada-project-collage.webp" alt="River basin planning project collage for cNarmada" class="h-full w-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/320x176/14532D/FFFFFF?text=River+Basin+Planning';" decoding="async" loading="lazy" fetchpriority="low">
-                                <figcaption class="absolute inset-x-0 bottom-0 bg-slate-950/70 px-3 py-2 text-xs font-semibold text-slate-100">River basin systems</figcaption>
+                            <figure class="evidence-card">
+                                <img src="assets/optimized/glof-hero-collage.webp" alt="GIS and machine-learning evidence for Himalayan GLOF susceptibility mapping" onerror="this.onerror=null;this.src='https://placehold.co/360x220/DCFCE7/0B1220?text=GIS+Risk+Mapping';" decoding="async" loading="lazy" fetchpriority="low">
+                                <figcaption class="visual-caption">
+                                    Himalayan water-risk mapping
+                                    <span>Remote sensing, GIS, susceptibility models</span>
+                                </figcaption>
                             </figure>
                         </div>
                     </div>
@@ -202,11 +537,55 @@
             </div>
         </section>
 
-        <section class="py-4 bg-slate-900 text-white">
+        <section class="partner-strip">
             <div class="container mx-auto px-6">
-                <p class="text-center text-base md:text-lg text-slate-200 max-w-5xl mx-auto">
-                    Research and project work across hydraulic structures, river basin planning, urban water systems, geospatial hazard assessment, and engineering consultancy for water infrastructure.
-                </p>
+                <div class="partner-strip-inner">
+                    <p class="text-lg leading-relaxed">
+                        <strong>Open to research and applied collaborations</strong> with universities, labs, consultants, and water-infrastructure teams.
+                    </p>
+                    <div class="partner-tags" aria-label="Collaboration areas">
+                        <span>CFD model review</span>
+                        <span>Hydraulic design evidence</span>
+                        <span>River-basin planning</span>
+                        <span>GIS risk mapping</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="collab-section py-20">
+            <div class="container mx-auto px-6">
+                <div class="grid lg:grid-cols-[0.82fr_1.18fr] gap-10 items-end">
+                    <div>
+                        <p class="section-kicker">How I Can Help</p>
+                        <h2 class="section-heading">Research depth with engineering communication.</h2>
+                    </div>
+                    <p class="section-intro">
+                        Visitors from the US, UK, and other international research ecosystems should immediately understand the practical value: rigorous modeling, readable evidence, and collaboration-ready outputs that help teams make technical decisions.
+                    </p>
+                </div>
+                <div class="collab-grid">
+                    <article class="collab-card fade-in-element">
+                        <span class="card-mark">01</span>
+                        <h3>CFD and hydraulic structure studies</h3>
+                        <p>Support for geometry preparation, case comparison, free-surface interpretation, pressure response, and design-facing CFD reporting.</p>
+                    </article>
+                    <article class="collab-card fade-in-element">
+                        <span class="card-mark">02</span>
+                        <h3>Water-risk and geospatial analysis</h3>
+                        <p>GIS, remote sensing, and machine-learning workflows for GLOF, flood, basin, and infrastructure-risk screening.</p>
+                    </article>
+                    <article class="collab-card fade-in-element">
+                        <span class="card-mark">03</span>
+                        <h3>Urban water and river-basin planning</h3>
+                        <p>Evidence synthesis for watershed planning, stormwater systems, wastewater networks, and water-sensitive urban frameworks.</p>
+                    </article>
+                    <article class="collab-card fade-in-element">
+                        <span class="card-mark">04</span>
+                        <h3>Clear technical storytelling</h3>
+                        <p>Decision-ready figures, case-study narratives, literature synthesis, and concise documentation for technical and non-technical stakeholders.</p>
+                    </article>
+                </div>
             </div>
         </section>
 
@@ -217,14 +596,14 @@
                 <div class="flex flex-col md:flex-row items-start gap-12">
                     
                     <div class="md:w-2/3">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-4">PhD Scholar in Hydraulics at IIT Gandhinagar</h3>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Hydraulics researcher focused on usable engineering evidence</h3>
                         
                         <p class="text-gray-600 leading-relaxed mb-4">
-                            I am a PhD research scholar in Civil Engineering at the Indian Institute of Technology (IIT) Gandhinagar, specializing in Hydraulics under the guidance of <a href="https://iitgn.ac.in/faculty/civil/fac-pranab" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline font-semibold">Prof. Pranab Kumar Mohapatra</a>. My research focuses on the complex fluid dynamics of vortex drop shafts, which I investigate using a combination of experimental methods and advanced numerical modeling (CFD).
+                            I am a PhD research scholar in Civil Engineering at the Indian Institute of Technology (IIT) Gandhinagar, specializing in Hydraulics under the guidance of <a href="https://iitgn.ac.in/faculty/civil/fac-pranab" target="_blank" rel="noopener noreferrer" class="text-indigo-600 hover:underline font-semibold">Prof. Pranab Kumar Mohapatra</a>. My core work connects experimental hydraulics, CFD, and geospatial analysis so complex water-infrastructure questions can be explained through defensible, readable evidence.
                         </p>
                         
                         <p class="text-gray-600 leading-relaxed mb-8">
-                            My doctoral studies are complemented by hands-on involvement in significant water management projects. I have contributed to the <strong>Water4Change</strong> project, an Indo-Dutch initiative focused on creating solutions for urban water challenges, and am actively working on the <strong>cNarmada</strong> initiative, which aims to develop an integrated river basin management plan.
+                            My doctoral research investigates vortex drop shafts and multiphase flow behavior, while my applied work includes <strong>Water4Change</strong>, an Indo-Dutch urban water initiative, and <strong>cNarmada</strong>, an integrated river-basin planning effort. The common thread is practical: convert modeling, maps, and measurements into decisions that engineers, researchers, and institutions can use.
                         </p>
 
                         <h4 class="text-lg font-bold text-gray-900 mb-4">Research Interests</h4>
@@ -236,7 +615,7 @@
                             <span class="bg-indigo-50 text-indigo-600 border border-indigo-200 px-4 py-1.5 rounded-full text-sm">River Basin Management</span>
                         </div>
 
-                        <h4 class="text-lg font-bold text-gray-900 mb-4">Current Questions I am Working On:</h4>
+                        <h4 class="text-lg font-bold text-gray-900 mb-4">Current Questions I am Working On</h4>
                         <ul class="list-disc list-outside ml-5 text-gray-600 space-y-2">
                             <li>How can we optimize energy dissipation in vortex drop shafts handling extreme urban storm flows?</li>
                             <li>What are the most accurate multiphase CFD modeling approaches for complex hydraulic structures?</li>
@@ -534,7 +913,13 @@
 
         <section id="projects" class="py-20 bg-white">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-bold text-center mb-12">Applied Research & Projects</h2>
+                <div class="max-w-4xl mx-auto text-center mb-12">
+                    <p class="section-kicker">Selected Work</p>
+                    <h2 class="section-heading">Applied research that can be inspected, questioned, and reused.</h2>
+                    <p class="section-intro mt-4">
+                        Each project is framed around evidence, tools, and engineering relevance so potential collaborators can quickly see where my work fits their research, consultancy, or infrastructure problem.
+                    </p>
+                </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition duration-300 flex flex-col fade-in-element">
                         <img src="assets/optimized/chichlik-project-collage.webp" alt="Nine-panel collage of Chichlik pumped storage reservoir CFD velocity, pressure, free-surface, Froude number, and streamline results" class="w-full h-56 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/0EA5E9/FFFFFF?text=Reservoir+CFD+Analysis';" decoding="async" loading="lazy" fetchpriority="low">
@@ -838,54 +1223,57 @@
             </div>
         </section>
 
-        <section id="contact" class="py-20 bg-gray-800 text-white">
+        <section id="contact" class="contact-premium py-20">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-bold text-center mb-12">Get In Touch</h2>
-                <div class="max-w-4xl mx-auto flex flex-col md:flex-row gap-12">
-                    <div class="md:w-1/2">
-                        <p class="text-gray-300 mb-8 text-center md:text-left">
-                            Available for research collaboration, academic discussion, and applied water infrastructure projects. Email me directly or use the form below.
+                <div class="contact-panel">
+                    <div>
+                        <p class="section-kicker">Start a Conversation</p>
+                        <h2 class="section-heading">Have a water-infrastructure, CFD, or geospatial research question?</h2>
+                        <p class="section-intro mt-5">
+                            I am open to serious research collaboration, academic discussion, consultancy support, and technical writing around hydraulic infrastructure, river basins, GLOF risk, urban water systems, and CFD-based design evidence.
                         </p>
+                        <div class="contact-list">
+                            <div>
+                                <strong>Primary email</strong>
+                                <a href="mailto:sunil.k@iitgn.ac.in">sunil.k@iitgn.ac.in</a>
+                            </div>
+                            <div>
+                                <strong>Alternate email</strong>
+                                <a href="mailto:sunil.ce14@iitp.ac.in">sunil.ce14@iitp.ac.in</a>
+                            </div>
+                            <div>
+                                <strong>Phone</strong>
+                                <a href="tel:+919001646544">+91-9001646544</a>
+                            </div>
+                            <div>
+                                <strong>Location</strong>
+                                <span>AB5/103, cNarmada Centre, IIT Gandhinagar, Palaj, Gandhinagar, 382055, India</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Send a concise brief</h3>
+                        <p class="text-gray-600 mb-6">Share the problem, dataset/model status, expected output, and timeline. I will respond through email.</p>
                         <form id="contact-form" action="https://formspree.io/f/xeozkqky" method="POST" class="space-y-4">
                             <div>
-                                <label for="name" class="block mb-2 text-sm font-medium text-gray-300">Your Name</label>
-                                <input type="text" name="name" id="name" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" required>
+                                <label for="name" class="block mb-2 text-sm font-semibold text-gray-700">Your Name</label>
+                                <input type="text" name="name" id="name" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" required>
                             </div>
                             <div>
-                                <label for="email" class="block mb-2 text-sm font-medium text-gray-300">Your Email</label>
-                                <input type="email" name="email" id="email" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" required>
+                                <label for="email" class="block mb-2 text-sm font-semibold text-gray-700">Your Email</label>
+                                <input type="email" name="email" id="email" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" required>
                             </div>
                             <div>
-                                <label for="message" class="block mb-2 text-sm font-medium text-gray-300">Your Message</label>
-                                <textarea name="message" id="message" rows="4" class="w-full p-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" required></textarea>
+                                <label for="message" class="block mb-2 text-sm font-semibold text-gray-700">Project or Collaboration Note</label>
+                                <textarea name="message" id="message" rows="5" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" required></textarea>
                             </div>
-                            <button type="submit" class="inline-block bg-indigo-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-indigo-600 transition duration-300 transform hover:scale-105 shadow-lg">
+                            <button type="submit" class="premium-button">
                                 Send Message
                             </button>
                         </form>
                         <div id="success-message" class="hidden text-center p-4 bg-green-100 text-green-800 rounded-lg">
                             <h3 class="font-semibold text-lg">Thanks!</h3>
                             <p>Your message has been submitted successfully.</p>
-                        </div>
-                    </div>
-                    <div class="md:w-1/2 text-center md:text-left">
-                        <div class="space-y-4 text-gray-300">
-                            <div class="flex items-center justify-center md:justify-start">
-                                <svg class="w-6 h-6 mr-3 text-indigo-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-                                <span> AB5/103, cNarmada Centre, IIT Gandhinagar, Palaj, Gandhinagar, 382055, India</span>
-                            </div>
-                            <div class="flex items-center justify-center md:justify-start">
-                                <svg class="w-6 h-6 mr-3 text-indigo-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                                <a href="mailto:sunil.k@iitgn.ac.in" class="hover:text-indigo-400">sunil.k@iitgn.ac.in</a>
-                            </div>
-                            <div class="flex items-center justify-center md:justify-start">
-                                <svg class="w-6 h-6 mr-3 text-indigo-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                                <a href="mailto:sunil.ce14@iitp.ac.in" class="hover:text-indigo-400">sunil.ce14@iitp.ac.in</a>
-                            </div>
-                            <div class="flex items-center justify-center md:justify-start">
-                                <svg class="w-6 h-6 mr-3 text-indigo-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                                <a href="tel:+919001646544" class="hover:text-indigo-400">+91-9001646544</a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -1227,7 +1615,7 @@
 <script>
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').catch(() => {});
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
   });
 }
 </script>
